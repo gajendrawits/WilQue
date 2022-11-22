@@ -52,4 +52,3 @@ Who helped you make this project a reality? Friends? Family? Contributors? Instr
 ## Authors
 
 - [@gajendrawits](https://www.github.com/gajendrawits)
-
