@@ -1,3 +1,4 @@
+![Logo](https://thewitslab.com/static/media/witslogo.262601f8.svg)
 
 # WilQue
 
