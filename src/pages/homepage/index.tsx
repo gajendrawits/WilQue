@@ -9,7 +9,8 @@ const HomePage = () => {
   return (
     <MainContainer>
       <Logo />
-      <Button label="Submit" />
+      <p>Please Login In Wil Que</p>
+      <Button label="Submit data" />
     </MainContainer>
   )
 }
