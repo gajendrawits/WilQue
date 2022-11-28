@@ -1,55 +1,66 @@
-![Logo](https://thewitslab.com/static/media/witslogo.262601f8.svg)
-
-# WilQue
-
-## Table of Contents
-
-- [Description](#description)
-- [Screenshots](#screenshots)
-- [Built With](#built-with)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
-- [Contacts](#contacts)
-
-## Description
-
- A Web Platform that can enable users/developers to ask questions, learn and share technical knowledge. Users can easily connect to other users by signing up or logging in using their email addresses. 
-
-
-## Getting Started
-
-What do I need to do or know before attempting to use your project
-
-### Prerequisites
-
-Node js
-
-### Installation
-
-cd client && npm install
-cd server && npm install
-
-## Usage
-
-How do I use your project
-
-
-## License
-
-![Logo](https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/mit.svg)
-
-
-
-## Acknowledgements
-
-Who helped you make this project a reality? Friends? Family? Contributors? Instructors?
-
-
-## Authors
-
-- [@gajendrawits](https://www.github.com/gajendrawits)
-
+.
+├── README.md
+├── commitlint.config.js
+├── package-lock.json
+├── package.json
+├── public
+│ ├── favicon.ico
+│ ├── index.html
+│ ├── logo192.png
+│ ├── logo512.png
+│ ├── manifest.json
+│ └── robots.txt
+├── src
+│ ├── App.css
+│ ├── App.tsx
+│ ├── assets
+│ │ └── svg
+│ │ └── witslogo.tsx
+│ ├── components
+│ │ ├── Button
+│ │ │ └── index.tsx
+│ │ └── FormElements
+│ │ ├── TextArea
+│ │ │ └── index.tsx
+│ │ └── TextInput
+│ │ └── index.tsx
+│ ├── context
+│ │ └── loader.tsx
+│ ├── hooks
+│ │ ├── useGet.tsx
+│ │ └── usePost.tsx
+│ ├── index.css
+│ ├── index.tsx
+│ ├── interface
+│ │ ├── components
+│ │ ├── pages
+│ │ │ └── homepage
+│ │ │ └── index.ts
+│ │ └── views
+│ ├── logo.svg
+│ ├── pages
+│ │ └── homepage
+│ │ └── index.tsx
+│ ├── react-app-env.d.ts
+│ ├── routes
+│ ├── services
+│ │ └── axiosInstance.ts
+│ ├── styles
+│ │ ├── components
+│ │ │ └── Button
+│ │ │ └── index.ts
+│ │ ├── pages
+│ │ │ └── homepage
+│ │ │ └── index.ts
+│ │ └── views
+│ ├── utils
+│ │ ├── helper
+│ │ ├── shared
+│ │ └── validations
+│ │ └── homepage
+│ │ └── index.ts
+│ └── views
+│ └── homepage
+│ └── OurTeam
+│ └── index.tsx
+└── tsconfig.json
