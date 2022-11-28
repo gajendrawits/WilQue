@@ -25,7 +25,7 @@ const HomePage = () => {
       <Form onSubmit={onSubmit}>
         <TextArea name="message" control={control} rows={4} placeholder="Drop your message" maxLength={100} />
         <Error>{errors.message?.message}</Error>
-        <Button label="Post" />
+        <Button label="Submit" />
       </Form>
     </MainContainer>
   )
