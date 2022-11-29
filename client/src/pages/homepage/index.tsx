@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { MainContainer, Form, Error } from 'styles/pages/homepage'
 import { messageSchema } from 'utils/validations/homepage'
 import { FormData } from 'interface/pages/homepage'
+import Navbar from '../../components/navbar'
 
 const HomePage = () => {
   const {
@@ -21,12 +22,14 @@ const HomePage = () => {
 
   return (
     <MainContainer>
+      <Navbar />
       <Logo />
       <Form onSubmit={onSubmit}>
         <TextArea name="message" control={control} rows={4} placeholder="Drop your message" maxLength={100} />
         <Error>{errors.message?.message}</Error>
         <Button label="Post" />
       </Form>
+
     </MainContainer>
   )
 }
