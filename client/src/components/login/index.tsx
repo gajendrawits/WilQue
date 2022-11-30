@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import Input from '../input'
+import React from "react";
+import styled from "styled-components";
+import Input from "../input";
 
-import Button from '../buttonComponent'
+import Button from "../buttonComponent";
 
 const Wrapper = styled.div`
   /*border: 1px solid black;*/
@@ -15,32 +15,34 @@ const Wrapper = styled.div`
   padding: 1rem 0 3rem 0;
   gap: 2rem;
   border-radius: 8px;
-`
-const Heading = styled.h2``
+`;
+const Heading = styled.h2``;
+
 export interface LoginSignupProps {
-  name: string
+  name: string;
 }
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 const Close = styled.p`
   width: 95%;
   display: flex;
   justify-content: end;
   font-size: 1.2rem;
   font-weight: 500;
-`
+`;
 
 const index = (props: any) => {
-  const { setIsOpen } = props
+  const { setIsOpen } = props;
 
   return (
     <Container>
       <Wrapper>
         <Close
           onClick={() => {
-            setIsOpen(false)
+            setIsOpen(false);
           }}
         >
           X
@@ -51,7 +53,7 @@ const index = (props: any) => {
         <Button name="Submit" />
       </Wrapper>
     </Container>
-  )
-}
+  );
+};
 
-export default index
+export default index;

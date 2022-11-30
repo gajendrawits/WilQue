@@ -1,74 +1,83 @@
-import React, { useState } from 'react'
-import SignModal from '../modal/signUpModal'
-import LoginModal from '../modal/loginModal'
-import styled from 'styled-components'
-import background from '../../assets/images/background.png'
-import logo from '../../assets/images/logoWits.png'
+import React, { useState } from "react";
+import SignModal from "components/modal/signUpModal";
+import LoginModal from "components/modal/loginModal";
+import {
+  ButtonContainer,
+  ButtonLogin,
+  ButtonLogout,
+  ButtonSignup,
+  ButtonWrapper,
+  IconWrapper,
+  NavbarContainer,
+  OptionWrapper,
+  RightWrapper,
+  SearchBarWrapper,
+  UserData,
+  UserWrapper,
+} from "styles/components/Navbar";
+import logo from "assets/images/logoWits.png";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import Button from "components/Button";
+import TextInput from "components/FormElements/TextInput";
+import { useForm } from "react-hook-form";
 
+const Navbar = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalOpenSignup, setIsOpenSignup] = useState(false);
+  const { control } = useForm();
+  const openModalLogin = () => {
+    setIsOpen(true);
+  };
 
-const index = () => {
-  const NavbarContainer = styled.div`
-    background-image: url(${background});
-    background-size: cover;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1.5rem 0.5rem 1rem;
-  `
-  const ButtonWrapper = styled.div`
-    padding-left: 1.5vw;
-    display: flex;
-    gap: 1rem;
-  `
-  const OptionWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-  `
-  const ButtonSignup = styled.button`
-    background-color: white;
-    border: none;
-    padding: 0.5rem 2.5rem;
-    border-radius: 15px;
-  `
-  const ButtonLogin = styled.button`
-    background-color: blue;
-    border: none;
-    color: white;
-    padding: 0.5rem 2.5rem;
-    border-radius: 15px;
-  `
+  const openModalSignup = () => {
+    setIsOpenSignup(true);
+  };
 
-  const [modalIsOpen, setIsOpen] = useState(false)
-  const [modalOpenSignup, setIsOpenSignup] = useState(false)
-
-  function openModalLogin() {
-    setIsOpen(true)
-  }
-  function openModalSignup() {
-    setIsOpenSignup(true)
-  }
   return (
     <NavbarContainer>
       <OptionWrapper>
         <img src={logo} />
-        <div>option 1</div>
+        <div>Our Company</div>
         <div>option 1</div>
         <div>option 1</div>
       </OptionWrapper>
-
+      <SearchBarWrapper>
+        <TextInput
+          name={"searchbar"}
+          placeholder="Search here"
+          control={control}
+          className="searchbar"
+        />
+      </SearchBarWrapper>
       <ButtonWrapper>
-        <ButtonSignup name="signup" onClick={openModalSignup}>
-          SignUp
-        </ButtonSignup>
-        <SignModal modalIsOpen={modalOpenSignup} setIsOpen={setIsOpenSignup} />
-        <ButtonLogin name="login" onClick={openModalLogin}>
-          Login
-        </ButtonLogin>
-        <LoginModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
+        {false ? (
+          <ButtonContainer>
+            <ButtonSignup onClick={openModalSignup}>
+              <Button label="Sign Up" variant="contained" />
+            </ButtonSignup>
+            <ButtonLogin onClick={openModalLogin}>
+              <Button label="Login" variant="contained" />
+            </ButtonLogin>
+          </ButtonContainer>
+        ) : (
+          <RightWrapper>
+            <UserWrapper>
+              <IconWrapper>
+                <AccountCircleOutlinedIcon />
+              </IconWrapper>
+              <UserData>Aman kapoor</UserData>
+            </UserWrapper>
+            <ButtonLogout>
+              <Button label="Logout" variant="contained" />
+            </ButtonLogout>
+          </RightWrapper>
+        )}
       </ButtonWrapper>
-    </NavbarContainer>
-  )
-}
 
-export default index
+      <SignModal modalIsOpen={modalOpenSignup} setIsOpen={setIsOpenSignup} />
+      <LoginModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} />
+    </NavbarContainer>
+  );
+};
+
+export default Navbar;
