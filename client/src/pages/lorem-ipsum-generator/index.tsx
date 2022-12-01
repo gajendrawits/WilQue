@@ -1,3 +1,5 @@
+import { LoremIpsum } from "lorem-ipsum";
+
 // ** MUI Imports
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
@@ -6,25 +8,20 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import CardHeader from "@mui/material/CardHeader";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 // ** Demo Components Imports
-import TableBasic from "src/views/lorem/LoremGenerator";
-import TableDense from "src/views/tables/TableDense";
-import TableSpanning from "src/views/tables/TableSpanning";
-import TableCustomized from "src/views/tables/TableCustomized";
-import TableCollapsible from "src/views/tables/TableCollapsible";
-import TableStickyHeader from "src/views/tables/TableStickyHeader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MUITable = () => {
   function valuetext(value: number) {
     return `${value}°C`;
   }
 
-  const [sentences, setSentences] = useState<number[]>([20, 37]);
-  const [words, setWords] = useState<number[]>([20, 37]);
+  const [sentences, setSentences] = useState<number[]>([1, 10]);
+  const [words, setWords] = useState<number[]>([1, 10]);
+  const [senetenceLength, setSenetenceLength] = useState(1);
+  const [text, setText] = useState("");
 
   const handleChangeSentences = (event: Event, newValue: number | number[]) => {
     setSentences(newValue as number[]);
@@ -32,6 +29,21 @@ const MUITable = () => {
   const handleChange = (event: Event, newValue: number | number[]) => {
     setWords(newValue as number[]);
   };
+
+  useEffect(() => {
+    const lorem = new LoremIpsum({
+      sentencesPerParagraph: {
+        max: sentences[1],
+        min: sentences[0],
+      },
+      wordsPerSentence: {
+        max: words[1],
+        min: words[0],
+      },
+    });
+    setText(lorem.generateParagraphs(senetenceLength));
+  }, [words, sentences, senetenceLength]);
+
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
@@ -60,7 +72,7 @@ const MUITable = () => {
       >
         <Card
           sx={{
-            width: "70%",
+            // width: "70%",
             paddingTop: "25px",
             paddingBottom: "25px",
           }}
@@ -96,11 +108,15 @@ const MUITable = () => {
             >
               <Slider
                 aria-label="Small steps"
-                defaultValue={0.00000005}
-                step={0.00000001}
+                defaultValue={0}
+                onChange={(d) => {
+                  console.log(d);
+                  setSenetenceLength(d.target.value);
+                }}
+                step={1}
                 marks
-                min={-0.00000005}
-                max={0.0000001}
+                min={0}
+                max={20}
                 valueLabelDisplay="auto"
               />
             </Typography>
@@ -197,42 +213,7 @@ const MUITable = () => {
             }}
           >
             <Card sx={{ width: "100%", padding: "20px", boxShadow: "none" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non hac
-              facilisi senectus aptent mauris commodo eu montes purus dignissim
-              taciti rhoncus. Fusce magnis nisl cubilia id mollis non lorem
-              pellentesque eget iaculis natoque fusce. Ligula est orci cum eget
-              mauris justo est congue dapibus pretium conubia feugiat. Feugiat
-              consectetur dictumst dolor porttitor curabitur condimentum semper
-              integer facilisi dictumst vitae lobortis. Penatibus varius potenti
-              lacus nec risus posuere parturient tellus pharetra sapien magnis
-              nunc. Ligula per rutrum turpis venenatis aliquam vulputate
-              elementum porta porttitor quam natoque posuere. Ornare nisi quam
-              rutrum sit maecenas turpis duis vehicula at ultrices vulputate
-              integer. Sociosqu sed convallis aptent varius nunc quis justo
-              sociosqu volutpat fermentum dolor pretium. Pulvinar quis enim
-              mauris himenaeos cum venenatis placerat dictumst vitae vulputate
-              ante phasellus. Commodo curae natoque vehicula venenatis bibendum
-              duis nascetur orci condimentum fusce nullam suscipit. Habitasse
-              urna habitant congue turpis aliquam erat duis justo habitasse eros
-              egestas nostra. In vel ornare posuere sociis nisi netus accumsan
-              neque donec dictum condimentum quis. Netus eu tempor phasellus
-              elit nunc mus lacus elementum fusce sociis praesent nostra.
-              Vehicula proin placerat netus pellentesque elit lobortis lacinia
-              vestibulum nascetur torquent aliquam ad. Himenaeos pellentesque
-              cum amet cras dictum dignissim malesuada justo ac dui rhoncus
-              congue. Volutpat purus integer dolor montes eget sapien urna
-              faucibus turpis urna feugiat sollicitudin. Netus nisi pulvinar
-              ultrices vulputate montes inceptos sapien magna montes a neque
-              amet. Justo gravida iaculis ante nulla erat morbi ultrices
-              lobortis interdum phasellus vehicula pulvinar. Litora tempor
-              porttitor dictum hac viverra et montes semper sed elementum massa
-              egestas. Condimentum vel magna magna risus mattis vivamus
-              convallis elementum congue taciti magna per. Quisque venenatis
-              tortor semper pretium sollicitudin ullamcorper penatibus ultricies
-              aliquam accumsan vel bibendum. Inceptos id posuere sit taciti
-              semper consequat tempor commodo potenti elit in taciti. Inceptos
-              nunc lorem mauris vel montes etiam eu vehicula integer aliquam
-              fusce a.
+              {text}
             </Card>
             <Typography>
               <Button
