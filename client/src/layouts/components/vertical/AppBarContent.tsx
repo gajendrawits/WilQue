@@ -63,12 +63,12 @@ const AppBarContent = (props: Props) => {
             target='_blank'
             rel='noreferrer'
             sx={{ mr: 4, display: 'flex' }}
-            href='https://github.com/themeselection/wilque-frontend'
+            href='https://github.com/WilQue/WilQue-mui-react-nextjs-admin-template-free'
           >
             <img
               height={24}
               alt='github stars'
-              src='https://img.shields.io/github/stars/themeselection/wilque-frontend?style=social'
+              src='https://img.shields.io/github/stars/WilQue/WilQue-mui-react-nextjs-admin-template-free?style=social'
             />
           </Box>
         )}
