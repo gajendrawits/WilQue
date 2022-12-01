@@ -15,4 +15,5 @@ const Button: React.FC<IButtonProps> = ({ variant, label, type, ...rest }: IButt
   </StyledButton>
 )
 
+
 export default Button
