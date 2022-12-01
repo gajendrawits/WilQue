@@ -1,5 +1,8 @@
 name: notify
 on:
+  push:
+    branches:
+      - "*"
   pull_request:
     types: [opened, reopened, closed,pushed]
   pull_request_review_comment:
