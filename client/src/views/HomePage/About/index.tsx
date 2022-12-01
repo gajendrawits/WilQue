@@ -8,8 +8,6 @@ import {
   Body,
   HeadText,
   HeadingSection,
-  ButtonContainer,
-  GetStarted,
   ImageSection,
   Dashboardpic,
   MainHading,
