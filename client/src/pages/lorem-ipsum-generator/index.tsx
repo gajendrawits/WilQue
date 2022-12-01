@@ -12,8 +12,6 @@ import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 // ** Demo Components Imports
 import { useEffect, useState } from "react";
-import { log } from "console";
-import { doc } from "prettier";
 
 const MUITable = () => {
   function valuetext(value: number) {
@@ -22,7 +20,7 @@ const MUITable = () => {
 
   const [sentences, setSentences] = useState<number[]>([1, 10]);
   const [words, setWords] = useState<number[]>([1, 10]);
-  const [senetenceLength, setSenetenceLength] = useState(1)
+  const [senetenceLength, setSenetenceLength] = useState(1);
   const [text, setText] = useState("");
 
   const handleChangeSentences = (event: Event, newValue: number | number[]) => {
@@ -36,16 +34,15 @@ const MUITable = () => {
     const lorem = new LoremIpsum({
       sentencesPerParagraph: {
         max: sentences[1],
-        min: sentences[0]
+        min: sentences[0],
       },
       wordsPerSentence: {
         max: words[1],
-        min: words[0]
-      }
+        min: words[0],
+      },
     });
-    setText(lorem.generateParagraphs(senetenceLength))
-
-  }, [words, sentences, senetenceLength])
+    setText(lorem.generateParagraphs(senetenceLength));
+  }, [words, sentences, senetenceLength]);
 
   return (
     <Grid container spacing={6}>
@@ -75,7 +72,7 @@ const MUITable = () => {
       >
         <Card
           sx={{
-            width: "70%",
+            // width: "70%",
             paddingTop: "25px",
             paddingBottom: "25px",
           }}
@@ -113,8 +110,8 @@ const MUITable = () => {
                 aria-label="Small steps"
                 defaultValue={0}
                 onChange={(d) => {
-                  console.log(d)
-                  setSenetenceLength(d.target.value)
+                  console.log(d);
+                  setSenetenceLength(d.target.value);
                 }}
                 step={1}
                 marks
