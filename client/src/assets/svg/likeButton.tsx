@@ -1,13 +1,12 @@
-import * as React from "react"
+import * as React from "react";
 
 const SvgComponent = () => (
   <svg
-  width="8vw"
-  height="6vh"
+    width="30pt"
+    height="20pt"
     viewBox="0 0 700 700"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-
   >
     <defs>
       <symbol id="a" overflow="visible">
@@ -78,9 +77,7 @@ const SvgComponent = () => (
       d="M621.22 236.38v108.17c0 93.312-76.277 169.59-169.59 169.59l-154.68.004c-16.625 0-30.238-13.56-30.238-30.238l-.004-279.95c0-3.36 79.344-127.91 90.602-155.15 13.441-32.54 51.105-48.102 83.586-34.66 32.422 13.383 48.102 51.227 34.66 83.586l-31.238 75.629c-.117.355-.117.707.117 1.004.235.293.532.472.883.472h114.48c33.777.06 61.426 27.703 61.426 61.54zm-457.67-64.43h-36.137c-26.762 0-48.691 21.93-48.691 48.691v249.23c0 26.762 21.93 48.691 48.691 48.691h36.133c26.762 0 48.691-21.93 48.691-48.691v-249.23c0-26.762-21.926-48.691-48.688-48.691z"
       fillRule="evenodd"
     />
-    
-   
   </svg>
-)
+);
 
-export default SvgComponent
+export default SvgComponent;
