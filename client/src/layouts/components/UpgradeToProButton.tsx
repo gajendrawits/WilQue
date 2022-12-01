@@ -43,7 +43,7 @@ const BuyNowButton = () => {
         onMouseEnter={handleOpen}
         onMouseLeave={handleClose}
         ref={(e: any) => setReferenceElement(e)}
-        href='https://themeselection.com/products/materio-mui-react-nextjs-admin-template/'
+        href='#products/WilQue-mui-react-nextjs-admin-template/'
         sx={{
           backgroundColor: '#ff3e1d',
           boxShadow: '0 1px 20px 1px #ff3e1d',
@@ -68,16 +68,16 @@ const BuyNowButton = () => {
             <a
               target='_blank'
               rel='noreferrer'
-              href='https://themeselection.com/products/materio-mui-react-nextjs-admin-template/'
+              href='#products/WilQue-mui-react-nextjs-admin-template/'
             >
-              <img width='100%' alt='materio-pro-banner' src='/images/misc/materio-pro-banner.png' />
+              <img width='100%' alt='WilQue-pro-banner' src='/images/misc/WilQue-pro-banner.png' />
             </a>
             <CardContent>
               <Typography sx={{ mb: 4 }} variant='h6'>
-                Materio - React Admin Template
+                WilQue - React Admin Template
               </Typography>
               <Typography sx={{ mb: 4 }} variant='body2'>
-                Materio Admin is the most developer friendly & highly customizable Admin Dashboard Template based on MUI
+                WilQue Admin is the most developer friendly & highly customizable Admin Dashboard Template based on MUI
                 and NextJS.
               </Typography>
               <Typography sx={{ mb: 4 }} variant='body2'>
@@ -88,7 +88,7 @@ const BuyNowButton = () => {
                 sx={{ mr: 4 }}
                 target='_blank'
                 variant='contained'
-                href='https://demos.themeselection.com/materio-mui-react-nextjs-admin-template/landing/'
+                href='https://demos.WilQue.com/WilQue-mui-react-nextjs-admin-template/landing/'
               >
                 Demo
               </Button>
@@ -96,7 +96,7 @@ const BuyNowButton = () => {
                 component='a'
                 target='_blank'
                 variant='outlined'
-                href='https://themeselection.com/products/materio-mui-react-nextjs-admin-template/'
+                href='#products/WilQue-mui-react-nextjs-admin-template/'
               >
                 Download
               </Button>
