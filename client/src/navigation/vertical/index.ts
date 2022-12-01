@@ -65,9 +65,9 @@ const navigation = (): VerticalNavItemsType => {
     //   path: '/cards'
     // },
     {
-      title: 'Tables',
+      title: 'Lorem ipsum generator ',
       icon: Table,
-      path: '/tables'
+      path: '/lorem-ipsum-generator'
     },
     {
       icon: CubeOutline,
