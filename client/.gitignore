@@ -2,7 +2,7 @@
 .DS_store
 
 .github
-.next
+.next/
 
 # Ignore node_modules folder
 node_modules
