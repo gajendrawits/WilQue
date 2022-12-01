@@ -4,8 +4,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  width: 500px;
-  height: 400px;
+  width: 100%;
+  max-width: 500px;
   top: 50%;
   left: 40%;
   margin: auto;
@@ -40,14 +40,18 @@ export const QuestionText = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   gap: 20px;
+  padding: 20px 0px;
 `;
 
 export const ButtonSubmit = styled.div`
-  width: 150px;
+  width: 100%;
+  max-width: 150px;
+  padding: 20px 0px;
 `;
 
 export const ButtonQuestion = styled.div`
-  width: 150px;
+  width: 180px;
+  padding: 20px 0px;
 `;
 
 export const FirstSection = styled.div`

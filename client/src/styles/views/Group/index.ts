@@ -9,9 +9,15 @@ export const Container = styled.div`
   margin-top: 25px;
 `;
 
-export const RightWrapper = styled.div``;
+export const RightWrapper = styled.div`
+  width: 100%;
+  max-width: 400px;
+`;
 
-export const LeftWrapper = styled.div``;
+export const LeftWrapper = styled.div`
+  width: 100%;
+  max-width: 400px;
+`;
 
 export const Card = styled.div`
   display: flex;
@@ -19,7 +25,6 @@ export const Card = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 350px;
-  height: 450px;
   align-items: center;
   gap: 50px;
   border-radius: 17px;
@@ -28,26 +33,36 @@ export const Card = styled.div`
 export const CardHeading = styled.div`
   width: 100%;
   max-width: 200px;
+  padding: 20px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #5cacf5;
-  height: 50px;
   border-radius: 10px;
   margin-top: 20px;
+  font-size: 18px;
 `;
 
 export const CardBody = styled.div`
-  width: 280px;
-  height: 220px;
+  width: 100%;
+  max-width: 280px;
+  padding: 10px 5px 30px 5px;
   background-color: aliceblue;
-  text-align: center;
   font-size: 20px;
 `;
 
-export const CardText = styled.div``;
+export const CardText = styled.div`
+  text-align: center;
+`;
+
+export const CardItems = styled.ol``;
+
+export const CardItem = styled.li`
+  padding: 10px 0px;
+`;
 
 export const CardButton = styled.div`
-  width: 150px;
-  height: 80px;
+  max-width: 150px;
+  width: 100%;
+  padding: 20px 20px;
 `;

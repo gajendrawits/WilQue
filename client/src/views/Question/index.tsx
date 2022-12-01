@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Button from "components/Button";
 import group from "assets/images/group.png";
 import {
-  ButtonContain,
   ButtonWrapper,
   Container,
   ImageWrapper,
@@ -24,20 +23,17 @@ const Question = () => {
   return (
     <Container>
       <QuestionText>
-        <h2>
-          Empowering the world to develop technology through collective
-          knowledge
-        </h2>
+        Empowering the world to develop technology through collective knowledge
       </QuestionText>
-      <ButtonContain>
-        <ButtonWrapper>
-          <Button
-            label="Ask Questions"
-            variant="contained"
-            onClick={handleClick}
-          />
-        </ButtonWrapper>
-      </ButtonContain>
+
+      <ButtonWrapper>
+        <Button
+          label="Ask Questions"
+          variant="contained"
+          onClick={handleClick}
+        />
+      </ButtonWrapper>
+
       <ImageWrapper>
         <img src={group} />
       </ImageWrapper>
