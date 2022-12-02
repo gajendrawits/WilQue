@@ -58,12 +58,10 @@ const ColorPicker = () => {
   }
 
   return (
-    <Grid container spacing={6}>
+    <Grid>
       <Grid item xs={12}>
         <Typography variant="h5">
-          <Link href="https://mui.com/components/tables/" target="_blank">
-            Color Picker
-          </Link>
+          <Link>Color Picker</Link>
         </Typography>
         <Typography variant="body2">
           Lorem ipsum is a placeholder text commonly used to demonstrate the
@@ -96,7 +94,7 @@ const ColorPicker = () => {
         >
           {FeelingRed.map((red) => {
             return (
-              <Card sx={{}}>
+              <Card sx={{ pb: 2 }}>
                 <Typography
                   sx={{
                     width: "100%",
@@ -104,6 +102,8 @@ const ColorPicker = () => {
                     paddingBottom: "125px",
                     mb: "20px",
                     background: red.color,
+
+                    borderRadius: "8px",
                   }}
                 ></Typography>
                 <Typography
@@ -123,7 +123,7 @@ const ColorPicker = () => {
           width: "100%",
         }}
       >
-        <Typography sx={{ color: "Blue", fontSize: 32, padding: 4 }}>
+        <Typography sx={{ color: "blue", fontSize: 32, padding: 4 }}>
           Feeling Blue
         </Typography>
         <Card
@@ -141,7 +141,7 @@ const ColorPicker = () => {
         >
           {FeelingBlue.map((red) => {
             return (
-              <Card sx={{}}>
+              <Card sx={{ pb: 2 }}>
                 <Typography
                   sx={{
                     width: "100%",
@@ -149,6 +149,8 @@ const ColorPicker = () => {
                     paddingBottom: "125px",
                     mb: "20px",
                     background: red.color,
+
+                    borderRadius: "8px",
                   }}
                 ></Typography>
                 <Typography
