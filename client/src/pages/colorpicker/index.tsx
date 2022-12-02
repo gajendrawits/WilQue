@@ -1,0 +1,216 @@
+import React from "react";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import Card from "@mui/material/Card";
+const ColorPicker = () => {
+  const FeelingRed = [
+    { id: 1, color: "#FF6263" },
+    { id: 2, color: "#ad1a0c" },
+    { id: 3, color: "#d4420c" },
+    { id: 4, color: "#f81702" },
+    { id: 5, color: "#e90a0a" },
+    { id: 6, color: "#DE4839" },
+    { id: 7, color: "#ef3929" },
+    { id: 8, color: "#e9877f" },
+    { id: 9, color: "#f81702" },
+    { id: 10, color: "#ec4141" },
+    { id: 11, color: "#871106" },
+    { id: 12, color: "#fa1601" },
+  ];
+  const FeelingBlue = [
+    { id: 1, color: "#0465f6ef" },
+    { id: 2, color: "#2c37d0" },
+    { id: 3, color: "#0526f7" },
+    { id: 4, color: "#477bf5" },
+    { id: 5, color: "#2f37c5" },
+    { id: 6, color: "#5b8bf3" },
+    { id: 7, color: "#1803f7" },
+    { id: 8, color: "#0c3491" },
+    { id: 9, color: "#04213e" },
+    { id: 10, color: "#091969b9" },
+    { id: 11, color: "#3f8ee8" },
+    { id: 12, color: "#8abaf5" },
+  ];
+  const FeelingGreen = [
+    { id: 1, color: "#0c712a" },
+    { id: 2, color: "#15c148" },
+    { id: 3, color: "#052e07" },
+    { id: 4, color: "#0f8434" },
+    { id: 5, color: "#027517" },
+    { id: 6, color: "#aaec93" },
+    { id: 7, color: "#137411" },
+    { id: 8, color: "#14b206" },
+    { id: 9, color: "#041a02" },
+    { id: 10, color: "#0a8860" },
+    { id: 11, color: "#09f175" },
+    { id: 12, color: "#08672e" },
+  ];
+  function updateClipboard(newClip: any) {
+    navigator.clipboard.writeText(newClip).then(
+      () => {
+        console.log("Copied!");
+      },
+      () => {
+        console.log("Copy failed!");
+      }
+    );
+  }
+
+  return (
+    <Grid container spacing={6}>
+      <Grid item xs={12}>
+        <Typography variant="h5">
+          <Link href="https://mui.com/components/tables/" target="_blank">
+            Color Picker
+          </Link>
+        </Typography>
+        <Typography variant="body2">
+          Lorem ipsum is a placeholder text commonly used to demonstrate the
+          visual form of a document or a typeface without relying on
+          meaningfulLorem ipsum is a placeholder text commonly used to
+          demonstrate the visual form of a document or a typeface without
+          relying on meaningful content content
+        </Typography>
+      </Grid>
+      <Typography
+        sx={{
+          width: "100%",
+        }}
+      >
+        <Typography sx={{ color: "red", fontSize: 32, padding: 4 }}>
+          Feeling Red
+        </Typography>
+        <Card
+          sx={{
+            width: "100%",
+            display: "grid",
+            gap: "20px",
+            textAlign: "center",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            paddingTop: "25px",
+            paddingBottom: "25px",
+            pl: "25px",
+            pr: "25px",
+          }}
+        >
+          {FeelingRed.map((red) => {
+            return (
+              <Card sx={{}}>
+                <Typography
+                  sx={{
+                    width: "100%",
+                    paddingTop: "175px",
+                    paddingBottom: "125px",
+                    mb: "20px",
+                    background: red.color,
+                  }}
+                ></Typography>
+                <Typography
+                  onClick={() => {
+                    updateClipboard(red.color);
+                  }}
+                >
+                  {red.color}
+                </Typography>
+              </Card>
+            );
+          })}
+        </Card>
+      </Typography>
+      <Typography
+        sx={{
+          width: "100%",
+        }}
+      >
+        <Typography sx={{ color: "Blue", fontSize: 32, padding: 4 }}>
+          Feeling Blue
+        </Typography>
+        <Card
+          sx={{
+            width: "100%",
+            display: "grid",
+            gap: "20px",
+            textAlign: "center",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            paddingTop: "25px",
+            paddingBottom: "25px",
+            pl: "25px",
+            pr: "25px",
+          }}
+        >
+          {FeelingBlue.map((red) => {
+            return (
+              <Card sx={{}}>
+                <Typography
+                  sx={{
+                    width: "100%",
+                    paddingTop: "175px",
+                    paddingBottom: "125px",
+                    mb: "20px",
+                    background: red.color,
+                  }}
+                ></Typography>
+                <Typography
+                  onClick={() => {
+                    updateClipboard(red.color);
+                  }}
+                >
+                  {red.color}
+                </Typography>
+              </Card>
+            );
+          })}
+        </Card>
+      </Typography>
+      <Typography
+        sx={{
+          width: "100%",
+        }}
+      >
+        <Typography sx={{ color: "green", fontSize: 32, padding: 4 }}>
+          Feeling Green
+        </Typography>
+        <Card
+          sx={{
+            width: "100%",
+            display: "grid",
+            gap: "20px",
+            textAlign: "center",
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            paddingTop: "25px",
+            paddingBottom: "25px",
+            pl: "25px",
+            pr: "25px",
+          }}
+        >
+          {FeelingGreen.map((red) => {
+            return (
+              <Card sx={{ pb: 2 }}>
+                <Typography
+                  sx={{
+                    width: "100%",
+                    paddingTop: "175px",
+                    paddingBottom: "125px",
+                    mb: "20px",
+                    background: red.color,
+
+                    borderRadius: "8px",
+                  }}
+                ></Typography>
+                <Typography
+                  onClick={() => {
+                    updateClipboard(red.color);
+                  }}
+                >
+                  {red.color}
+                </Typography>
+              </Card>
+            );
+          })}
+        </Card>
+      </Typography>
+    </Grid>
+  );
+};
+export default ColorPicker;
