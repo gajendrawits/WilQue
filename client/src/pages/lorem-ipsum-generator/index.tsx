@@ -58,9 +58,7 @@ const MUITable = () => {
     <Grid container spacing={6}>
       <Grid item xs={12}>
         <Typography variant="h5">
-          <Link href="https://mui.com/components/tables/" target="_blank">
-            Lorem Ipsum Generator
-          </Link>
+          <Link>Lorem Ipsum Generator</Link>
         </Typography>
         <Typography variant="body2">
           Lorem ipsum is a placeholder text commonly used to demonstrate the
@@ -118,7 +116,6 @@ const MUITable = () => {
                 defaultValue={0}
                 onChange={(d) => {
                   console.log(d);
-                  setSenetenceLength(d.target.value);
                 }}
                 step={1}
                 marks

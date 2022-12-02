@@ -20,6 +20,11 @@ const navigation = (): VerticalNavItemsType => {
       icon: HomeOutline,
       path: '/'
     },
+    {
+      title: 'Users',
+      icon: HomeOutline,
+      path: '/users'
+    },
     // {
     //   title: 'Account Settings',
     //   icon: AccountCogOutline,
