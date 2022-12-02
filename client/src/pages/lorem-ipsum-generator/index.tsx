@@ -6,7 +6,7 @@ import Link from "@mui/material/Link";
 import Card from "@mui/material/Card";
 
 import Typography from "@mui/material/Typography";
-import CardHeader from "@mui/material/CardHeader";
+
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
@@ -29,6 +29,16 @@ const MUITable = () => {
   const handleChange = (event: Event, newValue: number | number[]) => {
     setWords(newValue as number[]);
   };
+  function updateClipboard(newClip: any) {
+    navigator.clipboard.writeText(newClip).then(
+      () => {
+        console.log("Copied!");
+      },
+      () => {
+        console.log("Copy failed!");
+      }
+    );
+  }
 
   useEffect(() => {
     const lorem = new LoremIpsum({
@@ -60,19 +70,16 @@ const MUITable = () => {
           relying on meaningful content content
         </Typography>
       </Grid>
-      <Grid
+      <Typography
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
         }}
-        item
-        xs={12}
       >
         <Card
           sx={{
-            // width: "70%",
             paddingTop: "25px",
             paddingBottom: "25px",
           }}
@@ -212,22 +219,34 @@ const MUITable = () => {
               alignItems: "center",
             }}
           >
-            <Card sx={{ width: "100%", padding: "20px", boxShadow: "none" }}>
+            <Card
+              sx={{
+                width: "100%",
+                height: "350px",
+                maxHeight: "450px",
+                overflowY: "scroll",
+                padding: "20px",
+                boxShadow: "none",
+              }}
+            >
               {text}
             </Card>
-            <Typography>
+            <Typography sx={{ pt: 3 }}>
               <Button
                 size="large"
                 type="submit"
                 sx={{ mr: 2 }}
                 variant="contained"
+                onClick={() => {
+                  updateClipboard(text);
+                }}
               >
                 Copy
               </Button>
             </Typography>
           </Card>
         </Card>
-      </Grid>
+      </Typography>
     </Grid>
   );
 };
