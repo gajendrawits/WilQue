@@ -25,15 +25,26 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/date-time-converter": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/date-time-converter.js"
     ],
+=======
+>>>>>>> c6358bc46c727d2980563e8c7879cbbbe0e98bab
     "/form-layouts": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/form-layouts.js"
+<<<<<<< HEAD
+=======
+    ],
+    "/lorem-ipsum-generator": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/lorem-ipsum-generator.js"
+>>>>>>> c6358bc46c727d2980563e8c7879cbbbe0e98bab
     ]
   },
   "ampFirstPages": []
