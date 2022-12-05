@@ -1,4 +1,7 @@
 // ** MUI Imports
+
+import Rating from "@mui/material/Rating";
+
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
@@ -7,8 +10,11 @@ import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
+import { useState } from "react";
 
 const CardUser = () => {
+  const [value, setValue] = useState<number | null>(2);
+
   const users = [
     { id: 1, name: "admin", designation: "Developer" },
     { id: 2, name: "admin", designation: "Developer" },
@@ -71,8 +77,6 @@ const CardUser = () => {
               <CardContent>
                 <Box
                   sx={{
-                    mt: 5.75,
-                    mb: 8.75,
                     display: "flex",
                     flexWrap: "wrap",
                     alignItems: "center",
@@ -94,6 +98,16 @@ const CardUser = () => {
                         <Typography variant="h6">{user.name}</Typography>
                         <Typography variant="caption">
                           {user.designation}
+                        </Typography>
+                        <Typography>
+                          <Typography component="legend">Controlled</Typography>
+                          <Rating
+                            name="simple-controlled"
+                            value={value}
+                            onChange={(event, newValue) => {
+                              setValue(newValue);
+                            }}
+                          />
                         </Typography>
                       </Typography>
                     </Typography>

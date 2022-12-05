@@ -222,8 +222,8 @@ const MUITable = () => {
             <Card
               sx={{
                 width: "100%",
-                height: "310px",
-                maxHeight: "450px",
+                height: "40vh",
+                maxHeight: "40vh",
                 overflowY: "scroll",
                 padding: "20px",
                 boxShadow: "none",

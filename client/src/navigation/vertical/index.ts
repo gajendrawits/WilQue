@@ -83,7 +83,17 @@ const navigation = (): VerticalNavItemsType => {
       icon: CubeOutline,
       title: 'Color-Picker',
       path: '/colorpicker'
-    }
+    },
+    {
+      title: 'Tags ',
+      icon: Table,
+      path: '/tags'
+    },
+    {
+      title: 'Questions ',
+      icon: Table,
+      path: '/questions'
+    },
   ]
 }
 
