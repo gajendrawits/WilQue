@@ -55,9 +55,13 @@ const MUITable = () => {
   }, [words, sentences, senetenceLength]);
 
   return (
-    <Grid container spacing={6}>
-      <Grid item xs={12}>
-        <Typography variant="h5">
+    <Grid
+      sx={{
+        width: "100%",
+      }}
+    >
+      <Grid sx={{ pb: 6 }}>
+        <Typography variant="h5" sx={{ pb: 6 }}>
           <Link>Lorem Ipsum Generator</Link>
         </Typography>
         <Typography variant="body2">
@@ -72,12 +76,11 @@ const MUITable = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
         }}
       >
         <Card
           sx={{
+            width: "95%",
             paddingTop: "25px",
             paddingBottom: "25px",
           }}
@@ -219,7 +222,7 @@ const MUITable = () => {
             <Card
               sx={{
                 width: "100%",
-                height: "350px",
+                height: "310px",
                 maxHeight: "450px",
                 overflowY: "scroll",
                 padding: "20px",
