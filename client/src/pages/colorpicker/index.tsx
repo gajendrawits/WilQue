@@ -64,11 +64,13 @@ const ColorPicker = () => {
           <Link>Color Picker</Link>
         </Typography>
         <Typography variant="body2">
-          Lorem ipsum is a placeholder text commonly used to demonstrate the
-          visual form of a document or a typeface without relying on
-          meaningfulLorem ipsum is a placeholder text commonly used to
-          demonstrate the visual form of a document or a typeface without
-          relying on meaningful content content
+          One of the most important factors you must consider is the usage of
+          colors to ensure that the picture or design is eye catching. Your
+          choice of color combinations may make the difference between a
+          perfectly content and one that is merely good. Even after viewing
+          several videos and reading a large number of articles, selecting the
+          perfect color combination might be difficult. As a result, you may
+          choose colors from Color Picker.
         </Typography>
       </Grid>
       <Typography
