@@ -25,6 +25,21 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/colorpicker": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/colorpicker.js"
+    ],
+    "/date-time-converter": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/date-time-converter.js"
+    ],
+    "/form-layouts": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/form-layouts.js"
+    ],
     "/lorem-ipsum-generator": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -34,11 +49,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/questions.js"
-    ],
-    "/tags": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/tags.js"
     ]
   },
   "ampFirstPages": []

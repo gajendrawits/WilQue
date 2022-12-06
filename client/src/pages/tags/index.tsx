@@ -2,15 +2,13 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
-
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Card from "@mui/material/Card";
-import Stack from "@mui/material/Stack";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-
 import Typography from "@mui/material/Typography";
+import TagConatiner from "src/pages/tags/tags";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -55,7 +53,26 @@ const Tags = () => {
       description:
         "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
     },
+    {
+      id: 7,
+      name: "js",
+      description:
+        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
+    },
+    {
+      id: 8,
+      name: "js",
+      description:
+        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
+    },
+    {
+      id: 9,
+      name: "js",
+      description:
+        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
+    },
   ];
+
   function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
 
@@ -80,6 +97,18 @@ const Tags = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  const theme = createTheme({
+    components: {
+      MuiTab: {
+        styleOverrides: {
+          root: {
+            padding: 0,
+          },
+        },
+      },
+    },
+  });
+
   return (
     <Grid
       sx={{
@@ -96,7 +125,7 @@ const Tags = () => {
           find and answer your question.
         </Typography>
       </Grid>
-      <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Grid sx={{ display: "flex", justifyContent: "space-between", p: 0 }}>
         <Box sx={{ width: "100%" }}>
           <Box
             sx={{
@@ -132,43 +161,13 @@ const Tags = () => {
             </Tabs>
           </Box>
           <TabPanel value={valuee} index={0}>
-            <Grid
-              sx={{
-                width: "100%",
-                display: "grid",
-                gap: "20px",
-                textAlign: "left",
-                gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-                paddingTop: "25px",
-                paddingBottom: "25px",
-                pl: "25px",
-                pr: "25px",
-              }}
-            >
-              {popularTags.map((tag) => {
-                return (
-                  <Card
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 2,
-                      p: 2,
-                    }}
-                  >
-                    <Typography sx={{ widh: "200px" }}>{tag.name}</Typography>
-                    <Typography sx={{ widh: "200px" }}>
-                      {tag.description}
-                    </Typography>
-                  </Card>
-                );
-              })}
-            </Grid>
+            <TagConatiner tags={popularTags} />
           </TabPanel>
           <TabPanel value={valuee} index={1}>
-            Name
+            <TagConatiner tags={popularTags} />
           </TabPanel>
           <TabPanel value={valuee} index={2}>
-            New
+            <TagConatiner tags={popularTags} />
           </TabPanel>
         </Box>
       </Grid>

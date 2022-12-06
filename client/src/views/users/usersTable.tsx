@@ -94,7 +94,7 @@ const CardUser = () => {
                     <Typography
                       sx={{ display: "flex", justifyContent: "space-between" }}
                     >
-                      <Typography>
+                      <Typography sx={{ pt: 4 }}>
                         <Typography variant="h6">{user.name}</Typography>
                         <Typography variant="caption">
                           {user.designation}
