@@ -39,6 +39,9 @@ import BlankLayout from "src/@core/layouts/BlankLayout";
 
 // ** Demo Imports
 import FooterIllustrationsV1 from "src/views/pages/auth/FooterIllustration";
+import { useForm } from "react-hook-form";
+import usePost from "src/hooks/usePost";
+import router from "next/router";
 
 interface State {
   password: string;
@@ -77,6 +80,8 @@ const RegisterPage = () => {
   // ** Hook
   const theme = useTheme();
 
+  const { handleSubmit, register } = useForm();
+
   const handleChange =
     (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value });
@@ -87,6 +92,20 @@ const RegisterPage = () => {
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
+
+  const { mutateAsync, data, isSuccess } = usePost();
+
+  const formData = (userData: any) => {
+    mutateAsync({
+      url: "/signup",
+      payload: userData,
+    });
+  };
+
+  if (isSuccess) {
+    localStorage.setItem("token", data.token);
+    router.push("/");
+  }
 
   return (
     <Box className="content-center">
@@ -185,29 +204,20 @@ const RegisterPage = () => {
               Make your app management easy and fun!
             </Typography>
           </Box>
-          <form
-            noValidate
-            autoComplete="off"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <TextField
-              autoFocus
-              fullWidth
-              id="username"
-              label="Username"
-              sx={{ marginBottom: 4 }}
-            />
+          <form noValidate autoComplete="off" onSubmit={handleSubmit(formData)}>
             <TextField
               fullWidth
               type="email"
               label="Email"
               sx={{ marginBottom: 4 }}
+              {...register("username")}
             />
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-register-password">Password</InputLabel>
               <OutlinedInput
                 label="Password"
                 value={values.password}
+                {...register("password")}
                 id="auth-register-password"
                 onChange={handleChange("password")}
                 type={values.showPassword ? "text" : "password"}

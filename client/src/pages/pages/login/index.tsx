@@ -41,6 +41,9 @@ import BlankLayout from "src/@core/layouts/BlankLayout";
 // ** Demo Imports
 import FooterIllustrationsV1 from "src/views/pages/auth/FooterIllustration";
 import { useGoogleLogin } from "@react-oauth/google";
+import usePost from "src/hooks/usePost";
+import { useForm } from "react-hook-form";
+// import { registerLocale } from "react-datepicker";
 
 interface State {
   password: string;
@@ -77,6 +80,16 @@ const LoginPage = () => {
   // ** Hook
   const theme = useTheme();
   const router = useRouter();
+  const { register, handleSubmit } = useForm();
+
+  const { mutateAsync, error } = usePost();
+
+  const formData = (data: any) => {
+    mutateAsync({
+      url: "/authenticate",
+      payload: data,
+    });
+  };
 
   const handleChange =
     (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -197,17 +210,14 @@ const LoginPage = () => {
               Please sign-in to your account and start the adventure
             </Typography>
           </Box>
-          <form
-            noValidate
-            autoComplete="off"
-            onSubmit={(e) => e.preventDefault()}
-          >
+          <form autoComplete="off" onSubmit={handleSubmit(formData)}>
             <TextField
               autoFocus
               fullWidth
               id="email"
               label="Email"
               sx={{ marginBottom: 4 }}
+              {...register("username")}
             />
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-login-password">Password</InputLabel>
@@ -215,6 +225,7 @@ const LoginPage = () => {
                 label="Password"
                 value={values.password}
                 id="auth-login-password"
+                {...register("password")}
                 onChange={handleChange("password")}
                 type={values.showPassword ? "text" : "password"}
                 endAdornment={
@@ -251,11 +262,25 @@ const LoginPage = () => {
               fullWidth
               size="large"
               variant="contained"
+              type="submit"
               sx={{ marginBottom: 7 }}
-              onClick={() => router.push("/")}
             >
               Login
             </Button>
+            {error ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  color: "red",
+                  padding: "20px 10px",
+                }}
+              >
+                Invalid Credentials ?
+              </Box>
+            ) : null}
             <Box
               sx={{
                 display: "flex",

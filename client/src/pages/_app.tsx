@@ -73,14 +73,14 @@ const App = (props: ExtendedAppProps) => {
     <GoogleOAuthProvider clientId={clientId}>
       <CacheProvider value={emotionCache}>
         <Head>
-          <title>{`${themeConfig.templateName} - Material Design React Admin Template`}</title>
+          <title>{`${themeConfig.templateName} WilQue will be free knowledge sharing and collaboration platform.`}</title>
           <meta
             name="description"
-            content={`${themeConfig.templateName} – Material Design React Admin Dashboard Template – is the most developer friendly & highly customizable Admin Dashboard Template based on MUI v5.`}
+            content={`${themeConfig.templateName}  Wil Que is a platform where you can ask your question to the senior developers. And get your questions suitable answer.`}
           />
           <meta
             name="keywords"
-            content="Material Design, MUI, Admin Template, React Admin Template"
+            content="Wil Que, Ask Question, Answer the Question, Wil Question Answer"
           />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
