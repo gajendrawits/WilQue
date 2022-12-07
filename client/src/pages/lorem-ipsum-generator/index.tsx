@@ -1,17 +1,13 @@
+import { useEffect, useState } from "react";
 import { LoremIpsum } from "lorem-ipsum";
 
-// ** MUI Imports
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Card from "@mui/material/Card";
-
 import Typography from "@mui/material/Typography";
-
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
-// ** Demo Components Imports
-import { useEffect, useState } from "react";
 
 const MUITable = () => {
   function valuetext(value: number) {
@@ -222,8 +218,8 @@ const MUITable = () => {
             <Card
               sx={{
                 width: "100%",
-                height: "310px",
-                maxHeight: "450px",
+                height: "40vh",
+                maxHeight: "40vh",
                 overflowY: "scroll",
                 padding: "20px",
                 boxShadow: "none",
