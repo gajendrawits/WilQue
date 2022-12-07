@@ -73,15 +73,12 @@ const App = (props: ExtendedAppProps) => {
     <GoogleOAuthProvider clientId={clientId}>
       <CacheProvider value={emotionCache}>
         <Head>
-          <title>{`${themeConfig.templateName} WilQue will be free knowledge sharing and collaboration platform.`}</title>
+          <title>{`${themeConfig.templateName}`}</title>
           <meta
             name="description"
-            content={`${themeConfig.templateName}  Wil Que is a platform where you can ask your question to the senior developers. And get your questions suitable answer.`}
+            content={`${themeConfig.templateName} – M`}
           />
-          <meta
-            name="keywords"
-            content="Wil Que, Ask Question, Answer the Question, Wil Question Answer"
-          />
+          <meta name="keywords" content="WilQue" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <QueryClientProvider client={queryClient}>

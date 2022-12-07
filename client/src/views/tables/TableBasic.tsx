@@ -12,7 +12,7 @@ const createData = (name: string, calories: number, fat: number, carbs: number, 
 }
 const date = new Date(Date.now())
 const rows = [
-  createData('Timestamp: ', date.getTime()),
+  createData('Unix timestamp: ', 237, 9.0, 37, 4.3),
   createData('Unix timestamp: ', 237, 9.0, 37, 4.3),
   createData('Eclair', 262, 16.0, 24, 6.0),
   createData('Cupcake', 305, 3.7, 67, 4.3),
