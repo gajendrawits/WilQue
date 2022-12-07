@@ -23,6 +23,11 @@ const navigation = (): VerticalNavItemsType => {
       icon: Table,
       path: '/tags'
     },
+    {
+      title: 'Questions ',
+      icon: Table,
+      path: '/questions'
+    },
     // {
     //   title: 'Account Settings',
     //   icon: AccountCogOutline,
@@ -83,11 +88,7 @@ const navigation = (): VerticalNavItemsType => {
       path: '/colorpicker'
     },
     
-    {
-      title: 'Questions ',
-      icon: Table,
-      path: '/questions'
-    },
+   
   ]
 }
 
