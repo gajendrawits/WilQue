@@ -30,15 +30,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/form-layouts": [
+    "/questions": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/form-layouts.js"
+      "static/chunks/pages/questions.js"
     ],
-    "/lorem-ipsum-generator": [
+    "/tags": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/lorem-ipsum-generator.js"
+      "static/chunks/pages/tags.js"
+    ],
+    "/users": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/users.js"
     ]
   },
   "ampFirstPages": []

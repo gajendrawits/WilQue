@@ -70,7 +70,7 @@ const ColorPicker = () => {
           perfectly content and one that is merely good. Even after viewing
           several videos and reading a large number of articles, selecting the
           perfect color combination might be difficult. As a result, you may
-          choose colors from Color Picker.
+          choose colors from Color
         </Typography>
       </Grid>
       <Typography
@@ -151,7 +151,6 @@ const ColorPicker = () => {
                     paddingBottom: "125px",
                     mb: "20px",
                     background: red.color,
-
                     borderRadius: "8px",
                   }}
                 ></Typography>
