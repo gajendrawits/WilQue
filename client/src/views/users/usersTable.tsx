@@ -100,7 +100,6 @@ const CardUser = () => {
                           {user.designation}
                         </Typography>
                         <Typography>
-                          <Typography component="legend">Controlled</Typography>
                           <Rating
                             name="simple-controlled"
                             value={value}
