@@ -149,10 +149,10 @@ exports.validateUser = [
     .withMessage('cannot be blank')
 
     .isLength({ max: 16 })
-    .withMessage('must be at most 16 characters long')
+    .withMessage('must be at most 16 characters long'),
 
-    .matches(/^[a-zA-Z0-9_-]+$/)
-    .withMessage('contains invalid characters'),
+    // .matches(/^[a-zA-Z0-9_-]+$/)
+    // .withMessage('contains invalid characters'),
 
   body('password')
     .exists()
