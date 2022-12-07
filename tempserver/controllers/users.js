@@ -148,8 +148,8 @@ exports.validateUser = [
     .notEmpty()
     .withMessage('cannot be blank')
 
-    .isLength({ max: 16 })
-    .withMessage('must be at most 16 characters long'),
+    .isLength({ max: 50 })
+    .withMessage('must be at most 50 characters long'),
 
     // .matches(/^[a-zA-Z0-9_-]+$/)
     // .withMessage('contains invalid characters'),
