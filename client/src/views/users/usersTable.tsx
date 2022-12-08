@@ -56,25 +56,37 @@ const CardUser = () => {
       >
         {users.map((user) => {
           return (
-            <Card sx={{ position: "relative", width: "fit-content" }}>
-              <CardMedia
-                sx={{ height: "12.625rem", width: "28rem" }}
-                image="/images/cards/background-user.png"
-              />
-              <Avatar
-                alt="Robert Meyer"
-                src="/images/avatars/1.png"
+            <Card
+              sx={{
+                border: 0,
+                boxShadow: 0,
+                color: "common.white",
+                backgroundColor: "#9155FD",
+              }}
+            >
+              <CardContent
                 sx={{
-                  width: 75,
-                  height: 75,
-                  left: "1.313rem",
-                  top: "10.28125rem",
-                  position: "absolute",
-                  border: (theme) =>
-                    `0.25rem solid ${theme.palette.common.white}`,
+                  padding: (theme) =>
+                    `${theme.spacing(3.25, 5, 4.5)} !important`,
                 }}
-              />
-              <CardContent>
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    display: "flex",
+                    marginBottom: 2.75,
+                    alignItems: "center",
+                    color: "common.white",
+                  }}
+                >
+                  {user.name}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ marginBottom: 3, color: "common.white" }}
+                >
+                  {user.designation}
+                </Typography>
                 <Box
                   sx={{
                     display: "flex",
@@ -83,34 +95,27 @@ const CardUser = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <Box
-                    sx={{
-                      mr: 2,
-                      mb: 1,
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Typography
-                      sx={{ display: "flex", justifyContent: "space-between" }}
-                    >
-                      <Typography sx={{ pt: 4 }}>
-                        <Typography variant="h6">{user.name}</Typography>
-                        <Typography variant="caption">
-                          {user.designation}
-                        </Typography>
-                        <Typography>
-                          <Typography component="legend">Controlled</Typography>
-                          <Rating
-                            name="simple-controlled"
-                            value={value}
-                            onChange={(event, newValue) => {
-                              setValue(newValue);
-                            }}
-                          />
-                        </Typography>
-                      </Typography>
+                  <Box sx={{ mr: 2, display: "flex", alignItems: "center" }}>
+                    <Avatar
+                      alt="Mary Vaughn"
+                      src="/images/avatars/4.png"
+                      sx={{ width: 34, height: 34, marginRight: 2.75 }}
+                    />
+                    <Typography variant="body2" sx={{ color: "common.white" }}>
+                      {user.name}
                     </Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Box
+                      sx={{ display: "flex", alignItems: "center", mr: 3.5 }}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "common.white" }}
+                      >
+                        Total Stars
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
               </CardContent>
