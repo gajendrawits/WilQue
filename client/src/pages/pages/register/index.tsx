@@ -42,6 +42,7 @@ import FooterIllustrationsV1 from "src/views/pages/auth/FooterIllustration";
 import { useForm } from "react-hook-form";
 import usePost from "src/hooks/usePost";
 import router from "next/router";
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface State {
   password: string;
@@ -93,7 +94,7 @@ const RegisterPage = () => {
     event.preventDefault();
   };
 
-  const { mutateAsync, data, isSuccess } = usePost();
+  const { mutateAsync, data, isSuccess, isLoading } = usePost();
 
   const formData = (userData: any) => {
     mutateAsync({
@@ -104,7 +105,7 @@ const RegisterPage = () => {
 
   if (isSuccess) {
     localStorage.setItem("token", data.token);
-    router.push("/");
+    router.push("/pages/login");
   }
 
   return (
@@ -263,8 +264,24 @@ const RegisterPage = () => {
               variant="contained"
               sx={{ marginBottom: 7 }}
             >
-              Sign up
+              {isLoading ? <CircularProgress color="inherit" /> : "Sign up"}
             </Button>
+
+            {isSuccess ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  color: "green",
+                  padding: "5px 10px",
+                }}
+              >
+                SucessFully Sign Up
+              </Box>
+            ) : null}
+
             <Box
               sx={{
                 display: "flex",

@@ -43,6 +43,7 @@ import FooterIllustrationsV1 from "src/views/pages/auth/FooterIllustration";
 import { useGoogleLogin } from "@react-oauth/google";
 import usePost from "src/hooks/usePost";
 import { useForm } from "react-hook-form";
+import CircularProgress from "@mui/material/CircularProgress";
 // import { registerLocale } from "react-datepicker";
 
 interface State {
@@ -82,7 +83,7 @@ const LoginPage = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
 
-  const { mutateAsync, error } = usePost();
+  const { mutateAsync, error, isLoading, isSuccess } = usePost();
 
   const formData = (data: any) => {
     mutateAsync({
@@ -112,6 +113,10 @@ const LoginPage = () => {
       );
     },
   });
+
+  if (isSuccess) {
+    router.push("/");
+  }
 
   return (
     <Box className="content-center">
@@ -265,8 +270,9 @@ const LoginPage = () => {
               type="submit"
               sx={{ marginBottom: 7 }}
             >
-              Login
+              {isLoading ? <CircularProgress color="inherit" /> : "Login"}
             </Button>
+
             {error ? (
               <Box
                 sx={{
@@ -275,10 +281,23 @@ const LoginPage = () => {
                   flexWrap: "wrap",
                   justifyContent: "center",
                   color: "red",
-                  padding: "20px 10px",
+                  padding: "5px 10px",
                 }}
               >
                 Invalid Credentials ?
+              </Box>
+            ) : isSuccess ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  color: "green",
+                  padding: "5px 10px",
+                }}
+              >
+                SucessFully Login
               </Box>
             ) : null}
             <Box
