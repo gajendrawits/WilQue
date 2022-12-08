@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Router } from "next/router";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 // ** Loader Import
 import NProgress from "nprogress";
@@ -42,6 +43,8 @@ type ExtendedAppProps = AppProps & {
 
 const clientSideEmotionCache = createEmotionCache();
 
+const queryClient = new QueryClient();
+
 // ** Pace Loader
 if (themeConfig.routingLoader) {
   Router.events.on("routeChangeStart", () => {
@@ -78,18 +81,19 @@ const App = (props: ExtendedAppProps) => {
           <meta name="keywords" content="WilQue" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
-
-        <SettingsProvider>
-          <SettingsConsumer>
-            {({ settings }) => {
-              return (
-                <ThemeComponent settings={settings}>
-                  {getLayout(<Component {...pageProps} />)}
-                </ThemeComponent>
-              );
-            }}
-          </SettingsConsumer>
-        </SettingsProvider>
+        <QueryClientProvider client={queryClient}>
+          <SettingsProvider>
+            <SettingsConsumer>
+              {({ settings }) => {
+                return (
+                  <ThemeComponent settings={settings}>
+                    {getLayout(<Component {...pageProps} />)}
+                  </ThemeComponent>
+                );
+              }}
+            </SettingsConsumer>
+          </SettingsProvider>
+        </QueryClientProvider>
       </CacheProvider>
     </GoogleOAuthProvider>
   );
