@@ -4,6 +4,7 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import TitleInput from "src/pages/askQuestion/titleInput";
+import TagInput from "src/pages/askQuestion/tagInput";
 import TextAskQuestionInput from "src/pages/askQuestion/textAskQuestionInput";
 
 interface askQuestion {
@@ -12,7 +13,16 @@ interface askQuestion {
 
 const index = (props: askQuestion) => {
   return (
-    <Grid sx={{ pb: 6, width: "60%" }}>
+    <Grid
+      sx={{
+        pb: 6,
+        width: "80%",
+        minWidth: "700px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 5,
+      }}
+    >
       <Typography
         variant="h4"
         sx={{
@@ -37,6 +47,7 @@ const index = (props: askQuestion) => {
           community. Review your question and post it to the site.
         </li>
       </Typography>
+
       <TitleInput
         label="Title"
         type="text"
@@ -44,6 +55,14 @@ const index = (props: askQuestion) => {
       />
 
       <TextAskQuestionInput />
+
+      <TagInput
+        label="Tags"
+        heading="Add some tags to describe what your question is about."
+      />
+      <Button sx={{ width: "90px" }} variant="contained">
+        Post
+      </Button>
     </Grid>
   );
 };

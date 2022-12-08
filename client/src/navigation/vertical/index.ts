@@ -3,6 +3,7 @@ import Table from 'mdi-material-ui/Table'
 import CubeOutline from 'mdi-material-ui/CubeOutline'
 import HomeOutline from 'mdi-material-ui/HomeOutline'
 import FormatLetterCase from 'mdi-material-ui/FormatLetterCase'
+
 // ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
 
