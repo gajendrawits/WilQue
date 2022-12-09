@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
@@ -15,7 +15,7 @@ const tags = (props: any) => {
         paddingTop: "25px",
       }}
     >
-      {props.tags.map((tag: any) => {
+      {props?.tags?.map((tag: any) => {
         return (
           <Card
             sx={{
@@ -26,7 +26,7 @@ const tags = (props: any) => {
               border: "1px solid #9155FD",
             }}
           >
-            <Typography sx={{ widh: "200px" }}>{tag.name}</Typography>
+            <Typography sx={{ widh: "200px" }}>{tag._id}</Typography>
             <Typography sx={{ widh: "200px" }}>{tag.description}</Typography>
           </Card>
         );
