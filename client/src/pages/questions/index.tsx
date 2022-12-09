@@ -104,7 +104,14 @@ const Questions = () => {
           }}
         >
           <Link>Questions</Link>
-          <Button variant="contained">Ask Questions</Button>
+          <Button
+            onClick={() => {
+              router.push("/askQuestion");
+            }}
+            variant="contained"
+          >
+            Ask Questions
+          </Button>
         </Typography>
         <Typography
           sx={{
@@ -147,7 +154,11 @@ const Questions = () => {
                     gap: 3,
                   }}
                 >
-                  <div onClick={() => handle(ques)}>
+                  <div
+                    onClick={() => {
+                      router.push("/answers");
+                    }}
+                  >
                     <Typography sx={{ fontWeight: "700" }}>
                       "{ques.question}"
                     </Typography>

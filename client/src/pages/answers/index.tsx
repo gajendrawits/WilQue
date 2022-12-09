@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { flexbox } from "@mui/system";
 import QuillEdit from "../editor";
+import router from "next/router";
 
 const answers = () => {
   const question = [
@@ -43,7 +44,14 @@ const answers = () => {
         }}
       >
         <Link>Answers</Link>
-        <Button variant="contained">Ask Questions</Button>
+        <Button
+          onClick={() => {
+            router.push("/askQuestion");
+          }}
+          variant="contained"
+        >
+          Ask Questions
+        </Button>
       </Typography>
       {question.map((ques) => {
         return (

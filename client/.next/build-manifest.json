@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/questions": [
+    "/tags": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/questions.js"
+      "static/chunks/pages/tags.js"
     ],
     "/users": [
       "static/chunks/webpack.js",

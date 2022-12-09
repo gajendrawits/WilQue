@@ -6,7 +6,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import TagConatiner from "src/pages/tags/tags";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+
 import Button from "@mui/material/Button";
 
 interface TabPanelProps {
@@ -16,6 +17,9 @@ interface TabPanelProps {
 }
 
 const Tags = () => {
+  const handleTagSearch = (e: any) => {
+    console.log("essssss", e);
+  };
   const popularTags = [
     {
       id: 1,
@@ -143,6 +147,9 @@ const Tags = () => {
               }}
               placeholder=" Search"
               type="text"
+              onChange={(e) => {
+                handleTagSearch(e.target.value);
+              }}
             />
             <Tabs
               value={valuee}

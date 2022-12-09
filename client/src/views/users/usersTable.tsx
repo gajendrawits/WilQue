@@ -28,22 +28,23 @@ const CardUser = () => {
     { id: 10, name: "admin", designation: "Developer" },
     { id: 11, name: "admin", designation: "Developer" },
     { id: 12, name: "admin", designation: "Developer" },
+    { id: 13, name: "admin", designation: "Developer" },
+    { id: 14, name: "admin", designation: "Developer" },
+    { id: 15, name: "admin", designation: "Developer" },
+    { id: 16, name: "admin", designation: "Developer" },
+    { id: 17, name: "admin", designation: "Developer" },
+    { id: 18, name: "admin", designation: "Developer" },
+    { id: 19, name: "admin", designation: "Developer" },
+    { id: 20, name: "admin", designation: "Developer" },
   ];
 
   return (
     <>
-      <Grid item xs={12}>
-        <Typography variant="h5">
+      <Grid sx={{ pb: 6 }}>
+        <Typography variant="h4" sx={{ pb: 6 }}>
           <Link>Users</Link>
         </Typography>
-
-        <Typography variant="body2">
-          Lorem ipsum is a placeholder text commonly used to demonstrate the
-          visual form of a document or a typeface without relying on
-          meaningfulLorem ipsum is a placeholder text commonly used to
-          demonstrate the visual form of a document or a typeface without
-          relying on meaningful content content
-        </Typography>
+        <Typography>All Users</Typography>
       </Grid>
       <Card
         sx={{
