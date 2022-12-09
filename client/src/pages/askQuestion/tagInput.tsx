@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import Typography from "@mui/material/Typography";
+import { QuestionContext } from "src/@core/context/QuestionContext";
 
 interface tagInputProps {
   label: string;
@@ -7,6 +8,15 @@ interface tagInputProps {
 }
 
 const tagInput = (props: tagInputProps) => {
+  // const [tagValue, setTagValue] = useState();
+  const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
+
+  const handleInput = (value: string) => {
+    const obj = { tags: value };
+    const newobj = { ...getQuestionValue, ...obj };
+    setQuestionValue(newobj);
+  };
+
   return (
     <Typography
       sx={{
@@ -27,6 +37,7 @@ const tagInput = (props: tagInputProps) => {
           border: "none",
         }}
         type="text"
+        onChange={(e: any) => handleInput(e.target.value)}
       />
     </Typography>
   );

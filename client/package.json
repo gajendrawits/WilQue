@@ -58,6 +58,7 @@
     "dotenv": "^16.0.3",
     "lorem-ipsum": "^2.0.8",
     "mdi-material-ui": "^7.1.0",
+    "moment": "^2.29.4",
     "next": "12.0.4",
     "nprogress": "^0.2.0",
     "react": "17.0.2",
@@ -67,7 +68,8 @@
     "react-hook-form": "^7.40.0",
     "react-perfect-scrollbar": "^1.5.8",
     "react-popper": "^2.2.5",
-    "react-query": "^3.39.2"
+    "react-query": "^3.39.2",
+    "react-quill": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "16.11.11",
