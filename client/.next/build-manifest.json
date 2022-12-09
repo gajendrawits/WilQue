@@ -1,13 +1,25 @@
 {
-  "polyfillFiles": ["static/chunks/polyfills.js"],
-  "devFiles": ["static/chunks/react-refresh.js"],
-  "ampDevFiles": ["static/chunks/webpack.js", "static/chunks/amp.js"],
+  "polyfillFiles": [
+    "static/chunks/polyfills.js"
+  ],
+  "devFiles": [
+    "static/chunks/react-refresh.js"
+  ],
+  "ampDevFiles": [
+    "static/chunks/webpack.js",
+    "static/chunks/amp.js"
+  ],
   "lowPriorityFiles": [
     "static/development/_buildManifest.js",
     "static/development/_ssgManifest.js",
     "static/development/_middlewareManifest.js"
   ],
   "pages": {
+    "/": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/index.js"
+    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -18,10 +30,40 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/pages/login": [
+    "/colorpicker": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/pages/login.js"
+      "static/chunks/pages/colorpicker.js"
+    ],
+    "/date-time-converter": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/date-time-converter.js"
+    ],
+    "/form-layouts": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/form-layouts.js"
+    ],
+    "/lorem-ipsum-generator": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/lorem-ipsum-generator.js"
+    ],
+    "/questions": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/questions.js"
+    ],
+    "/tags": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/tags.js"
+    ],
+    "/users": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/users.js"
     ]
   },
   "ampFirstPages": []
