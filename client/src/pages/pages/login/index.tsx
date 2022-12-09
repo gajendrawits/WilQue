@@ -83,7 +83,7 @@ const LoginPage = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
 
-  const { mutateAsync, error, isLoading, isSuccess } = usePost();
+  const { mutateAsync, error, isLoading, isSuccess, data } = usePost();
 
   const formData = (data: any) => {
     mutateAsync({
@@ -115,6 +115,7 @@ const LoginPage = () => {
   });
 
   if (isSuccess) {
+    localStorage.setItem("token", data.token);
     router.push("/");
   }
 

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import Typography from "@mui/material/Typography";
+
+import { QuestionContext } from "src/@core/context/QuestionContext";
 
 interface titleInputProps {
   label: string;
@@ -8,6 +10,14 @@ interface titleInputProps {
 }
 
 const titleInput = (props: titleInputProps) => {
+  const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
+
+  const handleInput = (value: any) => {
+    const obj = { title: value };
+    const newobj = { ...getQuestionValue, ...obj };
+    setQuestionValue(newobj);
+  };
+
   return (
     <Typography
       sx={{
@@ -29,6 +39,7 @@ const titleInput = (props: titleInputProps) => {
           border: "none",
         }}
         type={props.type}
+        onChange={(e: any) => handleInput(e.target.value)}
       />
     </Typography>
   );

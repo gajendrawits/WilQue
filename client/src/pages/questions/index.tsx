@@ -1,92 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import Card from "@mui/material/Card";
 import router from "next/router";
+import useGet from "src/hooks/useGet";
+import moment from "moment";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Questions = () => {
-  const handle = (e: any) => {
-    console.log("e", e);
-    router.push("/answers", e);
+  const handleClick = (question: any) => {
+    router.push("/answers", question);
   };
 
-  const question = [
-    {
-      id: 1,
-      question:
-        "NotSupportedException when WebRequest is unable to find a creator for that prefix",
+  const {
+    refetch: fetchQuestions,
+    data,
+    isLoading,
+    isSuccess,
+    error,
+  } = useGet("ques", "/question");
 
-      description:
-        "Eiusmod laborum aute ullamco. Labore ut tempor ut. Esse labore. Non adipisicing aliquip consequat. Anim magna amet veniam dolor Lorem. Est irure do enim veniam aliqua. Lorem nostrud culpa Lorem proident fugiat Lorem. Incididunt occaecat deserunt veniam id eu. Reprehenderit Lorem do. Ea. Adipisicing occaecat non. Est elit anim nisi eiusmod voluptate eiusmod reprehenderit. Nisi id nostrud dolor anim ea magna dolore dolor. Tempor sunt Lorem anim esse voluptate minim irure quis.",
-      answers: [
-        {
-          id: 1,
-          answer: "good",
-        },
-      ],
-    },
-    {
-      id: 2,
-      question:
-        "NotSupportedException when WebRequest is unable to find a creator for that prefix",
-      description:
-        "Eiusmod laborum aute ullamco. Labore ut tempor ut. Esse labore. Non adipisicing aliquip consequat. Anim magna amet veniam dolor Lorem. Est irure do enim veniam aliqua. Lorem nostrud culpa Lorem proident fugiat Lorem. Incididunt occaecat deserunt veniam id eu. Reprehenderit Lorem do. Ea. Adipisicing occaecat non. Est elit anim nisi eiusmod voluptate eiusmod reprehenderit. Nisi id nostrud dolor anim ea magna dolore dolor. Tempor sunt Lorem anim esse voluptate minim irure quis.",
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
 
-      answers: [
-        {
-          id: 1,
-          answer: "good",
-        },
-        {
-          id: 2,
-          answer: "good",
-        },
-        {
-          id: 3,
-          answer: "good",
-        },
-      ],
-    },
-    {
-      id: 3,
-      question:
-        "NotSupportedException when WebRequest is unable to find a creator for that prefix",
-      description:
-        "Eiusmod laborum aute ullamco. Labore ut tempor ut. Esse labore. Non adipisicing aliquip consequat. Anim magna amet veniam dolor Lorem. Est irure do enim veniam aliqua. Lorem nostrud culpa Lorem proident fugiat Lorem. Incididunt occaecat deserunt veniam id eu. Reprehenderit Lorem do. Ea. Adipisicing occaecat non. Est elit anim nisi eiusmod voluptate eiusmod reprehenderit. Nisi id nostrud dolor anim ea magna dolore dolor. Tempor sunt Lorem anim esse voluptate minim irure quis.",
-
-      answers: [
-        {
-          id: 1,
-          answer: "good",
-        },
-      ],
-    },
-    {
-      id: 4,
-      question:
-        "NotSupportedException when WebRequest is unable to find a creator for that prefix",
-      description:
-        "Eiusmod laborum aute ullamco. Labore ut tempor ut. Esse labore. Non adipisicing aliquip consequat. Anim magna amet veniam dolor Lorem. Est irure do enim veniam aliqua. Lorem nostrud culpa Lorem proident fugiat Lorem. Incididunt occaecat deserunt veniam id eu. Reprehenderit Lorem do. Ea. Adipisicing occaecat non. Est elit anim nisi eiusmod voluptate eiusmod reprehenderit. Nisi id nostrud dolor anim ea magna dolore dolor. Tempor sunt Lorem anim esse voluptate minim irure quis.",
-      tags: [
-        {
-          id: 1,
-          name: "C",
-        },
-        {
-          id: 2,
-          name: "C",
-        },
-      ],
-      answers: [
-        {
-          id: 1,
-          answer: "good",
-        },
-      ],
-    },
-  ];
   return (
     <Grid
       sx={{
@@ -104,7 +43,12 @@ const Questions = () => {
           }}
         >
           <Link>Questions</Link>
-          <Button variant="contained">Ask Questions</Button>
+          <Button
+            variant="contained"
+            onClick={() => router.push("/askQuestion")}
+          >
+            Ask Questions
+          </Button>
         </Typography>
         <Typography
           sx={{
@@ -114,9 +58,23 @@ const Questions = () => {
             fontWeight: "900",
           }}
         >
-          Total questions : {question.length}
+          Total questions : {data && data.length}
         </Typography>
-        {question.map((ques) => {
+        {isLoading ? (
+          <Typography
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: "60vh",
+            }}
+          >
+            <CircularProgress color="inherit" />
+          </Typography>
+        ) : null}
+
+        {data?.map((ques: any) => {
+          const date = ques.created;
           return (
             <Grid sx={{ mb: 2 }}>
               <Typography
@@ -147,9 +105,9 @@ const Questions = () => {
                     gap: 3,
                   }}
                 >
-                  <div onClick={() => handle(ques)}>
-                    <Typography sx={{ fontWeight: "700" }}>
-                      "{ques.question}"
+                  <div onClick={() => handleClick(ques)}>
+                    <Typography sx={{ fontWeight: "700", cursor: "pointer" }}>
+                      {ques.title}
                     </Typography>
                   </div>
                   <Typography
@@ -160,7 +118,7 @@ const Questions = () => {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    Description :{ques.description}
+                    Description :{ques.text}
                   </Typography>
                   <Typography sx={{ display: "flex", gap: 3, pt: 3 }}>
                     <Typography
@@ -171,7 +129,7 @@ const Questions = () => {
                         gap: 3,
                       }}
                     >
-                      {ques.tags?.map((t) => {
+                      {ques.tags?.map((tag: any) => {
                         return (
                           <Typography
                             sx={{
@@ -180,14 +138,14 @@ const Questions = () => {
                               borderRadius: "8px",
                             }}
                           >
-                            {t.name}
+                            {tag}
                           </Typography>
                         );
                       })}
                     </Typography>
                   </Typography>
                   <Typography sx={{ textAlign: "right", pt: 2 }}>
-                    User asked Dec 7, 2022 at 14:49
+                    {moment(date).format("DD-MMM-YYYY")}
                   </Typography>
                 </Typography>
               </Typography>
