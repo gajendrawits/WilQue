@@ -1186,6 +1186,11 @@
   "resolved" "https://registry.npmjs.org/brorand/-/brorand-1.1.0.tgz"
   "version" "1.1.0"
 
+"browser-process@^0.0.1":
+  "integrity" "sha512-UeY4p0uIAixfFQBAq6ch/AqZR2ngyQOHR7KyM6dlMQNUkHmXw800fEKI06mzHZ73dgTrhZKNLu/c9SnvAKFT3A=="
+  "resolved" "https://registry.npmjs.org/browser-process/-/browser-process-0.0.1.tgz"
+  "version" "0.0.1"
+
 "browserify-aes@^1.0.0", "browserify-aes@^1.0.4":
   "integrity" "sha512-+7CHXqGuspUn/Sl5aO7Ea0xWGAtETPXNSAjHo48JfLdPWcMng33Xe4znFvQweqc/uzk5zSOI3H52CYnjCfb5hA=="
   "resolved" "https://registry.npmjs.org/browserify-aes/-/browserify-aes-1.2.0.tgz"
@@ -1631,6 +1636,11 @@
   dependencies:
     "inherits" "^2.0.1"
     "minimalistic-assert" "^1.0.0"
+
+"detect-browser@^5.3.0":
+  "integrity" "sha512-53rsFbGdwMwlF7qvCt0ypLM5V5/Mbl0szB7GPN8y9NCcbknYOeVVXdrXEq+90IwAfrrzt6Hd+u2E2ntakICU8w=="
+  "resolved" "https://registry.npmjs.org/detect-browser/-/detect-browser-5.3.0.tgz"
+  "version" "5.3.0"
 
 "detect-node@^2.0.4", "detect-node@^2.1.0":
   "integrity" "sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g=="
@@ -3317,8 +3327,8 @@
   "resolved" "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
   "version" "2.0.1"
 
-"process@0.11.10":
-  "integrity" "sha1-czIwDoQBYb2j5podHZGn1LwW8YI= sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A=="
+"process@^0.11.10", "process@0.11.10":
+  "integrity" "sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A=="
   "resolved" "https://registry.npmjs.org/process/-/process-0.11.10.tgz"
   "version" "0.11.10"
 
@@ -3509,6 +3519,15 @@
     "broadcast-channel" "^3.4.1"
     "match-sorter" "^6.0.2"
 
+"react-quill@^2.0.0":
+  "integrity" "sha512-4qQtv1FtCfLgoD3PXAur5RyxuUbPXQGOHgTlFie3jtxp43mXDtzCKaOgQ3mLyZfi1PUlyjycfivKelFhy13QUg=="
+  "resolved" "https://registry.npmjs.org/react-quill/-/react-quill-2.0.0.tgz"
+  "version" "2.0.0"
+  dependencies:
+    "@types/quill" "^1.3.10"
+    "lodash" "^4.17.4"
+    "quill" "^1.3.7"
+
 "react-refresh@0.8.3":
   "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
@@ -3524,7 +3543,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@^15.5.x || ^16.x || ^17.x", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17", "react@^17.0.0", "react@^17.0.0 || ^18.0.0", "react@^17.0.2", "react@^17.0.2 || ^18.0.0", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@>=0.13", "react@>=16.3.3", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
+"react@^15.5.x || ^16.x || ^17.x", "react@^16 || ^17 || ^18", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17", "react@^17.0.0", "react@^17.0.0 || ^18.0.0", "react@^17.0.2", "react@^17.0.2 || ^18.0.0", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@>=0.13", "react@>=16.3.3", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

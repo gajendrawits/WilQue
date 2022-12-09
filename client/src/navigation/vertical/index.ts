@@ -1,33 +1,44 @@
 // ** Icon imports
-import Table from 'mdi-material-ui/Table'
-import CubeOutline from 'mdi-material-ui/CubeOutline'
-import HomeOutline from 'mdi-material-ui/HomeOutline'
-import FormatLetterCase from 'mdi-material-ui/FormatLetterCase'
+import Table from "mdi-material-ui/Table";
+import CubeOutline from "mdi-material-ui/CubeOutline";
+import HomeOutline from "mdi-material-ui/HomeOutline";
+import FormatLetterCase from "mdi-material-ui/FormatLetterCase";
 
 // ** Type import
-import { VerticalNavItemsType } from 'src/@core/layouts/types'
+import { VerticalNavItemsType } from "src/@core/layouts/types";
 
 const navigation = (): VerticalNavItemsType => {
   return [
     {
-      title: 'Dashboard',
+      title: "Dashboard",
       icon: HomeOutline,
-      path: '/'
+      path: "/",
+      secure: true,
     },
     {
-      title: 'Users',
+      title: "Login",
       icon: HomeOutline,
-      path: '/users'
+      path: "/login",
+      secure: false,
     },
     {
-      title: 'Tags ',
+      title: "Users",
+      icon: HomeOutline,
+      path: "/users",
+      secure: false,
+    },
+
+    {
+      title: "Tags ",
       icon: Table,
-      path: '/tags'
+      path: "/tags",
+      secure: false,
     },
     {
-      title: 'Questions ',
+      title: "Questions ",
       icon: Table,
-      path: '/questions'
+      path: "/questions",
+      secure: false,
     },
     // {
     //   title: 'Account Settings',
@@ -56,12 +67,12 @@ const navigation = (): VerticalNavItemsType => {
     //   openInNewTab: true
     // },
     {
-      sectionTitle: 'Converter'
+      sectionTitle: "Converter",
     },
     {
-      title: 'Date-time converter ',
+      title: "Date-time converter ",
       icon: FormatLetterCase,
-      path: '/date-time-converter'
+      path: "/date-time-converter",
     },
     // {
     //   title: 'Icons',
@@ -74,23 +85,24 @@ const navigation = (): VerticalNavItemsType => {
     //   path: '/cards'
     // },
     {
-      title: 'Lorem ipsum generator ',
+      title: "Lorem ipsum generator ",
       icon: Table,
-      path: '/lorem-ipsum-generator'
+      path: "/lorem-ipsum-generator",
+      secure: false,
     },
     {
       icon: CubeOutline,
-      title: 'Form Layouts',
-      path: '/form-layouts'
+      title: "Form Layouts",
+      path: "/form-layouts",
+      secure: false,
     },
     {
       icon: CubeOutline,
-      title: 'Color-Picker',
-      path: '/colorpicker'
+      title: "Color-Picker",
+      path: "/colorpicker",
+      secure: false,
     },
-    
-   
-  ]
-}
+  ];
+};
 
-export default navigation
+export default navigation;
