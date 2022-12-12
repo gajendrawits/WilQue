@@ -1,10 +1,10 @@
 // ** Next Imports
 import Head from "next/head";
-import { Router } from "next/router";
+import router, { Router } from "next/router";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
-
+import { useAuthentication } from "src/security";
 // ** Loader Import
 import NProgress from "nprogress";
 
@@ -34,6 +34,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 // ** Global css styles
 import "../../styles/globals.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { useEffect } from "react";
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -68,6 +69,25 @@ const App = (props: ExtendedAppProps) => {
   // Variables
   const getLayout =
     Component.getLayout ?? ((page) => <UserLayout>{page}</UserLayout>);
+
+  const { authenticated, redirect, secure } = useAuthentication();
+
+  // useEffect(() => {
+  //   if (redirect && authenticated) {
+  //     router.push("/");
+  //   }
+  // }, [redirect]);
+
+  useEffect(() => {
+    const a = localStorage.getItem("token");
+    if (redirect && authenticated && !a) {
+      router.push("/");
+    } else if (redirect && !a) {
+      router.push("/pages/login/");
+    } else if (a !== null) {
+      router.push("/");
+    }
+  }, [redirect]);
 
   return (
     <GoogleOAuthProvider clientId={clientId}>

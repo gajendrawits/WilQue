@@ -83,7 +83,7 @@ const LoginPage = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
 
-  const { mutateAsync, error, isLoading, isSuccess } = usePost();
+  const { mutateAsync, error, isLoading, isSuccess, data } = usePost();
 
   const formData = (data: any) => {
     mutateAsync({
@@ -115,8 +115,12 @@ const LoginPage = () => {
   });
 
   if (isSuccess) {
+    localStorage.setItem("token", JSON.stringify(data.token));
     router.push("/");
   }
+
+  // const token = localStorage.getItem("token");
+  // console.log("wrwerew======", token);
 
   return (
     <Box className="content-center">
