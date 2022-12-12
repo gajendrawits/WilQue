@@ -43,6 +43,9 @@ import { useForm } from "react-hook-form";
 import usePost from "src/hooks/usePost";
 import router from "next/router";
 import CircularProgress from "@mui/material/CircularProgress";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { VALIDATION_SCHEMA } from "src/utils/register";
+import { Null } from "mdi-material-ui";
 
 interface State {
   password: string;
@@ -81,7 +84,14 @@ const RegisterPage = () => {
   // ** Hook
   const theme = useTheme();
 
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(VALIDATION_SCHEMA),
+  });
 
   const handleChange =
     (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +104,7 @@ const RegisterPage = () => {
     event.preventDefault();
   };
 
-  const { mutateAsync, data, isSuccess, isLoading } = usePost();
+  const { mutateAsync, data, isSuccess, isLoading, isError, error } = usePost();
 
   const formData = (userData: any) => {
     mutateAsync({
@@ -106,6 +116,9 @@ const RegisterPage = () => {
   if (isSuccess) {
     router.push("/pages/login");
   }
+  // const { response: any } = error;
+
+  console.log(error);
 
   return (
     <Box className="content-center">
@@ -198,10 +211,10 @@ const RegisterPage = () => {
               variant="h5"
               sx={{ fontWeight: 600, marginBottom: 1.5 }}
             >
-              Adventure starts here 🚀
+              Ask your Queries
             </Typography>
             <Typography variant="body2">
-              Make your app management easy and fun!
+              A software that belongs to you.
             </Typography>
           </Box>
           <form noValidate autoComplete="off" onSubmit={handleSubmit(formData)}>
@@ -212,6 +225,7 @@ const RegisterPage = () => {
               sx={{ marginBottom: 4 }}
               {...register("username")}
             />
+            <p style={{ color: "red" }}> {errors.username?.message}</p>
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-register-password">Password</InputLabel>
               <OutlinedInput
@@ -238,6 +252,7 @@ const RegisterPage = () => {
                   </InputAdornment>
                 }
               />
+              <p style={{ color: "red" }}> {errors.password?.message}</p>
             </FormControl>
             <FormControlLabel
               control={<Checkbox />}
@@ -278,6 +293,19 @@ const RegisterPage = () => {
                 }}
               >
                 SucessFully Sign Up
+              </Box>
+            ) : isError ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  color: "red",
+                  padding: "5px 10px",
+                }}
+              >
+                {error && error?.response?.data?.message}
               </Box>
             ) : null}
 

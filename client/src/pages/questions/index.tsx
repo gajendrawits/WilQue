@@ -18,13 +18,14 @@ const Questions = () => {
     refetch: fetchQuestions,
     data,
     isLoading,
-    isSuccess,
     error,
   } = useGet("ques", "/question");
 
   useEffect(() => {
     fetchQuestions();
   }, []);
+
+  console.log(data);
 
   return (
     <Grid
@@ -73,7 +74,7 @@ const Questions = () => {
           </Typography>
         ) : null}
 
-        {data?.map((ques: any) => {
+        {data?.map((ques: any, index: number) => {
           const date = ques.created;
           return (
             <Grid sx={{ mb: 2 }}>
@@ -88,13 +89,12 @@ const Questions = () => {
                 <Typography
                   sx={{
                     p: 2,
-
-                    width: "10%",
+                    width: "15%",
                     minWidth: "100px",
                     textAlign: "right",
                   }}
                 >
-                  <Typography>{ques.answers.length} Answer</Typography>
+                  <Typography> Question: {index + 1} </Typography>
                 </Typography>
                 <Typography
                   sx={{
