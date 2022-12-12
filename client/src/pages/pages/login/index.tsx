@@ -44,6 +44,8 @@ import { useGoogleLogin } from "@react-oauth/google";
 import usePost from "src/hooks/usePost";
 import { useForm } from "react-hook-form";
 import CircularProgress from "@mui/material/CircularProgress";
+import { VALIDATION_SCHEMA } from "src/utils/login";
+import { yupResolver } from "@hookform/resolvers/yup";
 // import { registerLocale } from "react-datepicker";
 
 interface State {
@@ -81,7 +83,13 @@ const LoginPage = () => {
   // ** Hook
   const theme = useTheme();
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(VALIDATION_SCHEMA),
+  });
 
   const { mutateAsync, error, isLoading, isSuccess, data } = usePost();
 
@@ -225,6 +233,7 @@ const LoginPage = () => {
               sx={{ marginBottom: 4 }}
               {...register("username")}
             />
+            <p style={{ color: "red" }}> {errors.username?.message}</p>
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-login-password">Password</InputLabel>
               <OutlinedInput
@@ -247,6 +256,7 @@ const LoginPage = () => {
                   </InputAdornment>
                 }
               />
+              <p style={{ color: "red" }}> {errors.password?.message}</p>
             </FormControl>
             <Box
               sx={{

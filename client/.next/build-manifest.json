@@ -18,7 +18,7 @@
     "/500": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/500.js"
+      "static/chunks/pages/index.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",
@@ -33,7 +33,11 @@
     "/tags": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/tags.js"
+      "static/chunks/pages/tags.js"],
+    "/questions": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/questions.js"
     ]
   },
   "ampFirstPages": []
