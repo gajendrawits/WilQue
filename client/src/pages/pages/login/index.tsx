@@ -115,12 +115,9 @@ const LoginPage = () => {
   });
 
   if (isSuccess) {
-    localStorage.setItem("token", JSON.stringify(data.token));
+    localStorage.setItem("token", data.token);
     router.push("/");
   }
-
-  // const token = localStorage.getItem("token");
-  // console.log("wrwerew======", token);
 
   return (
     <Box className="content-center">

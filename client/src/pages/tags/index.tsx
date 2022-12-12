@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
@@ -6,8 +6,13 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import TagConatiner from "src/pages/tags/tags";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Button from "@mui/material/Button";
+import { createTheme } from "@mui/material/styles";
+import useGet from "src/hooks/useGet";
+
+import axios from "axios";
+
+import { isError, useQuery } from "react-query";
+import { loremIpsum } from "lorem-ipsum";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -94,6 +99,24 @@ const Tags = () => {
   }
   const [valuee, setValue] = React.useState(0);
 
+  const {
+    refetch: fetchDetails,
+    data,
+    isLoading,
+    error,
+    isFetching,
+  } = useGet("tags", `https://wil-que-mongo-backend.onrender.com/api/tags`);
+
+  if (isLoading) {
+    return <>Loading</>;
+  }
+  if (error) {
+    return <>ErrisError</>;
+  }
+  if (isFetching) {
+    return <>Fetching Data</>;
+  }
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -108,7 +131,6 @@ const Tags = () => {
       },
     },
   });
-
   return (
     <Grid
       sx={{
@@ -143,6 +165,9 @@ const Tags = () => {
               }}
               placeholder=" Search"
               type="text"
+              onChange={() => {
+                fetchDetails();
+              }}
             />
             <Tabs
               value={valuee}
@@ -161,13 +186,13 @@ const Tags = () => {
             </Tabs>
           </Box>
           <TabPanel value={valuee} index={0}>
-            <TagConatiner tags={popularTags} />
+            <TagConatiner tags={data} />
           </TabPanel>
           <TabPanel value={valuee} index={1}>
-            <TagConatiner tags={popularTags} />
+            <TagConatiner tags={data} />
           </TabPanel>
           <TabPanel value={valuee} index={2}>
-            <TagConatiner tags={popularTags} />
+            <TagConatiner tags={data} />
           </TabPanel>
         </Box>
       </Grid>

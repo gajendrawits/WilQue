@@ -5,13 +5,18 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { flexbox } from "@mui/system";
 import QuillEdit from "../editor";
+import router from "next/router";
 
 const answers = () => {
+  const handleRoute = () => {
+    router.push("/askQuestion");
+  };
+
   const question = [
     {
       id: 1,
       question:
-        "NotSupportedException when WebRequest is unable to find a creator for that prefix",
+        "Not Supported Exception when WebRequest is unable to find a creator for that prefix",
       description:
         "Eiusmod laborum aute ullamco. Labore ut tempor ut. Esse labore. Non adipisicing aliquip consequat. Anim magna amet veniam dolor Lorem. Est irure do enim veniam aliqua. Lorem nostrud culpa Lorem proident fugiat Lorem. Incididunt occaecat deserunt veniam id eu. Reprehenderit Lorem do. Ea. Adipisicing occaecat non. Est elit anim nisi eiusmod voluptate eiusmod reprehenderit. Nisi id nostrud dolor anim ea magna dolore dolor. Tempor sunt Lorem anim esse voluptate minim irure quis.",
 
@@ -43,7 +48,9 @@ const answers = () => {
         }}
       >
         <Link>Answers</Link>
-        <Button variant="contained">Ask Questions</Button>
+        <Button variant="contained" onClick={handleRoute}>
+          Ask Questions
+        </Button>
       </Typography>
       {question.map((ques) => {
         return (
@@ -95,6 +102,7 @@ const answers = () => {
             </Typography>
             <div>
               <QuillEdit />
+              <p>erewrsdas</p>
             </div>
             <Button
               variant="contained"

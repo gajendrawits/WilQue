@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import  ROUTES  from "src/navigation/vertical";
+import ROUTES from "src/navigation/vertical";
 
 export function isLogin() {
   if (process.browser) {

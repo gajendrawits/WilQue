@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
@@ -6,12 +6,26 @@ import { Button } from "@mui/material";
 import TitleInput from "src/pages/askQuestion/titleInput";
 import TagInput from "src/pages/askQuestion/tagInput";
 import TextAskQuestionInput from "src/pages/askQuestion/textAskQuestionInput";
+import { QuestionContext } from "src/@core/context/QuestionContext";
+import usePost from "src/hooks/usePost";
 
 interface askQuestion {
   questionType: string;
 }
 
 const index = (props: askQuestion) => {
+  const { getQuestionValue } = useContext(QuestionContext);
+
+  const { mutateAsync } = usePost();
+
+  const submitQuestion = () => {
+    mutateAsync({
+      url: "/questions",
+      payload: getQuestionValue,
+      token: true,
+    });
+  };
+
   return (
     <Grid
       sx={{
@@ -53,14 +67,18 @@ const index = (props: askQuestion) => {
         type="text"
         heading="You're asking a question to unkown talented peoples."
       />
-
       <TextAskQuestionInput />
 
       <TagInput
         label="Tags"
         heading="Add some tags to describe what your question is about."
       />
-      <Button sx={{ width: "90px" }} variant="contained">
+      <Button
+        sx={{ width: "90px" }}
+        type="submit"
+        variant="contained"
+        onClick={submitQuestion}
+      >
         Post
       </Button>
     </Grid>
