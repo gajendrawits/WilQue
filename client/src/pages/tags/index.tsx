@@ -107,16 +107,20 @@ const Tags = () => {
     isFetching,
   } = useGet("tags", `https://wil-que-mongo-backend.onrender.com/api/tags`);
 
+  // Tags fetching
+  useEffect(() => {
+    fetchDetails();
+  }, []);
+
   if (isLoading) {
     return <>Loading</>;
   }
   if (error) {
-    return <>ErrisError</>;
+    return <>Error</>;
   }
   if (isFetching) {
     return <>Fetching Data</>;
   }
-
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };

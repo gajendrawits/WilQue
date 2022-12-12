@@ -11,6 +11,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import { useState } from "react";
+import useGet from "src/hooks/useGet";
 
 const CardUser = () => {
   const [value, setValue] = useState<number | null>(2);
@@ -32,17 +33,15 @@ const CardUser = () => {
 
   return (
     <>
-      <Grid item xs={12}>
-        <Typography variant="h5">
+      <Grid sx={{ pb: 6 }}>
+        <Typography variant="h4" sx={{ pb: 6 }}>
           <Link>Users</Link>
         </Typography>
-
-        <Typography variant="body2">
-          Lorem ipsum is a placeholder text commonly used to demonstrate the
-          visual form of a document or a typeface without relying on
-          meaningfulLorem ipsum is a placeholder text commonly used to
-          demonstrate the visual form of a document or a typeface without
-          relying on meaningful content content
+        <Typography variant="h6">
+          A user is a person or thing that uses something such as a place,
+          facility, product, or machine.
+          <br></br>A user is a person who utilizes a computer or network
+          service.
         </Typography>
       </Grid>
       <Card
