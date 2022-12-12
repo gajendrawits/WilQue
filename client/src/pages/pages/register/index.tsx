@@ -120,6 +120,8 @@ const RegisterPage = () => {
 
   console.log(error);
 
+  console.log(process.env.NEXT_PUBLIC_BASE_URL, "nexturl--------");
+
   return (
     <Box className="content-center">
       <Card sx={{ zIndex: 1 }}>
