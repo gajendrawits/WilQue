@@ -19,6 +19,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiCard, { CardProps } from "@mui/material/Card";
 import InputAdornment from "@mui/material/InputAdornment";
+import dotenv from "dotenv";
 import MuiFormControlLabel, {
   FormControlLabelProps,
 } from "@mui/material/FormControlLabel";
@@ -107,6 +108,7 @@ const RegisterPage = () => {
     localStorage.setItem("token", data.token);
     router.push("/pages/login");
   }
+  console.log("process.env.baseurl", process.env.NEXT_PUBLIC_BASE_URL);
 
   return (
     <Box className="content-center">

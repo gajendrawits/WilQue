@@ -1,8 +1,15 @@
 // ** Icon imports
 import Table from 'mdi-material-ui/Table'
 import CubeOutline from 'mdi-material-ui/CubeOutline'
-import HomeOutline from 'mdi-material-ui/HomeOutline'
+import HomeIcon from '@material-ui/icons/Home';
 import FormatLetterCase from 'mdi-material-ui/FormatLetterCase'
+import GroupIcon from '@material-ui/icons/Group';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import HelpIcon from '@material-ui/icons/Help';
+import TextFieldsIcon from '@material-ui/icons/TextFields';
+import FormatColorTextIcon from '@material-ui/icons/FormatColorText';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 
 // ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
@@ -11,22 +18,22 @@ const navigation = (): VerticalNavItemsType => {
   return [
     {
       title: 'Dashboard',
-      icon: HomeOutline,
+      icon: HomeIcon,
       path: '/'
     },
     {
       title: 'Users',
-      icon: HomeOutline,
+      icon: GroupIcon,
       path: '/users'
     },
     {
       title: 'Tags ',
-      icon: Table,
+      icon: LocalOfferIcon,
       path: '/tags'
     },
     {
       title: 'Questions ',
-      icon: Table,
+      icon: HelpIcon,
       path: '/questions'
     },
     // {
@@ -60,7 +67,7 @@ const navigation = (): VerticalNavItemsType => {
     },
     {
       title: 'Date-time converter ',
-      icon: FormatLetterCase,
+      icon: ScheduleIcon,
       path: '/date-time-converter'
     },
     // {
@@ -75,16 +82,16 @@ const navigation = (): VerticalNavItemsType => {
     // },
     {
       title: 'Lorem ipsum generator ',
-      icon: Table,
+      icon: TextFieldsIcon,
       path: '/lorem-ipsum-generator'
     },
     {
-      icon: CubeOutline,
+      icon: ListAltIcon,
       title: 'Form Layouts',
       path: '/form-layouts'
     },
     {
-      icon: CubeOutline,
+      icon: FormatColorTextIcon,
       title: 'Color-Picker',
       path: '/colorpicker'
     },

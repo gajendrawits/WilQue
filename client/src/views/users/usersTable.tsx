@@ -32,12 +32,11 @@ const CardUser = () => {
 
   return (
     <>
-      <Grid item xs={12}>
-        <Typography variant="h5">
+      <Grid sx={{ pb: 6 }}>
+        <Typography variant="h4" sx={{ pb: 6 }}>
           <Link>Users</Link>
         </Typography>
-
-        <Typography variant="body2">
+        <Typography variant="h6">
           Lorem ipsum is a placeholder text commonly used to demonstrate the
           visual form of a document or a typeface without relying on
           meaningfulLorem ipsum is a placeholder text commonly used to

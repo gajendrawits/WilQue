@@ -7,6 +7,11 @@ module.exports = {
     esmExternals: false,
     jsconfigPaths: true // enables it for both jsconfig.json and tsconfig.json
   },
+  
+  env: {
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  },
+
   webpack: config => {
     config.resolve.alias = {
       ...config.resolve.alias,

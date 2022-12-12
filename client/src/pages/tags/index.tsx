@@ -6,14 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import TagConatiner from "src/pages/tags/tags";
-import { createTheme } from "@mui/material/styles";
 import useGet from "src/hooks/useGet";
-
-import axios from "axios";
-
-import { isError, useQuery } from "react-query";
-import { loremIpsum } from "lorem-ipsum";
-
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -21,62 +14,30 @@ interface TabPanelProps {
 }
 
 const Tags = () => {
-  const popularTags = [
-    {
-      id: 1,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 2,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 3,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 4,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 5,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 6,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 7,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 8,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 9,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-  ];
+  const [valuee, setValue] = React.useState(0);
+
+  const {
+    refetch: fetchDetails,
+    data,
+    isLoading,
+    error,
+    isFetching,
+  } = useGet("tags", `https://wil-que-mongo-backend.onrender.com/api/tags`);
+
+  // Tags fetching
+  useEffect(() => {
+    fetchDetails();
+  }, []);
+
+  if (isLoading) {
+    return <>Loading</>;
+  }
+  if (error) {
+    return <>ErrisError</>;
+  }
+  if (isFetching) {
+    return <>Fetching Data</>;
+  }
 
   function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
@@ -97,40 +58,12 @@ const Tags = () => {
       </div>
     );
   }
-  const [valuee, setValue] = React.useState(0);
-
-  const {
-    refetch: fetchDetails,
-    data,
-    isLoading,
-    error,
-    isFetching,
-  } = useGet("tags", `https://wil-que-mongo-backend.onrender.com/api/tags`);
-
-  if (isLoading) {
-    return <>Loading</>;
-  }
-  if (error) {
-    return <>ErrisError</>;
-  }
-  if (isFetching) {
-    return <>Fetching Data</>;
-  }
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    fetchDetails();
   };
-  const theme = createTheme({
-    components: {
-      MuiTab: {
-        styleOverrides: {
-          root: {
-            padding: 0,
-          },
-        },
-      },
-    },
-  });
+
   return (
     <Grid
       sx={{
@@ -165,9 +98,6 @@ const Tags = () => {
               }}
               placeholder=" Search"
               type="text"
-              onChange={() => {
-                fetchDetails();
-              }}
             />
             <Tabs
               value={valuee}
