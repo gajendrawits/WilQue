@@ -107,6 +107,8 @@ const RegisterPage = () => {
     router.push("/pages/login");
   }
 
+  console.log(process.env.NEXT_PUBLIC_BASE_URL, "nexturl--------");
+
   return (
     <Box className="content-center">
       <Card sx={{ zIndex: 1 }}>
