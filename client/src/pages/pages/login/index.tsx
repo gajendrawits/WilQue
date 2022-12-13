@@ -231,9 +231,9 @@ const LoginPage = () => {
               id="email"
               label="Email"
               sx={{ marginBottom: 4 }}
-              {...register("username")}
+              {...register("email")}
             />
-            <p style={{ color: "red" }}> {errors.username?.message}</p>
+            <p style={{ color: "red" }}> {errors.email?.message}</p>
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-login-password">Password</InputLabel>
               <OutlinedInput

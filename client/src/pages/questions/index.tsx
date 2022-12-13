@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
@@ -10,8 +10,22 @@ import moment from "moment";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Questions = () => {
+  // const [id, setId] = useState();
   const handleClick = (question: any) => {
-    router.push("/answers", question);
+    // setId(question.author.id);
+    // console.log("id", data);
+    // {
+    //   data
+    //     .filter((dt: any) => {
+    //       return dt.id === id;
+    //     })
+    //     .map((data: any) => {
+    //       return <div key={data.id}></div>;
+    //     });
+    // }
+
+    router.push(`/answers`);
+    console.log("question", question);
   };
 
   const {
