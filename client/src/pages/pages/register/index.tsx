@@ -213,7 +213,7 @@ const RegisterPage = () => {
               variant="h5"
               sx={{ fontWeight: 600, marginBottom: 1.5 }}
             >
-              Ask your Queries
+              <strong style={{ color: "#9155FD" }}>SignUp Here!</strong>
             </Typography>
             <Typography variant="body2">
               A software that belongs to you.
@@ -307,7 +307,7 @@ const RegisterPage = () => {
                   padding: "5px 10px",
                 }}
               >
-                {error && error?.response?.data?.message}
+                Sign up Failed
               </Box>
             ) : null}
 

@@ -88,7 +88,9 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
+    mode: "onChange",
     resolver: yupResolver(VALIDATION_SCHEMA),
+    shouldFocusError: true,
   });
 
   const { mutateAsync, error, isLoading, isSuccess, data } = usePost();
@@ -98,19 +100,6 @@ const LoginPage = () => {
       url: "/authenticate",
       payload: data,
     });
-  };
-
-  const handleChange =
-    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
-
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
   };
 
   const googleLogin = useGoogleLogin({
@@ -221,10 +210,11 @@ const LoginPage = () => {
               Welcome to {themeConfig.templateName}! 👋🏻
             </Typography>
             <Typography variant="body2">
-              Please sign-in to your account and start the adventure
+              Please <strong style={{ color: "#9155FD" }}>Log-in</strong> to
+              your account and Increasing the chances of a better tomorrow.
             </Typography>
           </Box>
-          <form autoComplete="off" onSubmit={handleSubmit(formData)}>
+          <form onSubmit={handleSubmit(formData)}>
             <TextField
               autoFocus
               fullWidth
@@ -234,30 +224,18 @@ const LoginPage = () => {
               {...register("username")}
             />
             <p style={{ color: "red" }}> {errors.username?.message}</p>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="auth-login-password">Password</InputLabel>
-              <OutlinedInput
-                label="Password"
-                value={values.password}
-                id="auth-login-password"
-                {...register("password")}
-                onChange={handleChange("password")}
-                type={values.showPassword ? "text" : "password"}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      edge="end"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      aria-label="toggle password visibility"
-                    >
-                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              <p style={{ color: "red" }}> {errors.password?.message}</p>
-            </FormControl>
+
+            <TextField
+              autoFocus
+              fullWidth
+              id="password"
+              label="password"
+              type="password"
+              sx={{ marginBottom: 4 }}
+              {...register("password")}
+            />
+
+            <p style={{ color: "red" }}> {errors.password?.message}</p>
             <Box
               sx={{
                 mb: 4,
@@ -268,11 +246,6 @@ const LoginPage = () => {
               }}
             >
               <FormControlLabel control={<Checkbox />} label="Remember Me" />
-              <Link passHref href="/">
-                <LinkStyled onClick={(e) => e.preventDefault()}>
-                  Forgot Password?
-                </LinkStyled>
-              </Link>
             </Box>
             <Button
               fullWidth
@@ -280,13 +253,6 @@ const LoginPage = () => {
               variant="contained"
               type="submit"
               sx={{ marginBottom: 7 }}
-              onKeyPress={(e) => {
-                console.log("e", formData);
-                if (e.key === "Enter") {
-                  console.log("hjshshhshsh");
-                  handleSubmit(formData);
-                }
-              }}
             >
               {isLoading ? <CircularProgress color="inherit" /> : "Login"}
             </Button>
