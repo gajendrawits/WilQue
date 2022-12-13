@@ -118,10 +118,6 @@ const RegisterPage = () => {
   }
   // const { response: any } = error;
 
-  console.log(error);
-
-  console.log(process.env.NEXT_PUBLIC_BASE_URL, "nexturl--------");
-
   return (
     <Box className="content-center">
       <Card sx={{ zIndex: 1 }}>
@@ -228,34 +224,19 @@ const RegisterPage = () => {
               {...register("username")}
             />
             <p style={{ color: "red" }}> {errors.username?.message}</p>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="auth-register-password">Password</InputLabel>
-              <OutlinedInput
-                label="Password"
-                value={values.password}
-                {...register("password")}
-                id="auth-register-password"
-                onChange={handleChange("password")}
-                type={values.showPassword ? "text" : "password"}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      edge="end"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      aria-label="toggle password visibility"
-                    >
-                      {values.showPassword ? (
-                        <EyeOutline fontSize="small" />
-                      ) : (
-                        <EyeOffOutline fontSize="small" />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              <p style={{ color: "red" }}> {errors.password?.message}</p>
-            </FormControl>
+
+            <TextField
+              autoFocus
+              fullWidth
+              id="password"
+              label="Password"
+              type="password"
+              sx={{ marginBottom: 4 }}
+              {...register("Password")}
+            />
+
+            <p style={{ color: "red" }}> {errors.password?.message}</p>
+
             <FormControlLabel
               control={<Checkbox />}
               label={

@@ -229,10 +229,10 @@ const LoginPage = () => {
               autoFocus
               fullWidth
               id="password"
-              label="password"
+              label="Password"
               type="password"
               sx={{ marginBottom: 4 }}
-              {...register("password")}
+              {...register("Password")}
             />
 
             <p style={{ color: "red" }}> {errors.password?.message}</p>
