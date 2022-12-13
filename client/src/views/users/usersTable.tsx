@@ -1,6 +1,7 @@
 // ** MUI Imports
 
 import Rating from "@mui/material/Rating";
+import StarOutlineIcon from "@material-ui/icons/StarOutline";
 
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -17,18 +18,13 @@ const CardUser = () => {
   const [value, setValue] = useState<number | null>(2);
 
   const users = [
-    { id: 1, name: "admin", designation: "Developer" },
-    { id: 2, name: "admin", designation: "Developer" },
-    { id: 3, name: "admin", designation: "Developer" },
-    { id: 4, name: "admin", designation: "Developer" },
-    { id: 5, name: "admin", designation: "Developer" },
-    { id: 6, name: "admin", designation: "Developer" },
-    { id: 7, name: "admin", designation: "Developer" },
-    { id: 8, name: "admin", designation: "Developer" },
-    { id: 9, name: "admin", designation: "Developer" },
-    { id: 10, name: "admin", designation: "Developer" },
-    { id: 11, name: "admin", designation: "Developer" },
-    { id: 12, name: "admin", designation: "Developer" },
+    { id: 1, name: "Karan", designation: "React Developer" },
+    { id: 2, name: "Rupinder", designation: "Node Developer" },
+    { id: 3, name: "Shubham", designation: "React Native Developer" },
+    { id: 4, name: "Aman", designation: "Android Developer" },
+    { id: 5, name: "Pankaj", designation: "IOS Developer" },
+    { id: 6, name: "Sunil", designation: "QA" },
+    { id: 7, name: "Gajendra", designation: "Full Stack Developer" },
   ];
 
   return (
@@ -97,7 +93,7 @@ const CardUser = () => {
                   <Box sx={{ mr: 2, display: "flex", alignItems: "center" }}>
                     <Avatar
                       alt="Mary Vaughn"
-                      src="/images/avatars/4.png"
+                      src="/images/avatars/2.png"
                       sx={{ width: 34, height: 34, marginRight: 2.75 }}
                     />
                     <Typography variant="body2" sx={{ color: "common.white" }}>
@@ -112,7 +108,7 @@ const CardUser = () => {
                         variant="body2"
                         sx={{ color: "common.white" }}
                       >
-                        Total Stars
+                        <StarOutlineIcon />
                       </Typography>
                     </Box>
                   </Box>

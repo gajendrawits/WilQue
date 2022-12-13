@@ -113,15 +113,6 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      localStorage.setItem(
-        "userProfile",
-        JSON.stringify(tokenResponse.access_token)
-      );
-    },
-  });
-
   if (isSuccess) {
     localStorage.setItem("token", data.token);
     router.push("/");
@@ -231,9 +222,9 @@ const LoginPage = () => {
               id="email"
               label="Email"
               sx={{ marginBottom: 4 }}
-              {...register("email")}
+              {...register("username")}
             />
-            <p style={{ color: "red" }}> {errors.email?.message}</p>
+            <p style={{ color: "red" }}> {errors.username?.message}</p>
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-login-password">Password</InputLabel>
               <OutlinedInput
