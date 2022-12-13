@@ -225,17 +225,30 @@ const RegisterPage = () => {
             />
             <p style={{ color: "red" }}> {errors.username?.message}</p>
 
-            <TextField
-              autoFocus
-              fullWidth
-              id="password"
-              label="Password"
-              type="password"
-              sx={{ marginBottom: 4 }}
-              {...register("Password")}
-            />
-
-            <p style={{ color: "red" }}> {errors.password?.message}</p>
+            <FormControl fullWidth>
+              <InputLabel htmlFor="auth-login-password">Password</InputLabel>
+              <OutlinedInput
+                label="Password"
+                value={values.password}
+                id="auth-login-password"
+                {...register("password")}
+                onChange={handleChange("password")}
+                type={values.showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      edge="end"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      aria-label="toggle password visibility"
+                    >
+                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+              <p style={{ color: "red" }}> {errors.password?.message}</p>
+            </FormControl>
 
             <FormControlLabel
               control={<Checkbox />}
