@@ -102,6 +102,19 @@ const LoginPage = () => {
     });
   };
 
+  const handleChange =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setValues({ ...values, [prop]: event.target.value });
+    };
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       localStorage.setItem(
@@ -225,17 +238,31 @@ const LoginPage = () => {
             />
             <p style={{ color: "red" }}> {errors.username?.message}</p>
 
-            <TextField
-              autoFocus
-              fullWidth
-              id="password"
-              label="Password"
-              type="password"
-              sx={{ marginBottom: 4 }}
-              {...register("Password")}
-            />
+            <FormControl fullWidth>
+              <InputLabel htmlFor="auth-login-password">Password</InputLabel>
+              <OutlinedInput
+                label="Password"
+                value={values.password}
+                id="auth-login-password"
+                {...register("password")}
+                onChange={handleChange("password")}
+                type={values.showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      edge="end"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      aria-label="toggle password visibility"
+                    >
+                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+              <p style={{ color: "red" }}> {errors.password?.message}</p>
+            </FormControl>
 
-            <p style={{ color: "red" }}> {errors.password?.message}</p>
             <Box
               sx={{
                 mb: 4,
