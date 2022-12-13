@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
