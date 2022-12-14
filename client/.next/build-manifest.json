@@ -153,36 +153,20 @@
       "static/chunks/main-10839d60912475c6.js",
       "static/chunks/pages/pages/error-59f3f4e6fa048cd5.js"
     ],
-    "/pages/login": [
-      "static/chunks/webpack-215bdbf6204e824b.js",
-      "static/chunks/framework-568b840ecff66744.js",
-      "static/chunks/main-10839d60912475c6.js",
-      "static/chunks/8764-86c69694f94b3768.js",
-      "static/chunks/594-429be0e888594850.js",
-      "static/chunks/4414-28b291edc4c81a01.js",
-      "static/chunks/939-464491edd3e125ad.js",
-      "static/chunks/5545-21c36e1e12635847.js",
-      "static/chunks/pages/pages/login-a2a2ad10b07fdc9b.js"
-    ],
-    "/pages/register": [
-      "static/chunks/webpack-215bdbf6204e824b.js",
-      "static/chunks/framework-568b840ecff66744.js",
-      "static/chunks/main-10839d60912475c6.js",
-      "static/chunks/8764-86c69694f94b3768.js",
-      "static/chunks/594-429be0e888594850.js",
-      "static/chunks/4414-28b291edc4c81a01.js",
-      "static/chunks/939-464491edd3e125ad.js",
-      "static/chunks/5545-21c36e1e12635847.js",
-      "static/chunks/pages/pages/register-af7b27e58183ea4d.js"
-    ],
-    "/tags": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/tags.js"],
     "/questions": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/questions.js"
+    ],
+    "/tags": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/tags.js"
+    ],
+    "/users": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/users.js"
     ]
   },
   "ampFirstPages": []

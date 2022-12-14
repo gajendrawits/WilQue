@@ -11,11 +11,35 @@ import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useGet from "src/hooks/useGet";
 
 const CardUser = () => {
   const [value, setValue] = useState<number | null>(2);
+  const {
+    refetch: fetchDetails,
+    data,
+    isLoading,
+    error,
+    isFetching,
+  } = useGet("tags", `https://wil-que-mongo-backend.onrender.com/api/users`);
+
+  // Tags fetching
+  useEffect(() => {
+    fetchDetails();
+  }, []);
+  console.log("data", data);
+
+  if (isLoading) {
+    return <>Loading</>;
+  }
+  if (error) {
+    return <>Error</>;
+  }
+  if (isFetching) {
+    return <>Fetching Data</>;
+  }
+  const api = "https://wil-que-mongo-backend.onrender.com/api/users";
 
   const users = [
     { id: 1, name: "Karan", designation: "React Developer" },
@@ -49,7 +73,7 @@ const CardUser = () => {
           gridTemplateColumns: "repeat(auto-fill, minmax(25rem, 1fr))",
         }}
       >
-        {users.map((user) => {
+        {data?.map((user: any) => {
           return (
             <Card
               sx={{
@@ -74,13 +98,13 @@ const CardUser = () => {
                     color: "common.white",
                   }}
                 >
-                  {user.name}
+                  {user.username}
                 </Typography>
                 <Typography
                   variant="body2"
                   sx={{ marginBottom: 3, color: "common.white" }}
                 >
-                  {user.designation}
+                  {user.role}
                 </Typography>
                 <Box
                   sx={{
@@ -97,7 +121,7 @@ const CardUser = () => {
                       sx={{ width: 34, height: 34, marginRight: 2.75 }}
                     />
                     <Typography variant="body2" sx={{ color: "common.white" }}>
-                      {user.name}
+                      {user.username}
                     </Typography>
                   </Box>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
