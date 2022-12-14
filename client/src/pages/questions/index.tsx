@@ -112,7 +112,7 @@ const Questions = () => {
                 </Typography>
                 <Typography
                   sx={{
-                    width: "90%",
+                    width: "85%",
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
