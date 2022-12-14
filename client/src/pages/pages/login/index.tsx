@@ -88,7 +88,9 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
+    mode: "onChange",
     resolver: yupResolver(VALIDATION_SCHEMA),
+    shouldFocusError: true,
   });
 
   const { mutateAsync, error, isLoading, isSuccess, data } = usePost();
@@ -212,10 +214,11 @@ const LoginPage = () => {
               Welcome to {themeConfig.templateName}! 👋🏻
             </Typography>
             <Typography variant="body2">
-              Please sign-in to your account and start the adventure
+              Please <strong style={{ color: "#9155FD" }}>Log-in</strong> to
+              your account and Increasing the chances of a better tomorrow.
             </Typography>
           </Box>
-          <form autoComplete="off" onSubmit={handleSubmit(formData)}>
+          <form onSubmit={handleSubmit(formData)}>
             <TextField
               autoFocus
               fullWidth
@@ -225,6 +228,7 @@ const LoginPage = () => {
               {...register("username")}
             />
             <p style={{ color: "red" }}> {errors.username?.message}</p>
+
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-login-password">Password</InputLabel>
               <OutlinedInput
@@ -249,6 +253,7 @@ const LoginPage = () => {
               />
               <p style={{ color: "red" }}> {errors.password?.message}</p>
             </FormControl>
+
             <Box
               sx={{
                 mb: 4,
@@ -259,11 +264,6 @@ const LoginPage = () => {
               }}
             >
               <FormControlLabel control={<Checkbox />} label="Remember Me" />
-              <Link passHref href="/">
-                <LinkStyled onClick={(e) => e.preventDefault()}>
-                  Forgot Password?
-                </LinkStyled>
-              </Link>
             </Box>
             <Button
               fullWidth
@@ -271,13 +271,6 @@ const LoginPage = () => {
               variant="contained"
               type="submit"
               sx={{ marginBottom: 7 }}
-              onKeyPress={(e) => {
-                console.log("e", formData);
-                if (e.key === "Enter") {
-                  console.log("hjshshhshsh");
-                  handleSubmit(formData);
-                }
-              }}
             >
               {isLoading ? <CircularProgress color="inherit" /> : "Login"}
             </Button>

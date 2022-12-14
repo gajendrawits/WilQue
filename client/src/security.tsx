@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import ROUTES from "src/navigation/vertical";
 
 export function isLogin() {
-  if (process.browser) {
+  if (process && process.env.browser) {
     // Client-side-only code
     return !!global?.window?.localStorage.getItem("token");
   }
@@ -33,7 +33,7 @@ export const useAuthentication = () => {
       access.authenticated = true;
       return access;
     } else {
-      if (process.browser && token) {
+      if (process.env.browser && token) {
         access.authenticated = true;
         access.secure = true;
         return access;

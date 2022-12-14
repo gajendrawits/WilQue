@@ -118,10 +118,6 @@ const RegisterPage = () => {
   }
   // const { response: any } = error;
 
-  console.log(error);
-
-  console.log(process.env.NEXT_PUBLIC_BASE_URL, "nexturl--------");
-
   return (
     <Box className="content-center">
       <Card sx={{ zIndex: 1 }}>
@@ -213,7 +209,7 @@ const RegisterPage = () => {
               variant="h5"
               sx={{ fontWeight: 600, marginBottom: 1.5 }}
             >
-              Ask your Queries
+              <strong style={{ color: "#9155FD" }}>SignUp Here!</strong>
             </Typography>
             <Typography variant="body2">
               A software that belongs to you.
@@ -228,13 +224,14 @@ const RegisterPage = () => {
               {...register("username")}
             />
             <p style={{ color: "red" }}> {errors.username?.message}</p>
+
             <FormControl fullWidth>
-              <InputLabel htmlFor="auth-register-password">Password</InputLabel>
+              <InputLabel htmlFor="auth-login-password">Password</InputLabel>
               <OutlinedInput
                 label="Password"
                 value={values.password}
+                id="auth-login-password"
                 {...register("password")}
-                id="auth-register-password"
                 onChange={handleChange("password")}
                 type={values.showPassword ? "text" : "password"}
                 endAdornment={
@@ -245,17 +242,14 @@ const RegisterPage = () => {
                       onMouseDown={handleMouseDownPassword}
                       aria-label="toggle password visibility"
                     >
-                      {values.showPassword ? (
-                        <EyeOutline fontSize="small" />
-                      ) : (
-                        <EyeOffOutline fontSize="small" />
-                      )}
+                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
                     </IconButton>
                   </InputAdornment>
                 }
               />
               <p style={{ color: "red" }}> {errors.password?.message}</p>
             </FormControl>
+
             <FormControlLabel
               control={<Checkbox />}
               label={
@@ -307,7 +301,7 @@ const RegisterPage = () => {
                   padding: "5px 10px",
                 }}
               >
-                {error && error?.response?.data?.message}
+                Sign up Failed
               </Box>
             ) : null}
 

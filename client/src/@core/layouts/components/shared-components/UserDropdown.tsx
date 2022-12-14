@@ -129,6 +129,13 @@ const UserDropdown = () => {
             Profile
           </Box>
         </MenuItem>
+
+        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
+          <Box sx={styles}>
+            <HelpCircleOutline sx={{ marginRight: 2 }} />
+            FAQ
+          </Box>
+        </MenuItem>
         <Divider />
         <MenuItem
           sx={{ py: 2 }}
