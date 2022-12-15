@@ -159,6 +159,7 @@ const Questions = () => {
                     </Typography>
                   </Typography>
                   <Typography sx={{ textAlign: "right", pt: 2 }}>
+                    Asked by: {ques.author.username} Created at:{" "}
                     {moment(date).format("DD-MMM-YYYY")}
                   </Typography>
                 </Typography>

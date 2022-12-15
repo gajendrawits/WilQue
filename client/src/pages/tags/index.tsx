@@ -121,6 +121,7 @@ const Tags = () => {
   if (isFetching) {
     return <>Fetching Data</>;
   }
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -135,6 +136,18 @@ const Tags = () => {
       },
     },
   });
+  // sorting tags in alphabetically order
+  const sorted = data?.sort(function (a: any, b: any) {
+    if (a._id < b._id) {
+      return -1;
+    }
+    if (a._id > b._id) {
+      return 1;
+    }
+    return 0;
+  });
+  console.log("data", data);
+  console.log("sorted", sorted);
   return (
     <Grid
       sx={{
@@ -193,7 +206,7 @@ const Tags = () => {
             <TagConatiner tags={data} />
           </TabPanel>
           <TabPanel value={valuee} index={1}>
-            <TagConatiner tags={data} />
+            <TagConatiner tags={sorted} />
           </TabPanel>
           <TabPanel value={valuee} index={2}>
             <TagConatiner tags={data} />

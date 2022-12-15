@@ -34,4 +34,5 @@ const tags = (props: any) => {
     </Grid>
   );
 };
+
 export default tags;
