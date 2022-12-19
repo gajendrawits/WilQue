@@ -88,7 +88,7 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
     resolver: yupResolver(VALIDATION_SCHEMA),
     shouldFocusError: true,
   });
