@@ -81,6 +81,11 @@ const RegisterPage = () => {
     showPassword: false,
   });
 
+  const [confirmValues, setConfirmValues] = useState<State>({
+    password: "",
+    showPassword: false,
+  });
+
   // ** Hook
   const theme = useTheme();
 
@@ -89,17 +94,32 @@ const RegisterPage = () => {
     register,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
     resolver: yupResolver(VALIDATION_SCHEMA),
+    shouldFocusError: true,
   });
 
   const handleChange =
     (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value });
     };
+
+  const handleConfirmPwd =
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+      setConfirmValues({ ...confirmValues, [prop]: event.target.value });
+    };
+
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
+
+  const handleClickShowConfirmPassword = () => {
+    setConfirmValues({
+      ...confirmValues,
+      showPassword: !confirmValues.showPassword,
+    });
+  };
+
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
@@ -107,6 +127,7 @@ const RegisterPage = () => {
   const { mutateAsync, data, isSuccess, isLoading, isError, error } = usePost();
 
   const formData = (userData: any) => {
+    console.log(userData);
     mutateAsync({
       url: "/signup",
       payload: userData,
@@ -116,7 +137,6 @@ const RegisterPage = () => {
   if (isSuccess) {
     router.push("/pages/login");
   }
-  // const { response: any } = error;
 
   return (
     <Box className="content-center">
@@ -218,7 +238,7 @@ const RegisterPage = () => {
           <form noValidate autoComplete="off" onSubmit={handleSubmit(formData)}>
             <TextField
               fullWidth
-              type="email"
+              id="email"
               label="Email"
               sx={{ marginBottom: 4 }}
               {...register("username")}
@@ -248,6 +268,37 @@ const RegisterPage = () => {
                 }
               />
               <p style={{ color: "red" }}> {errors.password?.message}</p>
+            </FormControl>
+
+            <FormControl fullWidth>
+              <InputLabel htmlFor="auth-login-password">
+                Confirm Password
+              </InputLabel>
+              <OutlinedInput
+                label="confirmPassword"
+                value={confirmValues.password}
+                id="auth-login-password"
+                {...register("confirmpassword")}
+                onChange={handleConfirmPwd("password")}
+                type={confirmValues.showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      edge="end"
+                      onClick={handleClickShowConfirmPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      aria-label="toggle password visibility"
+                    >
+                      {confirmValues.showPassword ? (
+                        <EyeOutline />
+                      ) : (
+                        <EyeOffOutline />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+              <p style={{ color: "red" }}> {errors.confirmpassword?.message}</p>
             </FormControl>
 
             <FormControlLabel
