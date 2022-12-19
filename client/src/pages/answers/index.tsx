@@ -27,7 +27,6 @@ const answers = () => {
     });
   };
 
-  console.log(question.text);
 
   return (
     <Grid sx={{ pb: 6 }}>
