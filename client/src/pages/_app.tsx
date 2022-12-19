@@ -78,16 +78,16 @@ const App = (props: ExtendedAppProps) => {
   //   }
   // }, [redirect]);
 
-  useEffect(() => {
-    const a = localStorage.getItem("token");
-    if (redirect && authenticated && !a) {
-      router.push("/");
-    } else if (redirect && !a) {
-      router.push("/pages/login/");
-    } else if (a !== null) {
-      router.push("/");
-    }
-  }, [redirect]);
+  // useEffect(() => {
+  //   const a = localStorage.getItem("token");
+  //   if (redirect && authenticated && !a) {
+  //     router.push("/");
+  //   } else if (redirect && !a) {
+  //     router.push("/pages/login/");
+  //   } else if (a !== null) {
+  //     router.push("/");
+  //   }
+  // }, [redirect]);
 
   return (
     <GoogleOAuthProvider clientId={clientId}>

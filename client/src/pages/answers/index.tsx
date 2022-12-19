@@ -102,7 +102,6 @@ const answers = () => {
             </Typography>
             <div>
               <QuillEdit />
-              <p>erewrsdas</p>
             </div>
             <Button
               variant="contained"
