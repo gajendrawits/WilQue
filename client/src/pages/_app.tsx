@@ -34,7 +34,9 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 // ** Global css styles
 import "../../styles/globals.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { QuestionContext } from "src/@core/context/QuestionContext";
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -61,6 +63,7 @@ if (themeConfig.routingLoader) {
 
 // ** Configure JSS & ClassName
 const App = (props: ExtendedAppProps) => {
+  const [getQuestionValue, setQuestionValue] = useState({});
   const clientId =
     "603187839996-vvgv5f0i7pcm5hbtkfhkov64i5unf80f.apps.googleusercontent.com";
 
@@ -71,12 +74,6 @@ const App = (props: ExtendedAppProps) => {
     Component.getLayout ?? ((page) => <UserLayout>{page}</UserLayout>);
 
   const { authenticated, redirect, secure } = useAuthentication();
-
-  // useEffect(() => {
-  //   if (redirect && authenticated) {
-  //     router.push("/");
-  //   }
-  // }, [redirect]);
 
   useEffect(() => {
     const a = localStorage.getItem("token");
@@ -102,17 +99,21 @@ const App = (props: ExtendedAppProps) => {
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <QueryClientProvider client={queryClient}>
-          <SettingsProvider>
-            <SettingsConsumer>
-              {({ settings }) => {
-                return (
-                  <ThemeComponent settings={settings}>
-                    {getLayout(<Component {...pageProps} />)}
-                  </ThemeComponent>
-                );
-              }}
-            </SettingsConsumer>
-          </SettingsProvider>
+          <QuestionContext.Provider
+            value={{ getQuestionValue, setQuestionValue }}
+          >
+            <SettingsProvider>
+              <SettingsConsumer>
+                {({ settings }) => {
+                  return (
+                    <ThemeComponent settings={settings}>
+                      {getLayout(<Component {...pageProps} />)}
+                    </ThemeComponent>
+                  );
+                }}
+              </SettingsConsumer>
+            </SettingsProvider>
+          </QuestionContext.Provider>
         </QueryClientProvider>
       </CacheProvider>
     </GoogleOAuthProvider>

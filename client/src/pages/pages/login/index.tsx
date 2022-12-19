@@ -220,7 +220,7 @@ const LoginPage = () => {
               variant="h5"
               sx={{ fontWeight: 600, marginBottom: 1.5 }}
             >
-              Welcome to {themeConfig.templateName}! 👋🏻
+              Unlocking knowledge at the speed of thought.
             </Typography>
             <Typography variant="body2">
               Please <strong style={{ color: "#9155FD" }}>Log-in</strong> to
