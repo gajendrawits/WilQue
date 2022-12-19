@@ -43,14 +43,14 @@ const answers = () => {
             borderBottom: "1px solid lightgrey",
           }}
         >
-          {question?.title}
+          {question && question?.title}
         </Typography>
         <Typography
           sx={{
             pt: 3,
           }}
         >
-          {question?.text}
+          {question && question?.text}
         </Typography>
         <Typography
           sx={{
@@ -67,7 +67,7 @@ const answers = () => {
             gap: 4,
           }}
         >
-          {question?.answers.map((answer: any, index: number) => {
+          {question?.answers?.map((answer: any, index: number) => {
             return (
               <Typography
                 sx={{
@@ -75,7 +75,7 @@ const answers = () => {
                   background: "lightgrey",
                 }}
               >
-                {answer}
+                {answer.text}
               </Typography>
             );
           })}

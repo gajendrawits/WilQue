@@ -3,7 +3,6 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
-import Card from "@mui/material/Card";
 import router from "next/router";
 import useGet from "src/hooks/useGet";
 import moment from "moment";
@@ -32,6 +31,15 @@ const Questions = () => {
   useEffect(() => {
     fetchQuestions();
   }, []);
+  const handlePagination = (page: any) => {
+    const path = router.pathname;
+    const query = router.query;
+    query.page = page.selected + 1;
+    router.push({
+      pathname: path,
+      query: query,
+    });
+  };
 
   return (
     <Grid
@@ -54,7 +62,7 @@ const Questions = () => {
             variant="contained"
             onClick={() => router.push("/askQuestion")}
           >
-            Ask Questions
+            Ask Question
           </Button>
         </Typography>
         <Typography
@@ -80,7 +88,7 @@ const Questions = () => {
           </Typography>
         ) : null}
 
-        {data?.map((question: any, index: number) => {
+        {data?.reverse().map((question: any, index: number) => {
           const date = question.created;
           return (
             <Grid sx={{ mb: 2 }}>
@@ -95,16 +103,23 @@ const Questions = () => {
               >
                 <Typography
                   sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "15px",
                     p: 2,
-                    width: "15%",
-                    minWidth: "100px",
-                    textAlign: "right",
                   }}
                 >
-                  <Typography> Question: {index + 1} </Typography>
+                  <Typography> Question: </Typography>
+                  <Typography sx={{ borderRadius: "50%" }}>
+                    <img
+                      style={{ borderRadius: "50%" }}
+                      src={question.author.profilePhoto}
+                    />
+                  </Typography>
                 </Typography>
                 <Typography
                   sx={{
+                    minWidth: "400px",
                     width: "90%",
                     p: 2,
                     display: "flex",
@@ -113,7 +128,15 @@ const Questions = () => {
                   }}
                 >
                   <div onClick={() => handleClick(question, index)}>
-                    <Typography sx={{ fontWeight: "700", cursor: "pointer" }}>
+                    <Typography
+                      sx={{
+                        fontWeight: "700",
+                        cursor: "pointer",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
                       {question.title}
                     </Typography>
                   </div>
@@ -125,12 +148,22 @@ const Questions = () => {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    Description :{question.text}
+                    Description :
+                    <span style={{ padding: 1 }}>{question.text}</span>
                   </Typography>
-                  <Typography sx={{ display: "flex", gap: 3, pt: 3 }}>
+                  <Typography
+                    sx={{
+                      display: "flex",
+                      gap: 3,
+                      pt: 3,
+                      width: "100%",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
                     <Typography
                       sx={{
-                        width: "fit-content",
                         p: 2,
                         display: "flex",
                         gap: 3,
@@ -152,7 +185,16 @@ const Questions = () => {
                       })}
                     </Typography>
                   </Typography>
-                  <Typography sx={{ textAlign: "right", pt: 2 }}>
+                  <Typography
+                    sx={{
+                      textAlign: "right",
+                      pt: 2,
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    Asked by: {question.author.username} Created at:{" "}
                     {moment(date).format("DD-MMM-YYYY")}
                   </Typography>
                 </Typography>
