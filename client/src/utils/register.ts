@@ -5,7 +5,7 @@ const VALIDATION_SCHEMA = Yup.object().shape({
     .required("Email is mandatory")
     .matches(
       /^[a-zA-Z0-9._-]+@(thewitslab)+\.[a-zA-Z]{2,4}$/,
-      "Please Enter valid Email"
+      "Please Enter the only thewitslab email"
     ),
   password: Yup.string()
     .required("Password is mandatory")

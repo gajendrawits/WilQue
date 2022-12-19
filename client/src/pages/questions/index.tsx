@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
@@ -8,24 +8,30 @@ import router from "next/router";
 import useGet from "src/hooks/useGet";
 import moment from "moment";
 import CircularProgress from "@mui/material/CircularProgress";
+import { QuestionContext } from "src/@core/context/QuestionContext";
 
 const Questions = () => {
-  const handleClick = (question: any) => {
-    router.push("/answers", question);
+  const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
+
+  const handleClick = (question: any, index: number) => {
+    console.log(question);
+    const QuestionObj = { question };
+    setQuestionValue(QuestionObj);
+    router.push({
+      pathname: "/answers",
+      query: { question: index + 1 },
+    });
   };
 
   const {
     refetch: fetchQuestions,
     data,
     isLoading,
-    error,
   } = useGet("ques", "/question");
 
   useEffect(() => {
     fetchQuestions();
   }, []);
-
-  console.log(data);
 
   return (
     <Grid
@@ -74,8 +80,8 @@ const Questions = () => {
           </Typography>
         ) : null}
 
-        {data?.map((ques: any, index: number) => {
-          const date = ques.created;
+        {data?.map((question: any, index: number) => {
+          const date = question.created;
           return (
             <Grid sx={{ mb: 2 }}>
               <Typography
@@ -85,6 +91,7 @@ const Questions = () => {
                   border: "1px solid lightgrey",
                   display: "flex",
                 }}
+                key={index}
               >
                 <Typography
                   sx={{
@@ -105,9 +112,9 @@ const Questions = () => {
                     gap: 3,
                   }}
                 >
-                  <div onClick={() => handleClick(ques)}>
+                  <div onClick={() => handleClick(question, index)}>
                     <Typography sx={{ fontWeight: "700", cursor: "pointer" }}>
-                      {ques.title}
+                      {question.title}
                     </Typography>
                   </div>
                   <Typography
@@ -118,7 +125,7 @@ const Questions = () => {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    Description :{ques.text}
+                    Description :{question.text}
                   </Typography>
                   <Typography sx={{ display: "flex", gap: 3, pt: 3 }}>
                     <Typography
@@ -129,7 +136,7 @@ const Questions = () => {
                         gap: 3,
                       }}
                     >
-                      {ques.tags?.map((tag: any) => {
+                      {question.tags?.map((tag: any, index: number) => {
                         return (
                           <Typography
                             sx={{
@@ -137,6 +144,7 @@ const Questions = () => {
                               p: 3,
                               borderRadius: "8px",
                             }}
+                            key={index}
                           >
                             {tag}
                           </Typography>
