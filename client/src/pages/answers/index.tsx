@@ -7,6 +7,7 @@ import { flexbox } from "@mui/system";
 import QuillEdit from "../editor";
 import router from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
+import usePost from "src/hooks/usePost";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -14,8 +15,17 @@ const answers = () => {
   const handleRoute = () => {
     router.push("/askQuestion");
   };
-
   const { question } = getQuestionValue;
+
+  const { mutateAsync } = usePost();
+
+  const postAnswer = () => {
+    mutateAsync({
+      url: `/answer/${question?.id}`,
+      payload: getQuestionValue,
+      token: true,
+    });
+  };
 
   return (
     <Grid sx={{ pb: 6 }}>
@@ -75,7 +85,9 @@ const answers = () => {
                   background: "lightgrey",
                 }}
               >
-                {answer.text}
+                <ol key={answer.id}>
+                  <li>Answer: {answer.text}</li>
+                </ol>
               </Typography>
             );
           })}
@@ -85,9 +97,11 @@ const answers = () => {
         </div>
         <Button
           variant="contained"
+          type="submit"
           sx={{
             m: 2,
           }}
+          onClick={postAnswer}
         >
           Post Answer
         </Button>
