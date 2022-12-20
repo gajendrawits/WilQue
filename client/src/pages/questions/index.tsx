@@ -182,7 +182,7 @@ const Container = () => {
                                 }}
                                 key={index}
                               >
-                                {tag}
+                                #{tag}
                               </Typography>
                             );
                           })}
@@ -197,7 +197,7 @@ const Container = () => {
                           textOverflow: "ellipsis",
                         }}
                       >
-                        Asked by: {question.author.username} Created at:
+                        Asked by: {question.author.username} At:
                         {moment(date).format("DD-MMM-YYYY")}
                       </Typography>
                     </Typography>

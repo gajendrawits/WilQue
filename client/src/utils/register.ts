@@ -9,7 +9,7 @@ const VALIDATION_SCHEMA = Yup.object().shape({
 
   password: Yup.string()
     .required("Password is mandatory")
-    .matches(/^(?! )[a-zA-Z0-9_@./()#!@$%*^&+-\s]*$/, {
+    .matches(/^(?! )[a-zA-Z0-9_@./()#!@$%*^&+-\S]*$/, {
       excludeEmptyString: true,
       message: "First character cannot be space.",
     })
