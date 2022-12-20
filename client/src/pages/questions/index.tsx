@@ -90,7 +90,7 @@ const Container = () => {
         ) : null}
 
         {newData?.length
-          ? newData?.reverse().map((question: any) => {
+          ? newData?.reverse().map((question: any, index: number) => {
               const date = question.created;
 
               return (
@@ -102,7 +102,7 @@ const Container = () => {
                       border: "1px solid lightgrey",
                       display: "flex",
                     }}
-                    key={question.index}
+                    key={index}
                   >
                     <Typography
                       sx={{
@@ -130,9 +130,7 @@ const Container = () => {
                         gap: 3,
                       }}
                     >
-                      <div
-                        onClick={() => handleClick(question, question.index)}
-                      >
+                      <div onClick={() => handleClick(question, index)}>
                         <Typography
                           sx={{
                             fontWeight: "700",
