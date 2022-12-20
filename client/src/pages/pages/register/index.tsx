@@ -116,6 +116,7 @@ const RegisterPage = () => {
   };
 
   if (isSuccess) {
+    alert("Hey you are registered sucessfully, Please Login");
     router.push("/pages/login");
   }
 
