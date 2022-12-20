@@ -1,106 +1,65 @@
 // ** Icon imports
-import HomeIcon from '@material-ui/icons/Home';
-import GroupIcon from '@material-ui/icons/Group';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import HelpIcon from '@material-ui/icons/Help';
-import TextFieldsIcon from '@material-ui/icons/TextFields';
-import FormatColorTextIcon from '@material-ui/icons/FormatColorText';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import ScheduleIcon from '@material-ui/icons/Schedule';
+import HomeIcon from "@material-ui/icons/Home";
+import GroupIcon from "@material-ui/icons/Group";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import HelpIcon from "@material-ui/icons/Help";
+import TextFieldsIcon from "@material-ui/icons/TextFields";
+import FormatColorTextIcon from "@material-ui/icons/FormatColorText";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import ScheduleIcon from "@material-ui/icons/Schedule";
 
 // ** Type import
-import { VerticalNavItemsType } from 'src/@core/layouts/types'
+import { VerticalNavItemsType } from "src/@core/layouts/types";
 
 const navigation = (): VerticalNavItemsType => {
   return [
     {
-      title: 'Dashboard',
+      title: "Dashboard",
       icon: HomeIcon,
-      path: '/'
+      path: "/",
     },
     {
-      title: 'Users',
+      title: "Users",
       icon: GroupIcon,
-      path: '/users'
+      path: "/users",
     },
     {
-      title: 'Tags ',
+      title: "Tags ",
       icon: LocalOfferIcon,
-      path: '/tags'
+      path: "/tags",
     },
+    // {
+    //   title: "Landing ",
+    //   icon: LocalOfferIcon,
+    //   path: "/pages/landingpage",
+    // },
     {
-      title: 'My Questions ',
+      title: "My Questions ",
       icon: HelpIcon,
-      path: '/myQuestions'
+      path: "/myQuestions",
     },
-    
-    // {
-    //   title: 'Pagination ',
-    //   icon: HelpIcon,
-    //   path: '/pagination'
-    // },
-    // {
-    //   title: 'Account Settings',
-    //   icon: AccountCogOutline,
-    //   path: '/account-settings'
-    // },
-    // {
-    //   sectionTitle: 'Pages'
-    // },
-    // {
-    //   title: 'Login',
-    //   icon: Login,
-    //   path: '/pages/login',
-    //   openInNewTab: true
-    // },
-    // {
-    //   title: 'Register',
-    //   icon: AccountPlusOutline,
-    //   path: '/pages/register',
-    //   openInNewTab: true
-    // },
-    // {
-    //   title: 'Error',
-    //   icon: AlertCircleOutline,
-    //   path: '/pages/error',
-    //   openInNewTab: true
-    // },
+
     {
-      sectionTitle: 'Developer tools'
+      sectionTitle: "Developer tools",
     },
     {
-      title: 'Date-time converter ',
+      title: "Date-time converter ",
       icon: ScheduleIcon,
-      path: '/date-time-converter'
+      path: "/date-time-converter",
     },
-    // {
-    //   title: 'Icons',
-    //   path: '/icons',
-    //   icon: GoogleCirclesExtended
-    // },
-    // {
-    //   title: 'Cards',
-    //   icon: CreditCardOutline,
-    //   path: '/cards'
-    // },
+
     {
-      title: 'Lorem ipsum generator ',
+      title: "Lorem ipsum generator ",
       icon: TextFieldsIcon,
-      path: '/lorem-ipsum-generator'
+      path: "/lorem-ipsum-generator",
     },
-    // {
-    //   icon: ListAltIcon,
-    //   title: 'Form Layouts',
-    //   path: '/form-layouts'
-    // },
+
     {
       icon: FormatColorTextIcon,
-      title: 'Color-Picker',
-      path: '/colorpicker'
+      title: "Color-Picker",
+      path: "/colorpicker",
     },
-    
-   
-  ]
-}
+  ];
+};
 
-export default navigation
+export default navigation;
