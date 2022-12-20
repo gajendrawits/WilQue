@@ -30,15 +30,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/pages/landingpage": [
+    "/myQuestions": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/pages/landingpage.js"
-    ],
-    "/pages/login": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/pages/login.js"
+      "static/chunks/pages/myQuestions.js"
     ]
   },
   "ampFirstPages": []
