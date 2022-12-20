@@ -10,7 +10,7 @@ const FooterSection = () => (
       flexDirection: "column",
       alignItems: "center",
       marginBottom: "10px",
-      backgroundColor: "#28243D",
+      backgroundColor: "#8080804d",
       borderRadius: "34px 34px 0 0",
       marginTop: "30px",
     }}
@@ -22,7 +22,7 @@ const FooterSection = () => (
         fontSize: "80px",
         padding: "20px 20px 0 20px",
         fontWeight: "800",
-        color: "rgba(220, 218, 228, 0.87)",
+        color: "rgb(0, 0, 0)",
       }}
     >
       Email Us
@@ -33,7 +33,7 @@ const FooterSection = () => (
         flexDirection: "column",
         fontSize: "30px",
         fontWeight: "800",
-        color: "rgba(220, 218, 228, 0.87)",
+        color: " rgba(58, 53, 65, 0.87);",
       }}
     >
       For any query plz email us.
@@ -45,7 +45,7 @@ const FooterSection = () => (
         fontSize: "40px",
         padding: "20px 20px",
         fontWeight: "800",
-        color: "rgba(252, 253, 253, 0.87)",
+        color: "rgb(0, 0, 0)",
       }}
     >
       Thewitslab.help@gmail.com

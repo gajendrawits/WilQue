@@ -19,6 +19,7 @@ const DetailSection = () => (
         fontSize: "80px",
         padding: "20px 20px",
         fontWeight: "800",
+        color: "rgb(0, 0, 0)",
       }}
     >
       Features
@@ -91,7 +92,7 @@ const DetailSection = () => (
             cursor: "pointer",
             boxShadow: "0 8px 15px #72a1ee96",
             "&:hover": {
-              backgroundColor: "rgb(193, 151, 247)",
+              backgroundColor: "rgb(77, 102, 248)",
             },
           }}
         >
@@ -111,7 +112,7 @@ const DetailSection = () => (
             cursor: "pointer",
             boxShadow: "0 8px 15px #72a1ee96",
             "&:hover": {
-              backgroundColor: "rgb(198, 160, 247)",
+              backgroundColor: "rgb(77, 102, 248)",
             },
           }}
         >
@@ -131,7 +132,7 @@ const DetailSection = () => (
             cursor: "pointer",
             boxShadow: "0 8px 15px #72a1ee96",
             "&:hover": {
-              backgroundColor: "rgb(198, 160, 247)",
+              backgroundColor: "rgb(77, 102, 248)",
             },
           }}
         >
@@ -151,7 +152,7 @@ const DetailSection = () => (
             cursor: "pointer",
             boxShadow: "0 8px 15px #72a1ee96",
             "&:hover": {
-              backgroundColor: "rgb(198, 160, 247)",
+              backgroundColor: "rgb(77, 102, 248)",
             },
           }}
         >
@@ -170,7 +171,7 @@ const DetailSection = () => (
             borderRadius: "24px",
             cursor: "pointer",
             "&:hover": {
-              backgroundColor: "rgb(198, 160, 247)",
+              backgroundColor: "rgb(77, 102, 248)",
             },
           }}
         >
@@ -189,7 +190,7 @@ const DetailSection = () => (
             borderRadius: "24px",
             cursor: "pointer",
             "&:hover": {
-              backgroundColor: "rgb(198, 160, 247)",
+              backgroundColor: "rgb(77, 102, 248)",
             },
           }}
         >

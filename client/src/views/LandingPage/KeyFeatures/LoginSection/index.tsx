@@ -1,35 +1,8 @@
 import React from "react";
 import { Button } from "antd";
 import Image from "next/image";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import Myfeat from "src/assets/images/login.jpg";
-import Slider1 from "src/assets/images/slider1.jpg";
-import Slider2 from "src/assets/images/slider2.jpg";
-import Slider3 from "src/assets/images/slider3.jpg";
-
-import Dashboard from "src/assets/images/dashboard-top.png";
 import { Grid, Typography } from "@mui/material";
-import { typography } from "@mui/system";
-
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 1,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 1,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 1,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+import Work from "src/assets/svg/howwork";
 
 const SecondFeat = () => (
   <Grid
@@ -49,9 +22,9 @@ const SecondFeat = () => (
         boxShadow: "10px 10px  #b3b0b0",
       }}
     >
-      <Image src={Dashboard} />
+      {/* <Image src={Dashboard} /> */}
     </Grid>
-    <Typography
+    {/* <Typography
       sx={{
         display: "flex",
         fontSize: "80px",
@@ -60,13 +33,13 @@ const SecondFeat = () => (
       }}
     >
       Get in touch
-    </Typography>
+    </Typography> */}
     <Grid
       sx={{
         width: "100%",
         display: "flex",
         alignItems: "center",
-        backgroundColor: "#28243D",
+        // backgroundColor: "#28243D",
       }}
     >
       <Grid
@@ -93,21 +66,58 @@ const SecondFeat = () => (
               height: "350px",
               textAlign: "center",
               borderRadius: "24px",
-              backgroundColor: "#28243D",
+              // backgroundColor: "#28243D",
               paddingTop: "35px",
             }}
           >
             <Typography
               sx={{
-                fontSize: "47px",
+                fontSize: "80px",
                 paddingBottom: "20px",
-                color: "rgba(231, 227, 252, 0.87)",
+                fontWeight: "800",
+                color: "rgb(0, 0, 0)",
+              }}
+            >
+              How we work?
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "27px",
+                paddingBottom: "20px",
+                color: "rgb(0, 0, 0)",
               }}
             >
               Unlocking knowledge at the speed of thought.
             </Typography>
+            <Typography
+              sx={{
+                fontSize: "27px",
+                paddingBottom: "20px",
+                color: "rgb(0, 0, 0)",
+              }}
+            >
+              Full featured Q&A platform.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "27px",
+                paddingBottom: "20px",
+                color: "rgb(0, 0, 0)",
+              }}
+            >
+              24*7 support.
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "27px",
+                paddingBottom: "20px",
+                color: "rgb(0, 0, 0)",
+              }}
+            >
+              Email digest.
+            </Typography>
 
-            <Button
+            {/* <Button
               type="primary"
               style={{
                 height: "90px",
@@ -119,26 +129,24 @@ const SecondFeat = () => (
               }}
             >
               Sign In
-            </Button>
+            </Button> */}
           </Typography>
         </Typography>
       </Grid>
       <Grid
         sx={{
           width: "50%",
+          marginTop: "20px",
         }}
       >
-        <Typography
-          sx={{
-            margin: "54px 42px 0 0",
-          }}
-        >
-          <Carousel responsive={responsive}>
+        {/* <Carousel responsive={responsive}>
             <Image src={Slider1} />
             <Image src={Slider2} />
             <Image src={Slider3} />
-          </Carousel>
-        </Typography>
+          </Carousel> */}
+        <div className="sec">
+          <Work />
+        </div>
       </Grid>
     </Grid>
   </Grid>
