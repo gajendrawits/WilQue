@@ -90,7 +90,7 @@ const Container = () => {
             fontWeight: "900",
           }}
         >
-          Total questions :
+          Total questions :{" "}
           {data &&
             data?.filter((dt: any) => {
               console.log("dt", user);
@@ -210,7 +210,7 @@ const Container = () => {
                                   }}
                                   key={index}
                                 >
-                                  {tag}
+                                  #{tag}
                                 </Typography>
                               );
                             })}
@@ -225,7 +225,7 @@ const Container = () => {
                             textOverflow: "ellipsis",
                           }}
                         >
-                          Asked by: {question.author.username} Created at:
+                          Asked by: {question.author.username} At:
                           {moment(date).format("DD-MMM-YYYY")}
                         </Typography>
                       </Typography>
@@ -234,18 +234,18 @@ const Container = () => {
                 );
               })
           : null}
-        {/* <div className="pagination">
-          {!!data?.length && (
+        <div className="pagination">
+          {!!filteredQues?.length && (
             <Space>
               <Pagination
                 defaultCurrent={number}
                 pageSize={postsPerPage}
-                total={data?.length}
+                total={filteredQues?.length}
                 onChange={handlePage}
               />
             </Space>
           )}
-        </div> */}
+        </div>
       </Grid>
     </Grid>
   );
