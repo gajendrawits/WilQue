@@ -64,7 +64,6 @@ const UserDropdown = () => {
     },
   };
   const handelLogout = () => {
-    console.log("hello");
     localStorage.removeItem("token");
   };
   return (

@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useGet from "src/hooks/useGet";
 
 const CardUser = () => {
@@ -17,13 +17,12 @@ const CardUser = () => {
     isLoading,
     error,
     isFetching,
-  } = useGet("tags", `https://wil-que-mongo-backend.onrender.com/api/users`);
+  } = useGet("tags", `/users`);
 
   // Tags fetching
   useEffect(() => {
     fetchDetails();
   }, []);
-  console.log("data", data);
 
   if (isLoading) {
     return <>Loading</>;

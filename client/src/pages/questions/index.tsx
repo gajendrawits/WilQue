@@ -9,19 +9,8 @@ import Link from "@mui/material/Link";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import { QuestionContext } from "src/@core/context/QuestionContext";
-import { Space, Pagination, Empty } from "antd";
+import { Space, Pagination } from "antd";
 
-// const { Text, Title, Link } = Typo;
-
-const exculdeData = [
-  "id",
-  "logo",
-  "link",
-  "category",
-  "drug_strength",
-  "drug_form",
-  "pack_size",
-];
 const postsPerPage = 6;
 
 const Container = () => {
@@ -31,10 +20,9 @@ const Container = () => {
     isLoading,
   } = useGet("ques", "/question");
 
-  const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
+  const { setQuestionValue } = useContext(QuestionContext);
 
   const handleClick = (question: any, index: number) => {
-    console.log(question);
     const QuestionObj = { question };
     setQuestionValue(QuestionObj);
     router.push({
@@ -46,41 +34,13 @@ const Container = () => {
   useEffect(() => {
     fetchQuestions();
   }, []);
-  // dynamic data
-  // const [maindata, setMainData] = useState(data || []);
-  // search filteration states
-  // const [search, setSearch] = useState("");
-  // pagination states
+
   const [number, setNumber] = useState(1);
 
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
 
-  //   handle search change
-  // const handleChange = (value: any) => setSearch(value);
-
-  //   click on search button to trigger it
-  // const onSearch = (value: any) => {
-  //   const lowerCaseValue = value.toLowerCase().trim();
-  //   if (!lowerCaseValue) {
-  //     setMainData(data);
-  //   } else {
-  //     const filterSearch = data.filter((item: any) => {
-  //       return Object.keys(item).some((key) => {
-  //         return exculdeData.includes(key)
-  //           ? false
-  //           : item[key].toString().toLowerCase().includes(lowerCaseValue);
-  //       });
-  //     });
-  //     setNumber(1);
-  //     setMainData(filterSearch);
-  //   }
-  // };
-
   let newData = data?.slice((number - 1) * postsPerPage, postsPerPage * number);
-
-  const reversedData = newData?.reverse();
-  console.log("reversedData", reversedData);
 
   return (
     <Grid
@@ -132,7 +92,7 @@ const Container = () => {
         {newData?.length
           ? newData?.reverse().map((question: any) => {
               const date = question.created;
-              console.log("question", question);
+
               return (
                 <Grid sx={{ mb: 2 }}>
                   <Typography
@@ -247,14 +207,7 @@ const Container = () => {
                 </Grid>
               );
             })
-          : // <div className="empty_container">
-            //   <div>
-            //     <Empty description={false} className="empty_data">
-            //       No Question Found
-            //     </Empty>
-            //   </div>
-            // </div>
-            null}
+          : null}
         <div className="pagination">
           {!!data?.length && (
             <Space>

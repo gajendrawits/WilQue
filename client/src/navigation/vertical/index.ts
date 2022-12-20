@@ -66,7 +66,7 @@ const navigation = (): VerticalNavItemsType => {
     //   openInNewTab: true
     // },
     {
-      sectionTitle: 'Other Developer tools'
+      sectionTitle: 'Developer tools'
     },
     {
       title: 'Date-time converter ',
