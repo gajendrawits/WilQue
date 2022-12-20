@@ -48,12 +48,8 @@ const ColorPicker = () => {
   ];
   function updateClipboard(newClip: any) {
     navigator.clipboard.writeText(newClip).then(
-      () => {
-        console.log("Copied!");
-      },
-      () => {
-        console.log("Copy failed!");
-      }
+      () => {},
+      () => {}
     );
   }
 
