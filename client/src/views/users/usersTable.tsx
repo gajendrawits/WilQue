@@ -1,35 +1,61 @@
 // ** MUI Imports
-
-import Rating from "@mui/material/Rating";
-
+import StarOutlineIcon from "@material-ui/icons/StarOutline";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import { useState } from "react";
+import { useEffect } from "react";
 import useGet from "src/hooks/useGet";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const CardUser = () => {
-  const [value, setValue] = useState<number | null>(2);
+  const {
+    refetch: fetchDetails,
+    data,
+    isLoading,
+    error,
+    isFetching,
+  } = useGet("tags", `/users`);
 
-  const users = [
-    { id: 1, name: "admin", designation: "Developer" },
-    { id: 2, name: "admin", designation: "Developer" },
-    { id: 3, name: "admin", designation: "Developer" },
-    { id: 4, name: "admin", designation: "Developer" },
-    { id: 5, name: "admin", designation: "Developer" },
-    { id: 6, name: "admin", designation: "Developer" },
-    { id: 7, name: "admin", designation: "Developer" },
-    { id: 8, name: "admin", designation: "Developer" },
-    { id: 9, name: "admin", designation: "Developer" },
-    { id: 10, name: "admin", designation: "Developer" },
-    { id: 11, name: "admin", designation: "Developer" },
-    { id: 12, name: "admin", designation: "Developer" },
-  ];
+  // Tags fetching
+  useEffect(() => {
+    fetchDetails();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Typography
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "60vh",
+        }}
+      >
+        <CircularProgress color="inherit" />
+      </Typography>
+    );
+  }
+  if (error) {
+    return <>Error</>;
+  }
+  if (isFetching) {
+    return (
+      <Typography
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "60vh",
+        }}
+      >
+        <CircularProgress color="inherit" />
+      </Typography>
+    );
+  }
 
   return (
     <>
@@ -46,21 +72,22 @@ const CardUser = () => {
       </Grid>
       <Card
         sx={{
+          // backgroundColor: "white",
           width: "100%",
-          padding: 2,
+          padding: 5,
           display: "grid",
           gap: "20px",
           gridTemplateColumns: "repeat(auto-fill, minmax(25rem, 1fr))",
         }}
       >
-        {users.map((user) => {
+        {data?.map((user: any) => {
           return (
             <Card
               sx={{
-                border: 0,
-                boxShadow: 0,
+                // border: 2,
+                boxShadow: 10,
                 color: "common.white",
-                backgroundColor: "#9155FD",
+                // backgroundColor: "#9155FD",
               }}
             >
               <CardContent
@@ -75,17 +102,20 @@ const CardUser = () => {
                     display: "flex",
                     marginBottom: 2.75,
                     alignItems: "center",
-                    color: "common.white",
+                    // color: "common.white",
                   }}
                 >
-                  {user.name}
+                  {user.username}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ marginBottom: 3, color: "common.white" }}
-                >
-                  {user.designation}
-                </Typography>
+                <Box sx={{ mr: 2, display: "flex", alignItems: "center" }}>
+                  <Typography variant="body2" sx={{ marginBottom: 3 }}>
+                    Role:-
+                  </Typography>
+                  <Typography variant="body2" sx={{ marginBottom: 3 }}>
+                    {user.role}
+                  </Typography>
+                </Box>
+
                 <Box
                   sx={{
                     display: "flex",
@@ -97,12 +127,10 @@ const CardUser = () => {
                   <Box sx={{ mr: 2, display: "flex", alignItems: "center" }}>
                     <Avatar
                       alt="Mary Vaughn"
-                      src="/images/avatars/4.png"
+                      src={user.profilePhoto}
                       sx={{ width: 34, height: 34, marginRight: 2.75 }}
                     />
-                    <Typography variant="body2" sx={{ color: "common.white" }}>
-                      {user.name}
-                    </Typography>
+                    <Typography variant="body2">{user.username}</Typography>
                   </Box>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Box
@@ -112,7 +140,7 @@ const CardUser = () => {
                         variant="body2"
                         sx={{ color: "common.white" }}
                       >
-                        Total Stars
+                        <StarOutlineIcon />
                       </Typography>
                     </Box>
                   </Box>

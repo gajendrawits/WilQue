@@ -29,10 +29,16 @@ const navigation = (): VerticalNavItemsType => {
       path: '/tags'
     },
     {
-      title: 'Questions ',
+      title: 'My Questions ',
       icon: HelpIcon,
-      path: '/questions'
+      path: '/myQuestions'
     },
+    
+    // {
+    //   title: 'Pagination ',
+    //   icon: HelpIcon,
+    //   path: '/pagination'
+    // },
     // {
     //   title: 'Account Settings',
     //   icon: AccountCogOutline,
@@ -60,7 +66,7 @@ const navigation = (): VerticalNavItemsType => {
     //   openInNewTab: true
     // },
     {
-      sectionTitle: 'Converter'
+      sectionTitle: 'Developer tools'
     },
     {
       title: 'Date-time converter ',
@@ -82,11 +88,11 @@ const navigation = (): VerticalNavItemsType => {
       icon: TextFieldsIcon,
       path: '/lorem-ipsum-generator'
     },
-    {
-      icon: ListAltIcon,
-      title: 'Form Layouts',
-      path: '/form-layouts'
-    },
+    // {
+    //   icon: ListAltIcon,
+    //   title: 'Form Layouts',
+    //   path: '/form-layouts'
+    // },
     {
       icon: FormatColorTextIcon,
       title: 'Color-Picker',

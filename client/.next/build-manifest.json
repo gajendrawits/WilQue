@@ -30,15 +30,35 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/pages/landingpage": [
+    "/colorpicker": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/pages/landingpage.js"
+      "static/chunks/pages/colorpicker.js"
     ],
-    "/pages/login": [
+    "/date-time-converter": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/pages/login.js"
+      "static/chunks/pages/date-time-converter.js"
+    ],
+    "/lorem-ipsum-generator": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/lorem-ipsum-generator.js"
+    ],
+    "/myQuestions": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/myQuestions.js"
+    ],
+    "/tags": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/tags.js"
+    ],
+    "/users": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/users.js"
     ]
   },
   "ampFirstPages": []

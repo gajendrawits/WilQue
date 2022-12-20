@@ -5,7 +5,7 @@ import Questions from "./questions";
 const Dashboard = () => {
   return (
     <ApexChartWrapper>
-      <Grid container spacing={6}>
+      <Grid container spacing={6} sx={{ pt: "1.5rem", pl: "1.5rem" }}>
         <Questions />
       </Grid>
     </ApexChartWrapper>
