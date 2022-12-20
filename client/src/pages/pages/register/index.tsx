@@ -76,15 +76,9 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(
 
 const RegisterPage = () => {
   // ** States
-  const [values, setValues] = useState<State>({
-    password: "",
-    showPassword: false,
-  });
+  const [values, setValues] = useState(false);
 
-  const [confirmValues, setConfirmValues] = useState<State>({
-    password: "",
-    showPassword: false,
-  });
+  const [confirmValues, setConfirmValues] = useState(false);
 
   // ** Hook
   const theme = useTheme();
@@ -99,25 +93,12 @@ const RegisterPage = () => {
     shouldFocusError: true,
   });
 
-  const handleChange =
-    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
-
-  const handleConfirmPwd =
-    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-      setConfirmValues({ ...confirmValues, [prop]: event.target.value });
-    };
-
   const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setValues(!values);
   };
 
   const handleClickShowConfirmPassword = () => {
-    setConfirmValues({
-      ...confirmValues,
-      showPassword: !confirmValues.showPassword,
-    });
+    setConfirmValues(!confirmValues);
   };
 
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
@@ -243,17 +224,17 @@ const RegisterPage = () => {
               sx={{ marginBottom: 4 }}
               {...register("username")}
             />
-            <p style={{ color: "red" }}> {errors.username?.message}</p>
+            <p style={{ color: "red" }}>
+              {errors.username && errors.username?.message}
+            </p>
 
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-login-password">Password</InputLabel>
               <OutlinedInput
                 label="Password"
-                value={values.password}
                 id="auth-login-password"
                 {...register("password")}
-                onChange={handleChange("password")}
-                type={values.showPassword ? "text" : "password"}
+                type={values ? "text" : "password"}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -262,12 +243,14 @@ const RegisterPage = () => {
                       onMouseDown={handleMouseDownPassword}
                       aria-label="toggle password visibility"
                     >
-                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
+                      {values ? <EyeOutline /> : <EyeOffOutline />}
                     </IconButton>
                   </InputAdornment>
                 }
               />
-              <p style={{ color: "red" }}> {errors.password?.message}</p>
+              <p style={{ color: "red" }}>
+                {errors.password && errors.password?.message}
+              </p>
             </FormControl>
 
             <FormControl fullWidth>
@@ -276,11 +259,9 @@ const RegisterPage = () => {
               </InputLabel>
               <OutlinedInput
                 label="confirmPassword"
-                value={confirmValues.password}
-                id="auth-login-password"
+                id="auth-login-Confirmpassword"
                 {...register("confirmpassword")}
-                onChange={handleConfirmPwd("password")}
-                type={confirmValues.showPassword ? "text" : "password"}
+                type={confirmValues ? "text" : "password"}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -289,16 +270,14 @@ const RegisterPage = () => {
                       onMouseDown={handleMouseDownPassword}
                       aria-label="toggle password visibility"
                     >
-                      {confirmValues.showPassword ? (
-                        <EyeOutline />
-                      ) : (
-                        <EyeOffOutline />
-                      )}
+                      {confirmValues ? <EyeOutline /> : <EyeOffOutline />}
                     </IconButton>
                   </InputAdornment>
                 }
               />
-              <p style={{ color: "red" }}> {errors.confirmpassword?.message}</p>
+              <p style={{ color: "red" }}>
+                {errors.confirmpassword && errors.confirmpassword?.message}
+              </p>
             </FormControl>
 
             <FormControlLabel
