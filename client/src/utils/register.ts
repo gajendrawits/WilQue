@@ -1,9 +1,10 @@
 import * as Yup from "yup";
-const regex = /^[a-zA-Z]+.[a-zA-Z]+@(thewitslab)+\.[a-zA-Z]{2,3}$/;
+const regex = /^[a-zA-Z.]+@(thewitslab)+\.[a-zA-Z]{2,3}$/;
 const VALIDATION_SCHEMA = Yup.object().shape({
   username: Yup.string()
     .required("Email is mandatory")
     .matches(/^\S/, "First character cannot be space.")
+    .email("Enter valid email")
     .matches(regex, "Please enter the only thewitslab email."),
 
   password: Yup.string()
