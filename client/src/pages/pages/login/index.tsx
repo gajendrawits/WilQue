@@ -75,10 +75,12 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(
 
 const LoginPage = () => {
   // ** State
-  const [values, setValues] = useState<State>({
-    password: "",
-    showPassword: false,
-  });
+  // const [values, setValues] = useState<State>({
+  //   password: "",
+  //   showPassword: false,
+  // });
+
+  const [password, setShowPassword] = useState(false);
 
   // ** Hook
   const theme = useTheme();
@@ -89,6 +91,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
+    reValidateMode: "onChange",
     resolver: yupResolver(VALIDATION_SCHEMA),
     shouldFocusError: true,
   });
@@ -102,13 +105,8 @@ const LoginPage = () => {
     });
   };
 
-  const handleChange =
-    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
-
   const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setShowPassword(!password);
   };
 
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
@@ -236,17 +234,17 @@ const LoginPage = () => {
               sx={{ marginBottom: 4 }}
               {...register("username")}
             />
-            <p style={{ color: "red" }}> {errors.username?.message}</p>
+            <p style={{ color: "red" }}>
+              {errors.username && errors.username?.message}
+            </p>
 
             <FormControl fullWidth>
               <InputLabel htmlFor="auth-login-password">Password</InputLabel>
               <OutlinedInput
                 label="Password"
-                value={values.password}
                 id="auth-login-password"
                 {...register("password")}
-                onChange={handleChange("password")}
-                type={values.showPassword ? "text" : "password"}
+                type={password ? "text" : "password"}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -255,12 +253,14 @@ const LoginPage = () => {
                       onMouseDown={handleMouseDownPassword}
                       aria-label="toggle password visibility"
                     >
-                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
+                      {password ? <EyeOutline /> : <EyeOffOutline />}
                     </IconButton>
                   </InputAdornment>
                 }
               />
-              <p style={{ color: "red" }}> {errors.password?.message}</p>
+              <p style={{ color: "red" }}>
+                {errors.password && errors.password?.message}
+              </p>
             </FormControl>
 
             <Box
