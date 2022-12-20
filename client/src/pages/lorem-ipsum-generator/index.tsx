@@ -27,12 +27,8 @@ const MUITable = () => {
   };
   function updateClipboard(newClip: any) {
     navigator.clipboard.writeText(newClip).then(
-      () => {
-        console.log("Copied!");
-      },
-      () => {
-        console.log("Copy failed!");
-      }
+      () => {},
+      () => {}
     );
   }
 
@@ -105,7 +101,6 @@ const MUITable = () => {
                 width: "70%",
                 display: "flex",
                 paddingRight: "20px",
-                // flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "flex-start",
               }}
@@ -113,9 +108,6 @@ const MUITable = () => {
               <Slider
                 aria-label="Small steps"
                 defaultValue={0}
-                onChange={(d) => {
-                  console.log(d);
-                }}
                 step={1}
                 marks
                 min={0}

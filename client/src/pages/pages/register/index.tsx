@@ -116,7 +116,6 @@ const RegisterPage = () => {
   };
 
   if (isSuccess) {
-    alert("Hey you are registered sucessfully, Please Login");
     router.push("/pages/login");
   }
 
@@ -281,23 +280,6 @@ const RegisterPage = () => {
               </p>
             </FormControl>
 
-            <FormControlLabel
-              control={<Checkbox />}
-              label={
-                <Fragment>
-                  <span>I agree to </span>
-                  <Link href="/" passHref>
-                    <LinkStyled
-                      onClick={(e: MouseEvent<HTMLElement>) =>
-                        e.preventDefault()
-                      }
-                    >
-                      privacy policy & terms
-                    </LinkStyled>
-                  </Link>
-                </Fragment>
-              }
-            />
             <Button
               fullWidth
               size="large"

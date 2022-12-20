@@ -71,7 +71,12 @@ const VerticalNavSectionTitle = (props: Props) => {
           },
         }}
       >
-        <TypographyHeaderText noWrap>{item.sectionTitle}</TypographyHeaderText>
+        <TypographyHeaderText
+          sx={{ fontSize: "1rem", color: "black", fontWeight: "500" }}
+          noWrap
+        >
+          {item.sectionTitle}
+        </TypographyHeaderText>
       </Divider>
     </ListSubheader>
   );

@@ -27,6 +27,8 @@ const answers = () => {
     });
   };
 
+  console.log(question);
+
   return (
     <Grid sx={{ pb: 6 }}>
       <Typography
@@ -53,14 +55,14 @@ const answers = () => {
             borderBottom: "1px solid lightgrey",
           }}
         >
-          {question?.title}
+          {question && question?.title}
         </Typography>
         <Typography
           sx={{
             pt: 3,
           }}
         >
-          {question?.text}
+          {question && question?.text}
         </Typography>
         <Typography
           sx={{
