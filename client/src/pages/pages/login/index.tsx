@@ -231,7 +231,7 @@ const LoginPage = () => {
               fullWidth
               id="email"
               label="Email"
-              sx={{ marginBottom: 4 }}
+              sx={{ marginBottom: 4, textTransform: "lowercase" }}
               {...register("username")}
             />
             <p style={{ color: "red" }}>

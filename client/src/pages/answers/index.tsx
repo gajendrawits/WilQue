@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { flexbox } from "@mui/system";
 import QuillEdit from "../editor";
 import router from "next/router";
@@ -11,23 +11,32 @@ import usePost from "src/hooks/usePost";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
+  const [getAnswerValue, setAnswerValue] = useState("");
 
   const handleRoute = () => {
     router.push("/askQuestion");
   };
   const { question } = getQuestionValue;
 
-  const { mutateAsync } = usePost();
+  const { mutateAsync, isLoading, isSuccess } = usePost();
 
   const postAnswer = () => {
     mutateAsync({
       url: `/answer/${question?.id}`,
-      payload: getQuestionValue,
+      payload: getAnswerValue,
       token: true,
     });
   };
 
-  console.log(question);
+  const handleAnswerValue = (value: any) => {
+    setAnswerValue(value);
+  };
+
+  if (isSuccess) {
+    router.push("/questions");
+  }
+
+  console.log(getQuestionValue);
 
   return (
     <Grid sx={{ pb: 6 }}>
@@ -87,15 +96,15 @@ const answers = () => {
                   background: "lightgrey",
                 }}
               >
-                <ol key={answer.id}>
-                  <li>Answer: {answer.text}</li>
-                </ol>
+                <div key={answer.id}>
+                  Answer: {index + 1}) {answer?.text}
+                </div>
               </Typography>
             );
           })}
         </Typography>
         <div>
-          <QuillEdit />
+          <QuillEdit handleAnswerValue={handleAnswerValue} />
         </div>
         <Button
           variant="contained"
@@ -105,7 +114,7 @@ const answers = () => {
           }}
           onClick={postAnswer}
         >
-          Post Answer
+          {isLoading ? <CircularProgress color="inherit" /> : "Post Answer"}
         </Button>
       </Typography>
     </Grid>

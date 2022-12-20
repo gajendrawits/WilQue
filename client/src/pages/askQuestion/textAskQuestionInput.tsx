@@ -17,6 +17,7 @@ const TextAskQuestionInput = () => {
         What are the details of your problem?
       </Typography>
       <Editor />
+      <strong>Please enter more than 10 characters</strong>
     </Typography>
   );
 };
