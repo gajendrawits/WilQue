@@ -72,7 +72,7 @@ const CardUser = () => {
       </Grid>
       <Card
         sx={{
-          backgroundColor: "white",
+          // backgroundColor: "white",
           width: "100%",
           padding: 5,
           display: "grid",
@@ -84,10 +84,10 @@ const CardUser = () => {
           return (
             <Card
               sx={{
-                border: 2,
-                boxShadow: 3,
+                // border: 2,
+                boxShadow: 10,
                 color: "common.white",
-                backgroundColor: "#9155FD",
+                // backgroundColor: "#9155FD",
               }}
             >
               <CardContent
@@ -102,22 +102,16 @@ const CardUser = () => {
                     display: "flex",
                     marginBottom: 2.75,
                     alignItems: "center",
-                    color: "common.white",
+                    // color: "common.white",
                   }}
                 >
                   {user.username}
                 </Typography>
                 <Box sx={{ mr: 2, display: "flex", alignItems: "center" }}>
-                  <Typography
-                    variant="body2"
-                    sx={{ marginBottom: 3, color: "common.white" }}
-                  >
+                  <Typography variant="body2" sx={{ marginBottom: 3 }}>
                     Role:-
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ marginBottom: 3, color: "common.white" }}
-                  >
+                  <Typography variant="body2" sx={{ marginBottom: 3 }}>
                     {user.role}
                   </Typography>
                 </Box>
@@ -136,9 +130,7 @@ const CardUser = () => {
                       src={user.profilePhoto}
                       sx={{ width: 34, height: 34, marginRight: 2.75 }}
                     />
-                    <Typography variant="body2" sx={{ color: "common.white" }}>
-                      {user.username}
-                    </Typography>
+                    <Typography variant="body2">{user.username}</Typography>
                   </Box>
                   <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Box
