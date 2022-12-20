@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
-import Questions from "src/pages/questions";
+import Questions from "./questions";
 
 const Dashboard = () => {
   return (
