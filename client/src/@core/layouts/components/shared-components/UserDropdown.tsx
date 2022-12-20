@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, SyntheticEvent, Fragment } from "react";
+import { useState, SyntheticEvent, Fragment, useEffect } from "react";
 
 // ** Next Import
 import { useRouter } from "next/router";
@@ -33,6 +33,14 @@ const BadgeContentSpan = styled("span")(({ theme }) => ({
 }));
 
 const UserDropdown = () => {
+  const [profileDetails, setProfileDetails] = useState<any>();
+  useEffect(() => {
+    const a: any = localStorage.getItem("user");
+    setProfileDetails(JSON.parse(a));
+  }, []);
+
+  console.log("profileDetails", profileDetails);
+
   // ** States
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
 
@@ -65,6 +73,7 @@ const UserDropdown = () => {
   };
   const handelLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
   return (
     <Fragment>
@@ -76,17 +85,23 @@ const UserDropdown = () => {
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <Avatar
-          alt="John Doe"
+          alt={profileDetails?.username}
           onClick={handleDropdownOpen}
-          sx={{ width: 40, height: 40 }}
-          src="/images/avatars/1.png"
+          sx={{
+            width: 40,
+            height: 40,
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+          src={profileDetails?.profilePhoto}
         />
       </Badge>
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={() => handleDropdownClose()}
-        sx={{ "& .MuiMenu-paper": { width: 230, marginTop: 4 } }}
+        sx={{ "& .MuiMenu-paper": { width: "fit-content", marginTop: 4 } }}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         transformOrigin={{ vertical: "top", horizontal: "right" }}
       >
@@ -98,8 +113,8 @@ const UserDropdown = () => {
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             >
               <Avatar
-                alt="John Doe"
-                src="/images/avatars/1.png"
+                alt={profileDetails?.username}
+                src={profileDetails?.profilePhoto}
                 sx={{ width: "2.5rem", height: "2.5rem" }}
               />
             </Badge>
@@ -111,12 +126,14 @@ const UserDropdown = () => {
                 flexDirection: "column",
               }}
             >
-              <Typography sx={{ fontWeight: 600 }}>John Doe</Typography>
+              <Typography sx={{ fontWeight: 600 }}>
+                {profileDetails?.role}
+              </Typography>
               <Typography
                 variant="body2"
                 sx={{ fontSize: "0.8rem", color: "text.disabled" }}
               >
-                Admin
+                {profileDetails?.username}
               </Typography>
             </Box>
           </Box>

@@ -124,6 +124,7 @@ const LoginPage = () => {
 
   if (isSuccess) {
     localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.userInfo));
     router.push("/");
   }
 
@@ -263,6 +264,17 @@ const LoginPage = () => {
               </p>
             </FormControl>
 
+            <Box
+              sx={{
+                mb: 4,
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+              }}
+            >
+              <FormControlLabel control={<Checkbox />} label="Remember Me" />
+            </Box>
             <Button
               fullWidth
               size="large"

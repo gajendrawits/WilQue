@@ -29,9 +29,9 @@ const navigation = (): VerticalNavItemsType => {
       path: '/tags'
     },
     {
-      title: 'Questions ',
+      title: 'My Questions ',
       icon: HelpIcon,
-      path: '/questions'
+      path: '/myQuestions'
     },
     
     // {
