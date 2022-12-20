@@ -32,11 +32,13 @@ const navigation = (): VerticalNavItemsType => {
       title: 'Questions ',
       icon: HelpIcon,
       path: '/questions'
-    },{
-      title: 'Pagination ',
-      icon: HelpIcon,
-      path: '/pagination'
     },
+    
+    // {
+    //   title: 'Pagination ',
+    //   icon: HelpIcon,
+    //   path: '/pagination'
+    // },
     // {
     //   title: 'Account Settings',
     //   icon: AccountCogOutline,
