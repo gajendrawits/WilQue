@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-
+const regex2 = /^[a-zA-Z0-9@#$%^&*\s]*$/;
 const VALIDATION_SCHEMA = Yup.object().shape({
   username: Yup.string()
     .required("Email is mandatory")
@@ -10,11 +10,10 @@ const VALIDATION_SCHEMA = Yup.object().shape({
     ),
   password: Yup.string()
     .required("Password is Mandatory.")
-    .matches(
-      /^(?! )[a-zA-Z0-9@#$%^&*\s]*$/,
-      "First Character Space not allowed."
-    )
-    .min(4, "Password Must be at least 4 Characters"),
+    .matches(/^\S/, "First character cannot be space.")
+    .matches(regex2, "This Special character is not alllow.")
+    .min(4, "Password Must be at least 4 Characters")
+    .max(30, "Password not more than 30 Characters"),
 });
 
 export { VALIDATION_SCHEMA };

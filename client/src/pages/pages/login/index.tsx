@@ -250,7 +250,7 @@ const LoginPage = () => {
               fullWidth
               id="email"
               label="Email"
-              sx={{ marginBottom: 4 }}
+              sx={{ marginBottom: 4, textTransform: "lowercase" }}
               {...register("username")}
             />
             <p style={{ color: "red" }}>
@@ -282,17 +282,6 @@ const LoginPage = () => {
               </p>
             </FormControl>
 
-            <Box
-              sx={{
-                mb: 4,
-                display: "flex",
-                alignItems: "center",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-              }}
-            >
-              <FormControlLabel control={<Checkbox />} label="Remember Me" />
-            </Box>
             <Button
               fullWidth
               size="large"

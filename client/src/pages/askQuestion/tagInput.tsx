@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { QuestionContext } from "src/@core/context/QuestionContext";
+import Chip from "@mui/material/Chip";
 
 interface tagInputProps {
   label: string;
@@ -8,7 +9,7 @@ interface tagInputProps {
 }
 
 const tagInput = (props: tagInputProps) => {
-  // const [tagValue, setTagValue] = useState();
+  const [tagValue, setTagValue] = useState([]);
   const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
 
   const handleInput = (value: string) => {
@@ -39,6 +40,7 @@ const tagInput = (props: tagInputProps) => {
         type="text"
         onChange={(e: any) => handleInput(e.target.value)}
       />
+      <Chip label="Clickable" color="primary" variant="outlined" />
     </Typography>
   );
 };
