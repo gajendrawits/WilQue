@@ -111,15 +111,6 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      localStorage.setItem(
-        "userProfile",
-        JSON.stringify(tokenResponse.access_token)
-      );
-    },
-  });
-
   if (isSuccess) {
     console.log("shubham");
     localStorage.setItem("token", data.token);

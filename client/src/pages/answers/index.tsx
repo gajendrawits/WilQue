@@ -8,10 +8,13 @@ import QuillEdit from "../editor";
 import router from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
+import DeleteIcon from "@mui/icons-material/Delete";
+import useDelete from "src/hooks/useDelete";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
   const [getAnswerValue, setAnswerValue] = useState("");
+  const [getUserDetail, setUserDetail] = useState<any>();
 
   const handleRoute = () => {
     router.push("/askQuestion");
@@ -19,6 +22,12 @@ const answers = () => {
   const { question } = getQuestionValue;
 
   const { mutateAsync, isLoading, isSuccess } = usePost();
+
+  const {
+    mutateAsync: deleteAsync,
+    isLoading: deleteIsLoading,
+    isSuccess: delteIsSuccess,
+  } = useDelete();
 
   const postAnswer = () => {
     mutateAsync({
@@ -36,7 +45,21 @@ const answers = () => {
     router.push("/questions");
   }
 
-  console.log(getQuestionValue);
+  useEffect(() => {
+    const user: any = localStorage.getItem("user");
+    setUserDetail(JSON.parse(user));
+  }, []);
+
+  const handleDelete = (id: string) => {
+    deleteAsync({
+      url: `/answer/${question?.id}/${id}`,
+      token: true,
+    });
+  };
+
+  if (delteIsSuccess) {
+    router.push("/");
+  }
 
   return (
     <Grid sx={{ pb: 6 }}>
@@ -89,6 +112,10 @@ const answers = () => {
           }}
         >
           {question?.answers?.map((answer: any, index: number) => {
+            let flag = false;
+            if (answer?.author?.username == getUserDetail?.username) {
+              flag = true;
+            }
             return (
               <Typography
                 sx={{
@@ -96,9 +123,20 @@ const answers = () => {
                   background: "lightgrey",
                 }}
               >
-                <div key={answer.id}>
+                <Typography sx={{ p: 2 }} key={answer?.id}>
                   Answer: {index + 1}) {answer?.text}
-                </div>
+                  {flag ? (
+                    <DeleteIcon
+                      sx={{
+                        fontSize: "28px",
+                        position: "relative",
+                        top: "5px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => handleDelete(answer?.id)}
+                    />
+                  ) : null}
+                </Typography>
               </Typography>
             );
           })}

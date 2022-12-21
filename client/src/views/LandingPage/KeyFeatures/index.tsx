@@ -6,7 +6,7 @@ import {
   SubHeadingText,
 } from "src/Styles/views/Landing/KeyFeature";
 
-// import Myfeat from "src/assets/images/qustion.png";
+import Myfeat from "src/assets/images/working-laptop.jpg";
 import Left from "src/assets/svg/first-left";
 
 import Grid from "@mui/material/Grid";
@@ -17,20 +17,22 @@ const KeyFeat = () => (
   <Grid
     sx={{
       width: "100%",
-      display: "flex",
-      //   msFlexDirection: "row",
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(42rem, 1fr))",
       animationName: "yawer",
       flexDirection: "row",
       alignItems: "center",
       backgroundColor: "#8080804d",
-      height: "900px",
       borderRadius: "0 0 183px 183px",
     }}
   >
     <Grid
       sx={{
-        width: "40%",
-        maxWidth: "780px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        maxWidth: "100%",
         height: "630px",
         margin: "30px 0 0 20px",
       }}
@@ -39,8 +41,10 @@ const KeyFeat = () => (
         <Left />
       </div>
     </Grid>
+
     <Container
       sx={{
+        minWidth: "700px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -50,20 +54,20 @@ const KeyFeat = () => (
         sx={{
           fontSize: "80px",
           fontWeight: "800",
-          padding: "10px 0",
+          padding: "30px 0 30px 0",
           width: "39%",
           alignItems: "center",
           textAlign: "center",
         }}
       >
-        WillQue
+        WilQue
       </Typography>
       <Typography
         sx={{
           fontSize: "45px",
           fontWeight: "700",
           padding: "10px 0",
-          width: "89%",
+          width: "100%",
           alignItems: "center",
           textAlign: "center",
         }}
@@ -72,26 +76,6 @@ const KeyFeat = () => (
         organization
       </Typography>
     </Container>
-    <Grid
-      sx={{
-        width: "40%",
-        maxWidth: "780px",
-        height: "620px",
-      }}
-    >
-      <Grid
-        sx={{
-          width: "40%",
-          maxWidth: "780px",
-          height: "561px",
-          //   transform: "translate(-50%, -50%)",
-        }}
-      >
-        <div className="right">
-          <Secnd />
-        </div>
-      </Grid>
-    </Grid>
   </Grid>
 );
 

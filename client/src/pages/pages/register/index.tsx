@@ -108,7 +108,6 @@ const RegisterPage = () => {
   const { mutateAsync, data, isSuccess, isLoading, isError, error } = usePost();
 
   const formData = (userData: any) => {
-    console.log(userData);
     mutateAsync({
       url: "/signup",
       payload: userData,

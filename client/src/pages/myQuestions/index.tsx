@@ -3,7 +3,7 @@ import useGet from "src/hooks/useGet";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import moment from "moment";
-import { Button } from "@mui/material";
+import { Avatar, Button, Card } from "@mui/material";
 import router from "next/router";
 import Link from "@mui/material/Link";
 
@@ -16,8 +16,8 @@ const postsPerPage = 4;
 const Container = () => {
   const [profileDetails, setProfileDetails] = useState<any>();
   useEffect(() => {
-    const a: any = localStorage.getItem("user");
-    setProfileDetails(JSON.parse(a));
+    const userData: any = localStorage.getItem("user");
+    setProfileDetails(JSON.parse(userData));
   }, []);
 
   const user = profileDetails?.username;
@@ -28,21 +28,11 @@ const Container = () => {
     isLoading,
   } = useGet("ques", "/question");
 
-  const filteredQues = data?.filter((dt: any) => {
-    console.log("dt", user);
-    return dt.author.username === user;
+  const filteredQues = data?.filter((value: any) => {
+    return value.author.username === user;
   });
 
   const { setQuestionValue } = useContext(QuestionContext);
-
-  const handleClick = (question: any, index: number) => {
-    const QuestionObj = { question };
-    setQuestionValue(QuestionObj);
-    router.push({
-      pathname: "/answers",
-      query: { question: index + 1 },
-    });
-  };
 
   useEffect(() => {
     fetchQuestions();
@@ -52,8 +42,9 @@ const Container = () => {
 
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
+  const reversedData = filteredQues?.reverse();
 
-  let newData = filteredQues?.slice(
+  let newData = reversedData?.slice(
     (number - 1) * postsPerPage,
     postsPerPage * number
   );
@@ -90,12 +81,7 @@ const Container = () => {
             fontWeight: "900",
           }}
         >
-          Total questions :{" "}
-          {data &&
-            data?.filter((dt: any) => {
-              console.log("dt", user);
-              return dt.author.username === user;
-            }).length}
+          Total questions : {filteredQues?.length}
         </Typography>
         {isLoading ? (
           <Typography
@@ -113,11 +99,15 @@ const Container = () => {
         {newData?.length
           ? newData
               ?.filter((dt: any) => {
-                console.log("dt", user);
                 return dt.author.username === user;
               })
-              .map((question: any) => {
+              .map((question: any, index: number) => {
                 const date = question.created;
+
+                const name = question?.author?.username?.substring(
+                  0,
+                  question?.author?.username?.indexOf("@")
+                );
 
                 return (
                   <Grid sx={{ mb: 2 }}>
@@ -128,7 +118,7 @@ const Container = () => {
                         border: "1px solid lightgrey",
                         display: "flex",
                       }}
-                      key={question.index}
+                      key={index}
                     >
                       <Typography
                         sx={{
@@ -156,13 +146,10 @@ const Container = () => {
                           gap: 3,
                         }}
                       >
-                        <div
-                          onClick={() => handleClick(question, question.index)}
-                        >
+                        <div>
                           <Typography
                             sx={{
                               fontWeight: "700",
-                              cursor: "pointer",
                               whiteSpace: "nowrap",
                               overflow: "hidden",
                               textOverflow: "ellipsis",
@@ -202,22 +189,42 @@ const Container = () => {
                           >
                             {question.tags?.map((tag: any, index: number) => {
                               return (
-                                <Typography
+                                <Card
+                                  variant="outlined"
                                   sx={{
                                     background: "#d0b3f5",
-                                    p: 3,
+                                    p: 2,
                                     borderRadius: "8px",
                                   }}
                                   key={index}
                                 >
                                   #{tag}
-                                </Typography>
+                                </Card>
                               );
                             })}
                           </Typography>
                         </Typography>
+                        <Typography>
+                          <Card
+                            variant="outlined"
+                            sx={{
+                              m: 2,
+
+                              p: 1,
+                              width: "fit-content",
+                              borderRadius: "8px",
+                            }}
+                          >
+                            {" "}
+                            Answers :{" " + question.answers?.length}
+                          </Card>
+                        </Typography>
                         <Typography
                           sx={{
+                            display: "flex",
+                            justifyContent: "right",
+                            alignItems: "center",
+                            gap: 1,
                             textAlign: "right",
                             pt: 2,
                             whiteSpace: "nowrap",
@@ -225,8 +232,13 @@ const Container = () => {
                             textOverflow: "ellipsis",
                           }}
                         >
-                          Asked by: {question.author.username} At:
-                          {moment(date).format("DD-MMM-YYYY")}
+                          <Avatar
+                            sx={{ width: 24, height: 24 }}
+                            alt="Remy Sharp"
+                            src={question.author.profilePhoto}
+                          />
+                          {name} asked at:
+                          {" " + moment(date).format("DD-MMM-YYYY")}
                         </Typography>
                       </Typography>
                     </Typography>
@@ -235,12 +247,12 @@ const Container = () => {
               })
           : null}
         <div className="pagination">
-          {!!filteredQues?.length && (
+          {!!reversedData?.length && (
             <Space>
               <Pagination
                 defaultCurrent={number}
                 pageSize={postsPerPage}
-                total={filteredQues?.length}
+                total={reversedData?.length}
                 onChange={handlePage}
               />
             </Space>
