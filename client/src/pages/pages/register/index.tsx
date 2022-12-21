@@ -7,6 +7,7 @@ import Link from "next/link";
 // ** MUI Components
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -23,6 +24,10 @@ import MuiFormControlLabel, {
 } from "@mui/material/FormControlLabel";
 
 // ** Icons Imports
+import Google from "mdi-material-ui/Google";
+import Github from "mdi-material-ui/Github";
+import Twitter from "mdi-material-ui/Twitter";
+import Facebook from "mdi-material-ui/Facebook";
 import EyeOutline from "mdi-material-ui/EyeOutline";
 import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
 
@@ -40,6 +45,7 @@ import router from "next/router";
 import CircularProgress from "@mui/material/CircularProgress";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { VALIDATION_SCHEMA } from "src/utils/register";
+import { Null } from "mdi-material-ui";
 
 interface State {
   password: string;
@@ -102,6 +108,7 @@ const RegisterPage = () => {
   const { mutateAsync, data, isSuccess, isLoading, isError, error } = usePost();
 
   const formData = (userData: any) => {
+    console.log(userData);
     mutateAsync({
       url: "/signup",
       payload: userData,
@@ -109,7 +116,7 @@ const RegisterPage = () => {
   };
 
   if (isSuccess) {
-    alert("Hey you are registered sucessfully, Please Login");
+    alert("Hey you are Sucessfully Sign in");
     router.push("/pages/login");
   }
 
@@ -215,7 +222,7 @@ const RegisterPage = () => {
               fullWidth
               id="email"
               label="Email"
-              sx={{ marginBottom: 4 }}
+              sx={{ marginBottom: 4, textTransform: "lowercase" }}
               {...register("username")}
             />
             <p style={{ color: "red" }}>
@@ -274,23 +281,6 @@ const RegisterPage = () => {
               </p>
             </FormControl>
 
-            <FormControlLabel
-              control={<Checkbox />}
-              label={
-                <Fragment>
-                  <span>I agree to </span>
-                  <Link href="/" passHref>
-                    <LinkStyled
-                      onClick={(e: MouseEvent<HTMLElement>) =>
-                        e.preventDefault()
-                      }
-                    >
-                      privacy policy & terms
-                    </LinkStyled>
-                  </Link>
-                </Fragment>
-              }
-            />
             <Button
               fullWidth
               size="large"
