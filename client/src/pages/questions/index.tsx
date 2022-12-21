@@ -95,12 +95,15 @@ const Container = () => {
 
         {newData?.length
           ? newData?.map((question: any, index: number) => {
-              const date = question.created;
+              const date: number = question.created;
               const name = question?.author?.username?.substring(
                 0,
                 question?.author?.username?.indexOf("@")
               );
-
+              const currentDate: any = new Date();
+              const myDate =
+                parseInt(moment(currentDate).format("DD")) -
+                parseInt(moment(date).format("DD"));
               return (
                 <Grid sx={{ mb: 2 }}>
                   <Typography
@@ -229,8 +232,12 @@ const Container = () => {
                           alt="Remy Sharp"
                           src={question.author.profilePhoto}
                         />
-                        {name} asked at:
-                        {" " + moment(date).format("DD-MMM-YYYY")}
+                        {name} asked{" "}
+                        {myDate === 0
+                          ? "today"
+                          : myDate === 1
+                          ? "yesterday"
+                          : myDate + "days ago"}
                       </Typography>
                     </Typography>
                   </Typography>

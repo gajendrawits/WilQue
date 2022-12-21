@@ -3,6 +3,7 @@ const regex = /^[a-zA-Z.]+@(thewitslab)+\.[a-zA-Z]{2,3}$/;
 const regex2 = /^[a-zA-Z0-9@#$%^&*\S]*$/;
 const VALIDATION_SCHEMA = Yup.object().shape({
   username: Yup.string()
+    .lowercase()
     .required("Email is mandatory")
     .matches(/^\S/, "First character cannot be space.")
     .email("Enter valid email")

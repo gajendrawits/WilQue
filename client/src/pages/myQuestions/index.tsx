@@ -16,8 +16,8 @@ const postsPerPage = 4;
 const Container = () => {
   const [profileDetails, setProfileDetails] = useState<any>();
   useEffect(() => {
-    const a: any = localStorage.getItem("user");
-    setProfileDetails(JSON.parse(a));
+    const userData: any = localStorage.getItem("user");
+    setProfileDetails(JSON.parse(userData));
   }, []);
 
   const user = profileDetails?.username;
@@ -28,20 +28,11 @@ const Container = () => {
     isLoading,
   } = useGet("ques", "/question");
 
-  const filteredQues = data?.filter((dt: any) => {
-    return dt.author.username === user;
+  const filteredQues = data?.filter((value: any) => {
+    return value.author.username === user;
   });
 
   const { setQuestionValue } = useContext(QuestionContext);
-
-  const handleClick = (question: any, index: number) => {
-    const QuestionObj = { question };
-    setQuestionValue(QuestionObj);
-    router.push({
-      pathname: "/answers",
-      query: { question: index + 1 },
-    });
-  };
 
   useEffect(() => {
     fetchQuestions();
@@ -90,11 +81,7 @@ const Container = () => {
             fontWeight: "900",
           }}
         >
-          Total questions :{" "}
-          {data &&
-            data?.filter((dt: any) => {
-              return dt.author.username === user;
-            }).length}
+          Total questions : {filteredQues?.length}
         </Typography>
         {isLoading ? (
           <Typography
@@ -114,7 +101,7 @@ const Container = () => {
               ?.filter((dt: any) => {
                 return dt.author.username === user;
               })
-              .map((question: any) => {
+              .map((question: any, index: number) => {
                 const date = question.created;
 
                 const name = question?.author?.username?.substring(
@@ -131,7 +118,7 @@ const Container = () => {
                         border: "1px solid lightgrey",
                         display: "flex",
                       }}
-                      key={question.index}
+                      key={index}
                     >
                       <Typography
                         sx={{
@@ -159,13 +146,10 @@ const Container = () => {
                           gap: 3,
                         }}
                       >
-                        <div
-                          onClick={() => handleClick(question, question.index)}
-                        >
+                        <div>
                           <Typography
                             sx={{
                               fontWeight: "700",
-                              cursor: "pointer",
                               whiteSpace: "nowrap",
                               overflow: "hidden",
                               textOverflow: "ellipsis",
@@ -208,7 +192,8 @@ const Container = () => {
                                 <Card
                                   variant="outlined"
                                   sx={{
-                                    p: 1,
+                                    background: "#d0b3f5",
+                                    p: 2,
                                     borderRadius: "8px",
                                   }}
                                   key={index}
