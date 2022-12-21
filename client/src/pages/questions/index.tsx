@@ -3,7 +3,7 @@ import useGet from "src/hooks/useGet";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import moment from "moment";
-import { Button } from "@mui/material";
+import { Avatar, Button, Card } from "@mui/material";
 import router from "next/router";
 import Link from "@mui/material/Link";
 
@@ -39,8 +39,12 @@ const Container = () => {
 
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
+  const reversedData = data?.reverse();
 
-  let newData = data?.slice((number - 1) * postsPerPage, postsPerPage * number);
+  let newData = reversedData?.slice(
+    (number - 1) * postsPerPage,
+    postsPerPage * number
+  );
 
   return (
     <Grid
@@ -90,8 +94,12 @@ const Container = () => {
         ) : null}
 
         {newData?.length
-          ? newData?.reverse().map((question: any, index: number) => {
+          ? newData?.map((question: any, index: number) => {
               const date = question.created;
+              const name = question?.author?.username?.substring(
+                0,
+                question?.author?.username?.indexOf("@")
+              );
 
               return (
                 <Grid sx={{ mb: 2 }}>
@@ -174,22 +182,41 @@ const Container = () => {
                         >
                           {question.tags?.map((tag: any, index: number) => {
                             return (
-                              <Typography
+                              <Card
+                                variant="outlined"
                                 sx={{
-                                  background: "#d0b3f5",
-                                  p: 3,
+                                  p: 1,
                                   borderRadius: "8px",
                                 }}
                                 key={index}
                               >
-                                {tag}
-                              </Typography>
+                                #{tag}
+                              </Card>
                             );
                           })}
                         </Typography>
                       </Typography>
+                      <Typography>
+                        <Card
+                          variant="outlined"
+                          sx={{
+                            m: 2,
+
+                            p: 1,
+                            width: "fit-content",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          {" "}
+                          Answers :{" " + question.answers?.length}
+                        </Card>
+                      </Typography>
                       <Typography
                         sx={{
+                          display: "flex",
+                          justifyContent: "right",
+                          alignItems: "center",
+                          gap: 1,
                           textAlign: "right",
                           pt: 2,
                           whiteSpace: "nowrap",
@@ -197,8 +224,13 @@ const Container = () => {
                           textOverflow: "ellipsis",
                         }}
                       >
-                        Asked by: {question.author.username} Created at:
-                        {moment(date).format("DD-MMM-YYYY")}
+                        <Avatar
+                          sx={{ width: 24, height: 24 }}
+                          alt="Remy Sharp"
+                          src={question.author.profilePhoto}
+                        />
+                        {name} asked at:
+                        {" " + moment(date).format("DD-MMM-YYYY")}
                       </Typography>
                     </Typography>
                   </Typography>
@@ -207,12 +239,12 @@ const Container = () => {
             })
           : null}
         <div className="pagination">
-          {!!data?.length && (
+          {!!reversedData?.length && (
             <Space>
               <Pagination
                 defaultCurrent={number}
                 pageSize={postsPerPage}
-                total={data?.length}
+                total={reversedData?.length}
                 onChange={handlePage}
               />
             </Space>

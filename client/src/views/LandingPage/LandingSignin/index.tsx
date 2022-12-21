@@ -16,23 +16,19 @@ const SignupLanding = () => (
   >
     <Grid
       sx={{
-        width: "45%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        boxShadow: "10px 10px  #b3b0b0",
-      }}
-    ></Grid>
-    <Grid
-      sx={{
         width: "100%",
-        display: "flex",
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(45rem, 1fr))",
         alignItems: "center",
       }}
     >
       <Grid
         sx={{
-          width: "50%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          maxWidth: "100%",
           margin: "90px 0 80px 0",
         }}
       >
@@ -42,7 +38,7 @@ const SignupLanding = () => (
       </Grid>
       <Grid
         sx={{
-          width: "50%",
+          width: "100%",
         }}
       >
         <Typography

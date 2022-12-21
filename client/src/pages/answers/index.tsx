@@ -28,6 +28,7 @@ const answers = () => {
     });
   };
 
+
   const handleAnswerValue = (value: any) => {
     setAnswerValue(value);
   };
@@ -36,7 +37,8 @@ const answers = () => {
     router.push("/questions");
   }
 
-  console.log(getQuestionValue);
+
+
 
   return (
     <Grid sx={{ pb: 6 }}>

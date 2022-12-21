@@ -25,6 +25,12 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+
+    "/answers": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/answers.js"
+
     "/pages/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -34,6 +40,7 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/pages/register.js"
+
     ]
   },
   "ampFirstPages": []
