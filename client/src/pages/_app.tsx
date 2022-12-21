@@ -80,7 +80,7 @@ const App = (props: ExtendedAppProps) => {
     if (redirect && authenticated && !a) {
       router.push("/");
     } else if (redirect && !a) {
-      router.push("/pages/login/");
+      router.push("/pages/landingpage/");
     } else if (a !== null) {
       router.push("/");
     }

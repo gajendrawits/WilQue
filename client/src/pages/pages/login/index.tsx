@@ -20,6 +20,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiCard, { CardProps } from "@mui/material/Card";
 import InputAdornment from "@mui/material/InputAdornment";
+
 import MuiFormControlLabel, {
   FormControlLabelProps,
 } from "@mui/material/FormControlLabel";
@@ -74,12 +75,6 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(
 );
 
 const LoginPage = () => {
-  // ** State
-  // const [values, setValues] = useState<State>({
-  //   password: "",
-  //   showPassword: false,
-  // });
-
   const [password, setShowPassword] = useState(false);
 
   // ** Hook
@@ -113,17 +108,9 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      localStorage.setItem(
-        "userProfile",
-        JSON.stringify(tokenResponse.access_token)
-      );
-    },
-  });
-
   if (isSuccess) {
     localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.userInfo));
     router.push("/");
   }
 
@@ -231,7 +218,7 @@ const LoginPage = () => {
               fullWidth
               id="email"
               label="Email"
-              sx={{ marginBottom: 4 }}
+              sx={{ marginBottom: 4, textTransform: "lowercase" }}
               {...register("username")}
             />
             <p style={{ color: "red" }}>

@@ -108,7 +108,6 @@ const RegisterPage = () => {
   const { mutateAsync, data, isSuccess, isLoading, isError, error } = usePost();
 
   const formData = (userData: any) => {
-    console.log(userData);
     mutateAsync({
       url: "/signup",
       payload: userData,
@@ -222,7 +221,7 @@ const RegisterPage = () => {
               fullWidth
               id="email"
               label="Email"
-              sx={{ marginBottom: 4 }}
+              sx={{ marginBottom: 4, textTransform: "lowercase" }}
               {...register("username")}
             />
             <p style={{ color: "red" }}>

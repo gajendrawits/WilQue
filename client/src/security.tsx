@@ -25,7 +25,7 @@ export const useAuthentication = () => {
 
   if (current_route) {
     if (!current_route?.SECURE) {
-      if (!!token) {
+      if (!token) {
         access.authenticated = true;
         access.redirect = true;
         return access;
