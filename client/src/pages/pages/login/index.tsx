@@ -75,29 +75,6 @@ const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(
 );
 
 const LoginPage = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  // ** State
-  // const [values, setValues] = useState<State>({
-  //   password: "",
-  //   showPassword: false,
-  // });
-
   const [password, setShowPassword] = useState(false);
 
   // ** Hook
@@ -130,15 +107,6 @@ const LoginPage = () => {
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      localStorage.setItem(
-        "userProfile",
-        JSON.stringify(tokenResponse.access_token)
-      );
-    },
-  });
 
   if (isSuccess) {
     localStorage.setItem("token", data.token);

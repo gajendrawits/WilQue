@@ -30,7 +30,7 @@ const index = () => {
   };
 
   if (isSuccess) {
-    router.push("/questions");
+    router.push("/myquestions");
   }
 
   useEffect(() => {
