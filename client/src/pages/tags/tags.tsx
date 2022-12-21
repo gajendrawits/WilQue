@@ -28,7 +28,7 @@ const tags = (props: any) => {
           >
             <Typography sx={{ widh: "200px" }}>{tag._id}</Typography>
             <Typography sx={{ widh: "200px" }}>{tag.description}</Typography>
-          </Card>
+          </Card>   
         );
       })}
     </Grid>
