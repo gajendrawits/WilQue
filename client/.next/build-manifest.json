@@ -30,6 +30,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/askQuestion": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/askQuestion.js"
+    ],
     "/myQuestions": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
