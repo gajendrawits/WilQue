@@ -237,7 +237,7 @@ const Container = () => {
                           ? "today"
                           : myDate === 1
                           ? "yesterday"
-                          : myDate + "d ays ago"}
+                          : myDate + "days ago"}
                       </Typography>
                     </Typography>
                   </Typography>
