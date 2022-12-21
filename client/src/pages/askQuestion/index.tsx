@@ -5,7 +5,7 @@ import AskQuestion from "src/pages/askQuestion/askQuestion";
 const askQuestion = () => {
   return (
     <>
-      <AskQuestion questionType="public" />
+      <AskQuestion />
     </>
   );
 };
