@@ -39,8 +39,6 @@ const UserDropdown = () => {
     setProfileDetails(JSON.parse(a));
   }, []);
 
-  console.log("profileDetails", profileDetails);
-
   // ** States
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
 

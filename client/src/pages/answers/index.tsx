@@ -27,8 +27,6 @@ const answers = () => {
     });
   };
 
-  console.log(question);
-
   return (
     <Grid sx={{ pb: 6 }}>
       <Typography

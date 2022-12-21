@@ -1,5 +1,6 @@
 // ** MUI Imports
-import StarOutlineIcon from "@material-ui/icons/StarOutline";
+// import StarOutlineIcon from "@material-ui/icons/StarOutline";
+import StarsIcon from "@material-ui/icons/Stars";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
@@ -63,12 +64,12 @@ const CardUser = () => {
         <Typography variant="h4" sx={{ pb: 6 }}>
           <Link>Users</Link>
         </Typography>
-        <Typography variant="h6">
+        {/* <Typography variant="h6">
           A user is a person or thing that uses something such as a place,
           facility, product, or machine.
           <br></br>A user is a person who utilizes a computer or network
           service.
-        </Typography>
+        </Typography> */}
       </Grid>
       <Card
         sx={{
@@ -136,11 +137,8 @@ const CardUser = () => {
                     <Box
                       sx={{ display: "flex", alignItems: "center", mr: 3.5 }}
                     >
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "common.white" }}
-                      >
-                        <StarOutlineIcon />
+                      <Typography variant="body2">
+                        <StarsIcon />
                       </Typography>
                     </Box>
                   </Box>

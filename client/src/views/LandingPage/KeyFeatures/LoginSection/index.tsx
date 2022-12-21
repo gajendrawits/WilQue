@@ -7,6 +7,7 @@ import Work from "src/assets/svg/howwork";
 const SecondFeat = () => (
   <Grid
     sx={{
+      padding: "80px 0",
       width: "100%",
       display: "flex",
       flexDirection: "column",
@@ -37,21 +38,24 @@ const SecondFeat = () => (
     <Grid
       sx={{
         width: "100%",
-        display: "flex",
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(35rem, 1fr))",
         alignItems: "center",
         // backgroundColor: "#28243D",
       }}
     >
       <Grid
-        sx={{
-          width: "50%",
-        }}
+        sx={
+          {
+            // width: "50%",
+          }
+        }
       >
         <Typography
           sx={{
             display: "flex",
             flexDirection: "column",
-            padding: "20px 20px",
+            padding: "20px 20px 80px 20px",
             justifyContent: "center",
             alignItems: "center",
             gap: "28px",
@@ -135,7 +139,8 @@ const SecondFeat = () => (
       </Grid>
       <Grid
         sx={{
-          width: "50%",
+          width: "100vw",
+          maxWidth: "100%",
           marginTop: "20px",
         }}
       >
@@ -144,7 +149,7 @@ const SecondFeat = () => (
             <Image src={Slider2} />
             <Image src={Slider3} />
           </Carousel> */}
-        <div className="sec">
+        <div className="sec" style={{ width: "50vw" }}>
           <Work />
         </div>
       </Grid>
