@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 
@@ -8,11 +8,11 @@ interface tagInputProps {
 }
 
 const tagInput = (props: tagInputProps) => {
-  // const [tagValue, setTagValue] = useState();
   const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
 
   const handleInput = (value: string) => {
-    const obj = { tags: value };
+    const arr = value.split(",");
+    const obj = { tags: arr };
     const newobj = { ...getQuestionValue, ...obj };
     setQuestionValue(newobj);
   };

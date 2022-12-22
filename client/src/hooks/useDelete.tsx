@@ -10,8 +10,8 @@ interface IParams {
 const del = async ({ url, payload, token = false }: IParams) => {
   let headers: any;
   if (token) {
-    const authToken = localStorage.getItem("_auth");
-    headers = { "Auth-token": authToken };
+    const token = localStorage.getItem("token");
+    headers = { Authorization: `Bearer ${token}` };
   }
 
   const { data } = await axiosInstance.delete(url, {

@@ -1,31 +1,65 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { flexbox } from "@mui/system";
 import QuillEdit from "../editor";
 import router from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
+import DeleteIcon from "@mui/icons-material/Delete";
+import useDelete from "src/hooks/useDelete";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
+  const [getAnswerValue, setAnswerValue] = useState("");
+  const [getUserDetail, setUserDetail] = useState<any>();
 
   const handleRoute = () => {
     router.push("/askQuestion");
   };
   const { question } = getQuestionValue;
 
-  const { mutateAsync } = usePost();
+  const { mutateAsync, isLoading, isSuccess } = usePost();
+
+  const {
+    mutateAsync: deleteAsync,
+    isLoading: deleteIsLoading,
+    isSuccess: delteIsSuccess,
+  } = useDelete();
 
   const postAnswer = () => {
     mutateAsync({
       url: `/answer/${question?.id}`,
-      payload: getQuestionValue,
+      payload: getAnswerValue,
       token: true,
     });
   };
+
+  const handleAnswerValue = (value: any) => {
+    setAnswerValue(value);
+  };
+
+  if (isSuccess) {
+    router.push("/questions");
+  }
+
+  useEffect(() => {
+    const user: any = localStorage.getItem("user");
+    setUserDetail(JSON.parse(user));
+  }, []);
+
+  const handleDelete = (id: string) => {
+    deleteAsync({
+      url: `/answer/${question?.id}/${id}`,
+      token: true,
+    });
+  };
+
+  if (delteIsSuccess) {
+    router.push("/");
+  }
 
   return (
     <Grid sx={{ pb: 6 }}>
@@ -78,6 +112,10 @@ const answers = () => {
           }}
         >
           {question?.answers?.map((answer: any, index: number) => {
+            let flag = false;
+            if (answer?.author?.username == getUserDetail?.username) {
+              flag = true;
+            }
             return (
               <Typography
                 sx={{
@@ -85,15 +123,26 @@ const answers = () => {
                   background: "lightgrey",
                 }}
               >
-                <ol key={answer.id}>
-                  <li>Answer: {answer.text}</li>
-                </ol>
+                <Typography sx={{ p: 2 }} key={answer?.id}>
+                  Answer: {index + 1}) {answer?.text}
+                  {flag ? (
+                    <DeleteIcon
+                      sx={{
+                        fontSize: "28px",
+                        position: "relative",
+                        top: "5px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => handleDelete(answer?.id)}
+                    />
+                  ) : null}
+                </Typography>
               </Typography>
             );
           })}
         </Typography>
         <div>
-          <QuillEdit />
+          <QuillEdit handleAnswerValue={handleAnswerValue} />
         </div>
         <Button
           variant="contained"
@@ -103,7 +152,7 @@ const answers = () => {
           }}
           onClick={postAnswer}
         >
-          Post Answer
+          {isLoading ? <CircularProgress color="inherit" /> : "Post Answer"}
         </Button>
       </Typography>
     </Grid>

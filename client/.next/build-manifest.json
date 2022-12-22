@@ -20,6 +20,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
+    "/404": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/404.js"
+    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -30,15 +35,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/answers": [
+    "/tags": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/answers.js"
+      "static/chunks/pages/tags.js"
     ],
-    "/pages/login": [
+    "/users": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/pages/login.js"
+      "static/chunks/pages/users.js"
     ]
   },
   "ampFirstPages": []

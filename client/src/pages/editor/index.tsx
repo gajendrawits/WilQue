@@ -9,12 +9,13 @@ const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
   loading: () => <p>Loading ...</p>,
 });
 
-export default function Home() {
+export default function Home({ handleAnswerValue }: any) {
   const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
 
   const handleValue = (data: any) => {
     const value = data.slice(3, data.length - 4);
     const obj = { text: value };
+    handleAnswerValue(obj);
     const newobj = { ...getQuestionValue, ...obj };
     setQuestionValue(newobj);
   };
