@@ -196,7 +196,7 @@ const Tags = () => {
             <TagConatiner tags={data} />
           </TabPanel>
           <TabPanel value={valuee} index={2}>
-            <TagConatiner tags={data} />
+            <TagConatiner tags={data?.reverse()} />
           </TabPanel>
         </Box>
       </Grid>
