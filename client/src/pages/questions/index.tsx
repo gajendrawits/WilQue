@@ -96,6 +96,7 @@ const Container = () => {
         {newData?.length
           ? newData?.map((question: any, index: number) => {
               const date: number = question.created;
+
               const name = question?.author?.username?.substring(
                 0,
                 question?.author?.username?.indexOf("@")
@@ -107,9 +108,11 @@ const Container = () => {
               return (
                 <Grid sx={{ mb: 2 }}>
                   <Typography
+                    onClick={() => handleClick(question, index)}
                     sx={{
                       mt: 2,
                       p: 2,
+                      cursor: "pointer",
                       border: "1px solid lightgrey",
                       display: "flex",
                     }}
@@ -141,11 +144,11 @@ const Container = () => {
                         gap: 3,
                       }}
                     >
-                      <div onClick={() => handleClick(question, index)}>
+                      <div>
                         <Typography
                           sx={{
                             fontWeight: "700",
-                            cursor: "pointer",
+
                             whiteSpace: "nowrap",
                             overflow: "hidden",
                             textOverflow: "ellipsis",
@@ -229,7 +232,7 @@ const Container = () => {
                       >
                         <Avatar
                           sx={{ width: 24, height: 24 }}
-                          alt="Remy Sharp"
+                          alt={name}
                           src={question.author.profilePhoto}
                         />
                         {name} asked{" "}
@@ -237,7 +240,7 @@ const Container = () => {
                           ? "today"
                           : myDate === 1
                           ? "yesterday"
-                          : myDate + "days ago"}
+                          : myDate + " days ago"}
                       </Typography>
                     </Typography>
                   </Typography>

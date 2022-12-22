@@ -13,7 +13,6 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 const CustomizedSnackbars = ({ resetData, severity, message }: any) => {
-  console.log("resetData", resetData);
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
