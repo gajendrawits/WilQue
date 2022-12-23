@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Button, CircularProgress, styled } from "@mui/material";
-import Comment from "src/component/comment";
+import Comment from "src/component/Comment";
 import QuillEdit from "../editor";
 import router from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
