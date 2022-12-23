@@ -107,7 +107,6 @@ const LoginPage = () => {
   };
 
   if (isSuccess) {
-    console.log("shubham");
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.userInfo));
     router.push(

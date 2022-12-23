@@ -28,7 +28,6 @@ const answers = () => {
     router.push("/askQuestion");
   };
   const { question } = getQuestionValue;
-  console.log("question", question);
 
   const { mutateAsync, isLoading, isSuccess } = usePost();
 
