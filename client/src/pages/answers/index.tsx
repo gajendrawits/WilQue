@@ -5,8 +5,8 @@ import Typography from "@mui/material/Typography";
 import {
   Button,
   CircularProgress,
-  TextareaAutosize,
   styled,
+  TextareaAutosize,
 } from "@mui/material";
 import { flexbox } from "@mui/system";
 import QuillEdit from "../editor";
@@ -21,12 +21,7 @@ import moment from "moment";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
-  const { getAnsValue } = useContext(AnsContext);
-
   const [getAnswerValue, setAnswerValue] = useState("");
-  const [getCommentValue, setCommentValue] = useState();
-  const [getCommentId, setCommentId] = useState();
-
   const [getUserDetail, setUserDetail] = useState<any>();
 
   const handleRoute = () => {
@@ -34,7 +29,6 @@ const answers = () => {
   };
   const { question } = getQuestionValue;
   console.log("question", question);
-  const { answer } = getAnsValue;
 
   const { mutateAsync, isLoading, isSuccess } = usePost();
 
@@ -54,17 +48,6 @@ const answers = () => {
 
   const handleAnswerValue = (value: any) => {
     setAnswerValue(value);
-  };
-  const handleComment = (value: any) => {
-    setCommentValue(value);
-  };
-
-  const postComment = () => {
-    mutateAsync({
-      url: `https://wil-que-mongo-backend.onrender.com/api/comment/${question?.id}/${getCommentId}`,
-      payload: getCommentValue,
-      token: true,
-    });
   };
 
   if (isSuccess) {
@@ -234,9 +217,6 @@ const answers = () => {
                         marginLeft: "12px",
                         padding: "10px",
                         border: "none",
-                      }}
-                      onChange={(comment: any) => {
-                        handleComment(comment.target.value);
                       }}
                     />
                     <Button

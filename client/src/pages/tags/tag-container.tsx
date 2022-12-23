@@ -22,13 +22,13 @@ const TagContainer = (props: any) => {
               display: "flex",
               flexDirection: "column",
               gap: 2,
-              p: 2,
+              p: 1,
               border: "1px solid #9155FD",
             }}
           >
-            <Typography sx={{ widh: "200px" }}>#{tag._id}</Typography>
-            <Typography sx={{ widh: "200px" }}>{tag.description}</Typography>
-          </Card>   
+            <Typography sx={{ width: "100px" }}>#{tag._id}</Typography>
+            <Typography sx={{ width: "100px" }}>{tag.description}</Typography>
+          </Card>
         );
       })}
     </Grid>

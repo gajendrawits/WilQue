@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import TagConatiner from "src/pages/tags/tags";
-import { createTheme } from "@mui/material/styles";
+import TagConatiner from "src/pages/tags/tag-container";
 import useGet from "src/hooks/useGet";
-
-import axios from "axios";
-
-import { isError, useQuery } from "react-query";
-import { loremIpsum } from "lorem-ipsum";
+import CircularProgress from "@mui/material/CircularProgress";
+import SearchTag from "src/pages/tags/search-tag";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -21,63 +17,6 @@ interface TabPanelProps {
 }
 
 const Tags = () => {
-  const popularTags = [
-    {
-      id: 1,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 2,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 3,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 4,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 5,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 6,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 7,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 8,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-    {
-      id: 9,
-      name: "js",
-      description:
-        "JS is langugae adashudhsajdhasdh hbjahsgd hdskajhd askjd ahsd jkdhasjkdh ",
-    },
-  ];
-
   function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
 
@@ -97,44 +36,26 @@ const Tags = () => {
       </div>
     );
   }
+
   const [valuee, setValue] = React.useState(0);
+  const [searchTag, setSearchTag] = useState<any>();
 
   const {
-    refetch: fetchDetails,
+    refetch: fetchAllTags,
     data,
-    isLoading,
     error,
     isFetching,
-  } = useGet("tags", `https://wil-que-mongo-backend.onrender.com/api/tags`);
+  } = useGet("tags", `/tags`);
 
   // Tags fetching
   useEffect(() => {
-    fetchDetails();
+    fetchAllTags();
   }, []);
 
-  if (isLoading) {
-    return <>Loading</>;
-  }
-  if (error) {
-    return <>Error</>;
-  }
-  if (isFetching) {
-    return <>Fetching Data</>;
-  }
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  const theme = createTheme({
-    components: {
-      MuiTab: {
-        styleOverrides: {
-          root: {
-            padding: 0,
-          },
-        },
-      },
-    },
-  });
+
   return (
     <Grid
       sx={{
@@ -151,55 +72,74 @@ const Tags = () => {
           find and answer your question.
         </Typography>
       </Grid>
-      <Grid sx={{ display: "flex", justifyContent: "space-between", p: 0 }}>
-        <Box sx={{ width: "100%" }}>
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <input
-              style={{
-                height: "3rem",
-                width: "18rem",
-                minWidth: "10rem",
-                fontSize: "1rem",
+      {isFetching ? (
+        <Typography
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "60vh",
+          }}
+        >
+          <CircularProgress color="inherit" />
+        </Typography>
+      ) : (
+        <Grid sx={{ display: "flex", justifyContent: "space-between", p: 0 }}>
+          <Box sx={{ width: "100%" }}>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
               }}
-              placeholder=" Search"
-              type="text"
-              onChange={() => {
-                fetchDetails();
-              }}
-            />
-            <Tabs
-              value={valuee}
-              onChange={handleChange}
-              aria-label="basic tabs example"
             >
-              <Tab
-                sx={{ border: "1px solid grey", borderRight: "none" }}
-                label="Popular"
+              <input
+                style={{
+                  height: "3rem",
+                  width: "18rem",
+                  fontSize: "1rem",
+                  borderRadius: "10px",
+                  textAlign: "center",
+                }}
+                placeholder=" Search"
+                type="text"
+                value={searchTag}
+                onChange={(e) => setSearchTag(e.target.value)}
               />
-              <Tab
-                sx={{ border: "1px solid grey", borderRight: "none" }}
-                label="Name"
-              />
-              <Tab sx={{ border: "1px solid grey" }} label="New" />
-            </Tabs>
+              <Tabs
+                value={valuee}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+              >
+                <Tab
+                  sx={{ border: "1px solid grey", borderRight: "none" }}
+                  label="Popular"
+                />
+                <Tab
+                  sx={{ border: "1px solid grey", borderRight: "none" }}
+                  label="Name"
+                />
+                <Tab sx={{ border: "1px solid grey" }} label="New" />
+              </Tabs>
+            </Box>
+            {searchTag?.length > 0 ? (
+              <SearchTag searchTag={searchTag} />
+            ) : (
+              <>
+                <TabPanel value={valuee} index={0}>
+                  <TagConatiner tags={data} />
+                </TabPanel>
+                <TabPanel value={valuee} index={1}>
+                  <TagConatiner tags={data} />
+                </TabPanel>
+                <TabPanel value={valuee} index={2}>
+                  <TagConatiner tags={data?.reverse()} />
+                </TabPanel>
+              </>
+            )}
           </Box>
-          <TabPanel value={valuee} index={0}>
-            <TagConatiner tags={data} />
-          </TabPanel>
-          <TabPanel value={valuee} index={1}>
-            <TagConatiner tags={data} />
-          </TabPanel>
-          <TabPanel value={valuee} index={2}>
-            <TagConatiner tags={data?.reverse()} />
-          </TabPanel>
-        </Box>
-      </Grid>
+        </Grid>
+      )}
     </Grid>
   );
 };

@@ -7,7 +7,6 @@ import CustomizedSnackbars from "src/component/Message";
 
 const Dashboard = (props: any) => {
   const router = useRouter();
-
   // const show = <CustomizedSnackbars />;
   // useEffect(() =>
   // <CustomizedSnackbars />;
