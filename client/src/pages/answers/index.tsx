@@ -2,18 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import {
-  Button,
-  CircularProgress,
-  styled,
-  TextareaAutosize,
-} from "@mui/material";
-import { flexbox } from "@mui/system";
+import { Button, CircularProgress, styled } from "@mui/material";
+import Comment from "src/component/comment";
 import QuillEdit from "../editor";
 import router from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
-import { AnsContext } from "src/@core/context/AnswerContext";
-
 import usePost from "src/hooks/usePost";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useDelete from "src/hooks/useDelete";
@@ -23,19 +16,12 @@ const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
   const [getAnswerValue, setAnswerValue] = useState("");
   const [getUserDetail, setUserDetail] = useState<any>();
-
   const handleRoute = () => {
     router.push("/askQuestion");
   };
   const { question } = getQuestionValue;
-
   const { mutateAsync, isLoading, isSuccess } = usePost();
-
-  const {
-    mutateAsync: deleteAsync,
-    isLoading: deleteIsLoading,
-    isSuccess: delteIsSuccess,
-  } = useDelete();
+  const { mutateAsync: deleteAsync, isSuccess: delteIsSuccess } = useDelete();
 
   const postAnswer = () => {
     mutateAsync({
@@ -190,49 +176,22 @@ const answers = () => {
                     </p>
                   </div>
                 </Typography>
-
-                <p
-                  onClick={() => {
-                    setComment(!comment);
-                  }}
-                  style={{
-                    paddingLeft: "12px",
-                    color: "blue",
-                    cursor: "pointer",
-                    width: "fit-content",
-                  }}
-                >
-                  Add a comment...
-                </p>
-                {comment ? (
-                  <>
-                    <TextareaAutosize
-                      aria-label="minimum height"
-                      minRows={1}
-                      placeholder="Add a comment..."
-                      style={{
-                        width: "95%",
-                        maxWidth: "95%",
-                        marginLeft: "12px",
-                        padding: "10px",
-                        border: "none",
-                      }}
-                    />
-                    <Button
-                      type="submit"
-                      onClick={() => {
-                        // postComment();
-                      }}
-                      sx={{ width: "fit-content" }}
-                    >
-                      Post Comment
-                    </Button>
-                  </>
-                ) : null}
+                <strong> Comments :</strong>
+                {answer?.comments?.map((comments: any) => {
+                  return (
+                    <div>
+                      <div>{comments?.body}</div>
+                    </div>
+                  );
+                })}
+                <div>
+                  <Comment answerId={answer?.id} questionId={question?.id} />
+                </div>
               </Container>
             );
           })}
         </Typography>
+
         <Typography>
           <Typography>
             <p>Post Your Answer</p>

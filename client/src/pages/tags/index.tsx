@@ -4,6 +4,7 @@ import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@mui/material/Typography";
 import TagConatiner from "src/pages/tags/tag-container";
 import useGet from "src/hooks/useGet";
@@ -96,12 +97,15 @@ const Tags = () => {
               <input
                 style={{
                   height: "3rem",
+                  paddingLeft: 15,
                   width: "18rem",
-                  fontSize: "1rem",
+                  fontSize: "1.2rem",
                   borderRadius: "10px",
-                  textAlign: "center",
+                  border: "0.2px solid grey",
+                  backgroundColor: "transparent",
+                  outline: "none",
                 }}
-                placeholder=" Search"
+                placeholder="Search"
                 type="text"
                 value={searchTag}
                 onChange={(e) => setSearchTag(e.target.value)}
@@ -130,7 +134,7 @@ const Tags = () => {
                   <TagConatiner tags={data} />
                 </TabPanel>
                 <TabPanel value={valuee} index={1}>
-                  <TagConatiner tags={data} />
+                  <TagConatiner tags={data?.sort()} />
                 </TabPanel>
                 <TabPanel value={valuee} index={2}>
                   <TagConatiner tags={data?.reverse()} />

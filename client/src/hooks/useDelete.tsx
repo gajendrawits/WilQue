@@ -7,7 +7,7 @@ interface IParams {
   token?: boolean;
 }
 
-const del = async ({ url, payload, token = false }: IParams) => {
+const del = async ({ url, payload, token }: IParams) => {
   let headers: any;
   if (token) {
     const token = localStorage.getItem("token");

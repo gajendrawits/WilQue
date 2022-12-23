@@ -89,11 +89,17 @@ const Container = () => {
               pb: 6,
             }}
           >
-            <Link>Questions</Link>
+            <Link sx={{ width: "10%", minWidth: "fit-content" }}>
+              Questions
+            </Link>
 
             <TextField
               size="small"
-              sx={{ "& .MuiOutlinedInput-root": { borderRadius: 4 } }}
+              sx={{
+                "& .MuiOutlinedInput-root": { borderRadius: 4 },
+                width: "50%",
+                margin: "0 10px",
+              }}
               value={searchQuery}
               onChange={(e) => handleSearchQuery(e.target.value)}
               InputProps={{
@@ -106,6 +112,7 @@ const Container = () => {
             />
 
             <Button
+              sx={{ width: "10%", minWidth: "fit-content" }}
               variant="contained"
               onClick={() => router.push("/askQuestion")}
             >
@@ -148,11 +155,13 @@ const Container = () => {
                 return (
                   <Grid sx={{ mb: 2 }}>
                     <Typography
+                      onClick={() => handleClick(question, index)}
                       sx={{
                         mt: 2,
                         p: 2,
                         border: "1px solid lightgrey",
                         display: "flex",
+                        cursor: "pointer",
                       }}
                       key={index}
                     >
@@ -182,7 +191,7 @@ const Container = () => {
                           gap: 3,
                         }}
                       >
-                        <div onClick={() => handleClick(question, index)}>
+                        <div>
                           <Typography
                             sx={{
                               fontWeight: "700",

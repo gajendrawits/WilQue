@@ -18,12 +18,13 @@ const TagContainer = (props: any) => {
       {props?.tags?.map((tag: any) => {
         return (
           <Card
+            variant="outlined"
             sx={{
+              boxShadow: "px 2px grey",
               display: "flex",
               flexDirection: "column",
               gap: 2,
               p: 1,
-              border: "1px solid #9155FD",
             }}
           >
             <Typography sx={{ width: "100px" }}>#{tag._id}</Typography>
