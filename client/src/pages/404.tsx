@@ -45,7 +45,7 @@ const TreeIllustration = styled("img")(({ theme }) => ({
     bottom: 0,
   },
 }));
-console.log("first");
+
 const Error404 = () => {
   return (
     <Box className="content-center">

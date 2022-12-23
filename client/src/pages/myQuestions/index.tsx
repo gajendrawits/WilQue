@@ -108,6 +108,10 @@ const Container = () => {
                   0,
                   question?.author?.username?.indexOf("@")
                 );
+                const currentDate: any = new Date();
+                const myDate =
+                  parseInt(moment(currentDate).format("DD")) -
+                  parseInt(moment(date).format("DD"));
 
                 return (
                   <Grid sx={{ mb: 2 }}>
@@ -238,7 +242,11 @@ const Container = () => {
                             src={question.author.profilePhoto}
                           />
                           {name} asked at:
-                          {" " + moment(date).format("DD-MMM-YYYY")}
+                          {myDate === 0
+                            ? "today"
+                            : myDate === 1
+                            ? "yesterday"
+                            : myDate + "days ago"}
                         </Typography>
                       </Typography>
                     </Typography>
