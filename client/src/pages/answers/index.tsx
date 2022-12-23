@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Button, CircularProgress, styled } from "@mui/material";
-import Comment from "src/component/Comment";
+import Comment from "src/component/comment";
 import QuillEdit from "../editor";
 import router from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
@@ -176,10 +176,11 @@ const answers = () => {
                     </p>
                   </div>
                 </Typography>
-                {answer?.comments?.map((e: any) => {
+                <strong> Comments :</strong>
+                {answer?.comments?.map((comments: any) => {
                   return (
                     <div>
-                      {e?.author?.username} Commented {e?.body}
+                      <div>{comments?.body}</div>
                     </div>
                   );
                 })}

@@ -13,8 +13,6 @@ const index = (props: any) => {
   const [comment, setComment] = useState(false);
 
   const { mutateAsync, isLoading, isSuccess, data } = usePost();
-  console.log("data", data);
-  console.log("question", question);
 
   const postComment = async () => {
     const data = {

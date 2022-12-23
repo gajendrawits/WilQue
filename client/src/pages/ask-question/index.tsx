@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AskQuestion from "src/pages/askQuestion/askQuestion";
+import AskQuestion from "src/pages/ask-question/askQuestion";
 
 const askQuestion = () => {
   return (
