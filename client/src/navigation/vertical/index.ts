@@ -36,9 +36,8 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: "My Questions ",
       icon: HelpIcon,
-      path: "/myQuestions",
+      path: "/myquestions",
     },
-
     {
       sectionTitle: "Developer tools",
     },

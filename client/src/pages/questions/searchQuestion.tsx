@@ -6,7 +6,7 @@ interface SearchProps {
   handleSearch: any;
 }
 
-const SearchQuestion = ({ searchQuery, handleSearch }: SearchProps) => {
+const SearchQuestions = ({ searchQuery, handleSearch }: SearchProps) => {
   const { refetch: fetchQuestions, data } = useGet(
     "searchQuestion",
     `/questions/${searchQuery}`
@@ -23,4 +23,4 @@ const SearchQuestion = ({ searchQuery, handleSearch }: SearchProps) => {
   return <div></div>;
 };
 
-export default SearchQuestion;
+export default SearchQuestions;

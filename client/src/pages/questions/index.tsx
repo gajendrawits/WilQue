@@ -12,7 +12,7 @@ import { QuestionContext } from "src/@core/context/QuestionContext";
 import { Space, Pagination } from "antd";
 import InputAdornment from "@mui/material/InputAdornment";
 import Magnify from "mdi-material-ui/Magnify";
-import SearchQuestion from "src/pages/questions/searchQuestion";
+import SearchQuestions from "src/pages/questions/searchQuestion";
 import { get } from "react-hook-form";
 
 const postsPerPage = 6;
@@ -299,7 +299,7 @@ const Container = () => {
           </div>
         </Grid>
       </Grid>
-      <SearchQuestion searchQuery={searchQuery} handleSearch={handleSearch} />
+      <SearchQuestions searchQuery={searchQuery} handleSearch={handleSearch} />
     </>
   );
 };
