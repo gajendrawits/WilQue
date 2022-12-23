@@ -5,7 +5,6 @@ import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import HelpIcon from "@material-ui/icons/Help";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import FormatColorTextIcon from "@material-ui/icons/FormatColorText";
-import ListAltIcon from "@material-ui/icons/ListAlt";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 
 // ** Type import
@@ -36,9 +35,8 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: "My Questions ",
       icon: HelpIcon,
-      path: "/myQuestions",
+      path: "/myquestions",
     },
-
     {
       sectionTitle: "Developer tools",
     },

@@ -1,5 +1,3 @@
-// ** MUI Imports
-// import StarOutlineIcon from "@material-ui/icons/StarOutline";
 import StarsIcon from "@material-ui/icons/Stars";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -11,6 +9,7 @@ import CardContent from "@mui/material/CardContent";
 import { useEffect } from "react";
 import useGet from "src/hooks/useGet";
 import CircularProgress from "@mui/material/CircularProgress";
+import router from "next/router";
 
 const CardUser = () => {
   const {
@@ -25,6 +24,13 @@ const CardUser = () => {
   useEffect(() => {
     fetchDetails();
   }, []);
+
+  const handleClick = (userName: any, index: number) => {
+    router.push({
+      pathname: "/userQuestion",
+      query: { userName: userName },
+    });
+  };
 
   if (isLoading) {
     return (
@@ -64,16 +70,9 @@ const CardUser = () => {
         <Typography variant="h4" sx={{ pb: 6 }}>
           <Link>Users</Link>
         </Typography>
-        {/* <Typography variant="h6">
-          A user is a person or thing that uses something such as a place,
-          facility, product, or machine.
-          <br></br>A user is a person who utilizes a computer or network
-          service.
-        </Typography> */}
       </Grid>
       <Card
         sx={{
-          // backgroundColor: "white",
           width: "100%",
           padding: 5,
           display: "grid",
@@ -85,11 +84,10 @@ const CardUser = () => {
           return (
             <Card
               sx={{
-                // border: 2,
                 boxShadow: 10,
                 color: "common.white",
-                // backgroundColor: "#9155FD",
               }}
+              onClick={() => handleClick(user.username, 5)}
             >
               <CardContent
                 sx={{
@@ -103,7 +101,6 @@ const CardUser = () => {
                     display: "flex",
                     marginBottom: 2.75,
                     alignItems: "center",
-                    // color: "common.white",
                   }}
                 >
                   {user.username}

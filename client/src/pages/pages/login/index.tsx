@@ -18,9 +18,6 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiCard, { CardProps } from "@mui/material/Card";
 import InputAdornment from "@mui/material/InputAdornment";
-import Stack from "@mui/material/Stack";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import MuiFormControlLabel, {
   FormControlLabelProps,
 } from "@mui/material/FormControlLabel";
@@ -39,7 +36,6 @@ import BlankLayout from "src/@core/layouts/BlankLayout";
 
 // ** Demo Imports
 import FooterIllustrationsV1 from "src/views/pages/auth/FooterIllustration";
-import { useGoogleLogin } from "@react-oauth/google";
 import usePost from "src/hooks/usePost";
 import { useForm } from "react-hook-form";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -107,7 +103,6 @@ const LoginPage = () => {
   };
 
   if (isSuccess) {
-    console.log("shubham");
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.userInfo));
     router.push(
