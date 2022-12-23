@@ -20,5 +20,19 @@ export default function Home({ handleAnswerValue }: any) {
     setQuestionValue(newobj);
   };
 
-  return <QuillNoSSRWrapper theme="snow" onChange={handleValue} />;
+  return (
+    <div
+      style={{
+        height: "200px",
+      }}
+    >
+      <QuillNoSSRWrapper
+        style={{
+          height: "150px",
+        }}
+        theme="snow"
+        onChange={handleValue}
+      />
+    </div>
+  );
 }

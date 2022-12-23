@@ -2,14 +2,22 @@ import React, { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Button, CircularProgress } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  styled,
+  TextareaAutosize,
+} from "@mui/material";
 import { flexbox } from "@mui/system";
 import QuillEdit from "../editor";
 import router from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
+import { AnsContext } from "src/@core/context/AnswerContext";
+
 import usePost from "src/hooks/usePost";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useDelete from "src/hooks/useDelete";
+import moment from "moment";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -20,6 +28,7 @@ const answers = () => {
     router.push("/askQuestion");
   };
   const { question } = getQuestionValue;
+  console.log("question", question);
 
   const { mutateAsync, isLoading, isSuccess } = usePost();
 
@@ -60,6 +69,14 @@ const answers = () => {
   if (delteIsSuccess) {
     router.push("/");
   }
+
+  const Container = styled("div")(() => ({
+    "& .MuiTypography-root": {
+      img: {
+        maxWidth: "95%",
+      },
+    },
+  }));
 
   return (
     <Grid sx={{ pb: 6 }}>
@@ -116,44 +133,125 @@ const answers = () => {
             if (answer?.author?.username == getUserDetail?.username) {
               flag = true;
             }
+            const authorName = answer?.author?.username?.substring(
+              0,
+              question?.author?.username?.indexOf("@")
+            );
+
+            const [comment, setComment] = useState(false);
+            const date: number = answer.created;
+            const currentDate: any = new Date();
+            const myDate =
+              parseInt(moment(currentDate).format("DD")) -
+              parseInt(moment(date).format("DD"));
+
             return (
-              <Typography
-                sx={{
-                  p: 3,
-                  background: "lightgrey",
-                }}
-              >
-                <Typography sx={{ p: 2 }} key={answer?.id}>
-                  Answer: {index + 1}) {answer?.text}
-                  {flag ? (
-                    <DeleteIcon
-                      sx={{
-                        fontSize: "28px",
-                        position: "relative",
-                        top: "5px",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => handleDelete(answer?.id)}
-                    />
-                  ) : null}
+              <Container>
+                <Typography
+                  sx={{
+                    p: 3,
+                    background: "lightgrey",
+                  }}
+                >
+                  <Typography
+                    sx={{ p: 2, width: "100%", boxSizing: "content-box" }}
+                    key={answer?.id}
+                  >
+                    Answer: {index + 1}
+                    <div
+                      dangerouslySetInnerHTML={{ __html: answer.text }}
+                    ></div>
+                    {flag ? (
+                      <DeleteIcon
+                        sx={{
+                          fontSize: "28px",
+                          position: "relative",
+                          top: "5px",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => handleDelete(answer?.id)}
+                      />
+                    ) : null}
+                  </Typography>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <p>
+                      {authorName} answered
+                      {myDate === 0
+                        ? " today"
+                        : myDate === 1
+                        ? " yesterday"
+                        : myDate + " days ago"}
+                    </p>
+                  </div>
                 </Typography>
-              </Typography>
+
+                <p
+                  onClick={() => {
+                    setComment(!comment);
+                  }}
+                  style={{
+                    paddingLeft: "12px",
+                    color: "blue",
+                    cursor: "pointer",
+                    width: "fit-content",
+                  }}
+                >
+                  Add a comment...
+                </p>
+                {comment ? (
+                  <>
+                    <TextareaAutosize
+                      aria-label="minimum height"
+                      minRows={1}
+                      placeholder="Add a comment..."
+                      style={{
+                        width: "95%",
+                        maxWidth: "95%",
+                        marginLeft: "12px",
+                        padding: "10px",
+                        border: "none",
+                      }}
+                    />
+                    <Button
+                      type="submit"
+                      onClick={() => {
+                        // postComment();
+                      }}
+                      sx={{ width: "fit-content" }}
+                    >
+                      Post Comment
+                    </Button>
+                  </>
+                ) : null}
+              </Container>
             );
           })}
         </Typography>
-        <div>
-          <QuillEdit handleAnswerValue={handleAnswerValue} />
-        </div>
-        <Button
-          variant="contained"
-          type="submit"
-          sx={{
-            m: 2,
-          }}
-          onClick={postAnswer}
-        >
-          {isLoading ? <CircularProgress color="inherit" /> : "Post Answer"}
-        </Button>
+        <Typography>
+          <Typography>
+            <p>Post Your Answer</p>
+            <div>
+              <QuillEdit handleAnswerValue={handleAnswerValue} />
+            </div>
+          </Typography>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{
+              m: 2,
+            }}
+            onClick={postAnswer}
+          >
+            {isLoading ? <CircularProgress color="inherit" /> : "Post Answer"}
+          </Button>
+        </Typography>
       </Typography>
     </Grid>
   );

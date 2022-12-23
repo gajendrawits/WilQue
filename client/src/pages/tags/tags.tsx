@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 
-const tags = (props: any) => {
+const TagContainer = (props: any) => {
   return (
     <Grid
       sx={{
@@ -26,7 +26,7 @@ const tags = (props: any) => {
               border: "1px solid #9155FD",
             }}
           >
-            <Typography sx={{ widh: "200px" }}>{tag._id}</Typography>
+            <Typography sx={{ widh: "200px" }}>#{tag._id}</Typography>
             <Typography sx={{ widh: "200px" }}>{tag.description}</Typography>
           </Card>   
         );
@@ -34,4 +34,4 @@ const tags = (props: any) => {
     </Grid>
   );
 };
-export default tags;
+export default TagContainer;
