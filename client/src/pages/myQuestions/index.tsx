@@ -48,6 +48,14 @@ const Container = () => {
     (number - 1) * postsPerPage,
     postsPerPage * number
   );
+  const handleClick = (question: any, index: number) => {
+    const QuestionObj = { question };
+    setQuestionValue(QuestionObj);
+    router.push({
+      pathname: "/answers",
+      query: { question: index + 1 },
+    });
+  };
 
   return (
     <Grid
@@ -108,13 +116,19 @@ const Container = () => {
                   0,
                   question?.author?.username?.indexOf("@")
                 );
+                const currentDate: any = new Date();
 
+                const myDate =
+                  parseInt(moment(currentDate).format("DD")) -
+                  parseInt(moment(date).format("DD"));
                 return (
                   <Grid sx={{ mb: 2 }}>
                     <Typography
+                      onClick={() => handleClick(question, index)}
                       sx={{
                         mt: 2,
                         p: 2,
+                        cursor: "pointer",
                         border: "1px solid lightgrey",
                         display: "flex",
                       }}
@@ -238,7 +252,11 @@ const Container = () => {
                             src={question.author.profilePhoto}
                           />
                           {name} asked at:
-                          {" " + moment(date).format("DD-MMM-YYYY")}
+                          {myDate === 0
+                            ? "today"
+                            : myDate === 1
+                            ? "yesterday"
+                            : myDate + " days ago"}
                         </Typography>
                       </Typography>
                     </Typography>
