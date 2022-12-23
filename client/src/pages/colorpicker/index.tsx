@@ -104,11 +104,7 @@ const ColorPicker = () => {
                     borderRadius: "8px",
                   }}
                 ></Typography>
-                <Typography
-                  onClick={() => {
-                    updateClipboard(red.color);
-                  }}
-                >
+                <Typography onClick={() => updateClipboard(red.color)}>
                   {red.color}
                 </Typography>
               </Card>
@@ -150,11 +146,7 @@ const ColorPicker = () => {
                     borderRadius: "8px",
                   }}
                 ></Typography>
-                <Typography
-                  onClick={() => {
-                    updateClipboard(red.color);
-                  }}
-                >
+                <Typography onClick={() => updateClipboard(red.color)}>
                   {red.color}
                 </Typography>
               </Card>
@@ -197,11 +189,7 @@ const ColorPicker = () => {
                     borderRadius: "8px",
                   }}
                 ></Typography>
-                <Typography
-                  onClick={() => {
-                    updateClipboard(red.color);
-                  }}
-                >
+                <Typography onClick={() => updateClipboard(red.color)}>
                   {red.color}
                 </Typography>
               </Card>

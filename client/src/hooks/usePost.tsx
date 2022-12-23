@@ -7,13 +7,12 @@ interface IParams {
   token?: boolean;
 }
 
-const post = async ({ url, payload, token = true }: IParams) => {
+const post = async ({ url, payload, token }: IParams) => {
   let headers: any;
   if (token) {
     const authToken = localStorage.getItem("token");
     headers = { Authorization: `Bearer ${authToken}` };
   }
-
   const { data } = await axiosInstance.post(url, payload, { headers });
   return data;
 };

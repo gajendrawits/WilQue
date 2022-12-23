@@ -1,29 +1,51 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import useGet from "src/hooks/useGet";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import moment from "moment";
-import CircularProgress from "@mui/material/CircularProgress";
-import { QuestionContext } from "src/@core/context/QuestionContext";
-import { Space, Pagination, Empty } from "antd";
 import { Avatar, Button, Card } from "@mui/material";
 import router from "next/router";
 import Link from "@mui/material/Link";
-import useGet from "src/hooks/useGet";
+import { Empty } from "antd";
 
-const SearchByTag = () => {
-  const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
-  const { tagvalue } = getQuestionValue;
+import CircularProgress from "@mui/material/CircularProgress";
+import { QuestionContext } from "src/@core/context/QuestionContext";
+import { Space, Pagination } from "antd";
+
+const postsPerPage = 4;
+
+const Container = () => {
+  const [profileDetails, setProfileDetails] = useState<any>();
+  useEffect(() => {
+    const userData: any = localStorage.getItem("user");
+    setProfileDetails(JSON.parse(userData));
+  }, []);
+
+  const user = profileDetails?.username;
 
   const {
     refetch: fetchQuestions,
     data,
     isLoading,
-  } = useGet("searchQuestion", `/questions/${tagvalue}`);
+  } = useGet("question", `/question/user/${router?.router?.query?.userName}`);
+
+  const filteredQues = data?.filter((value: any) => {
+    return value.author.username === user;
+  });
+
+  const { setQuestionValue } = useContext(QuestionContext);
+
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
 
   const [number, setNumber] = useState(1);
-  const postsPerPage = 4;
+
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
+  const reversedData = filteredQues?.reverse();
+
+  let newData = data?.slice((number - 1) * postsPerPage, postsPerPage * number);
   const handleClick = (question: any, index: number) => {
     const QuestionObj = { question };
     setQuestionValue(QuestionObj);
@@ -32,10 +54,6 @@ const SearchByTag = () => {
       query: { question: index + 1 },
     });
   };
-
-  useEffect(() => {
-    fetchQuestions();
-  }, []);
 
   return (
     <Grid
@@ -53,30 +71,20 @@ const SearchByTag = () => {
             pb: 6,
           }}
         >
-          <Link
+          <Link>{router?.router?.query?.userName}</Link>
+        </Typography>
+        {newData?.length !== 0 ? (
+          <Typography
             sx={{
-              textTransform: "capitalize",
+              borderBottom: "1px solid lightgrey",
+              pt: 5,
+              pb: 5,
+              fontWeight: "900",
             }}
           >
-            {tagvalue} questions
-          </Link>
-          <Button
-            variant="contained"
-            onClick={() => router.push("/askQuestion")}
-          >
-            Ask Question
-          </Button>
-        </Typography>
-        <Typography
-          sx={{
-            borderBottom: "1px solid lightgrey",
-            pt: 5,
-            pb: 5,
-            fontWeight: "900",
-          }}
-        >
-          Total questions : {data?.length}
-        </Typography>
+            Total questions : {newData?.length}
+          </Typography>
+        ) : null}
         {isLoading ? (
           <Typography
             sx={{
@@ -90,8 +98,8 @@ const SearchByTag = () => {
           </Typography>
         ) : null}
 
-        {data?.length ? (
-          data.map((question: any, index: number) => {
+        {newData?.length ? (
+          newData.map((question: any, index: number) => {
             const date = question.created;
 
             const name = question?.author?.username?.substring(
@@ -211,6 +219,7 @@ const SearchByTag = () => {
                           borderRadius: "8px",
                         }}
                       >
+                        {" "}
                         Answers :{" " + question.answers?.length}
                       </Card>
                     </Typography>
@@ -248,12 +257,12 @@ const SearchByTag = () => {
           <Empty />
         )}
         <div className="pagination">
-          {!!data?.length && (
+          {!!reversedData?.length && (
             <Space>
               <Pagination
                 defaultCurrent={number}
                 pageSize={postsPerPage}
-                total={data?.length}
+                total={reversedData?.length}
                 onChange={handlePage}
               />
             </Space>
@@ -264,4 +273,4 @@ const SearchByTag = () => {
   );
 };
 
-export default SearchByTag;
+export default Container;

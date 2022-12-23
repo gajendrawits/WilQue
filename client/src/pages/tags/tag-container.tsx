@@ -32,12 +32,13 @@ const TagContainer = (props: any) => {
         {props?.tags?.map((tag: any) => {
           return (
             <Card
+              variant="outlined"
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 gap: 2,
                 p: 1,
-                border: "1px solid #9155FD",
+                boxShadow: "px 2px grey",
               }}
               onClick={() => handleClicked(tag._id)}
             >

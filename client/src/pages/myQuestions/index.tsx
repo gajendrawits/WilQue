@@ -57,6 +57,7 @@ const Container = () => {
     });
   };
 
+  
   return (
     <Grid
       sx={{
@@ -206,8 +207,7 @@ const Container = () => {
                                 <Card
                                   variant="outlined"
                                   sx={{
-                                    background: "#d0b3f5",
-                                    p: 2,
+                                    p: 1,
                                     borderRadius: "8px",
                                   }}
                                   key={index}
