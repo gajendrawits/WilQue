@@ -2,7 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Button, CircularProgress, TextareaAutosize } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  TextareaAutosize,
+  styled,
+} from "@mui/material";
 import { flexbox } from "@mui/system";
 import QuillEdit from "../editor";
 import router from "next/router";
@@ -82,6 +87,14 @@ const answers = () => {
     router.push("/");
   }
 
+  const Container = styled("div")(() => ({
+    "& .MuiTypography-root": {
+      img: {
+        maxWidth: "95%",
+      },
+    },
+  }));
+
   return (
     <Grid sx={{ pb: 6 }}>
       <Typography
@@ -150,7 +163,7 @@ const answers = () => {
               parseInt(moment(date).format("DD"));
 
             return (
-              <>
+              <Container>
                 <Typography
                   sx={{
                     p: 3,
@@ -237,7 +250,7 @@ const answers = () => {
                     </Button>
                   </>
                 ) : null}
-              </>
+              </Container>
             );
           })}
         </Typography>
