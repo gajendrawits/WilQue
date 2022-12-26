@@ -3,14 +3,20 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Button, CircularProgress, styled } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import Comment from "src/component/comment";
+import Box from "@mui/material/Box";
 import QuillEdit from "../editor";
 import router from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useDelete from "src/hooks/useDelete";
+import { Divider } from "@mui/material";
 import moment from "moment";
+import AddCommentSharpIcon from "@mui/icons-material/AddCommentSharp";
+import ThumbUpSharpIcon from "@mui/icons-material/ThumbUpSharp";
+import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -94,12 +100,10 @@ const answers = () => {
         <Typography
           sx={{
             pt: 3,
-            ".ql-syntax": {
-              maxWidth: "100%",
-            },
           }}
-          dangerouslySetInnerHTML={{ __html: question && question?.text }}
-        ></Typography>
+        >
+          {question && question?.text}
+        </Typography>
         <Typography
           sx={{
             pt: 3,
@@ -124,20 +128,26 @@ const answers = () => {
               0,
               question?.author?.username?.indexOf("@")
             );
+
+            const [comment, setComment] = useState(false);
             const date: number = answer.created;
             const currentDate: any = new Date();
             const myDate =
               parseInt(moment(currentDate).format("DD")) -
               parseInt(moment(date).format("DD"));
+
             return (
-              <Container key={index}>
+              <Container>
                 <Typography
                   sx={{
                     p: 3,
                     background: "lightgrey",
                   }}
                 >
-                  <Typography sx={{ p: 2, width: "100%" }} key={answer?.id}>
+                  <Typography
+                    sx={{ p: 2, width: "100%", boxSizing: "content-box" }}
+                    key={answer?.id}
+                  >
                     Answer: {index + 1}
                     <div
                       dangerouslySetInnerHTML={{ __html: answer.text }}
@@ -173,11 +183,63 @@ const answers = () => {
                   </div>
                 </Typography>
 
-                <Comment
-                  answerId={answer?.id}
-                  questionId={question?.id}
-                  answer={answer}
-                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 5,
+                  }}
+                >
+                  <ThumbUpSharpIcon
+                    color={comment ? "inherit" : "inherit"}
+                    fontSize="large"
+                  />
+                  <ThumbDownAltSharpIcon
+                    color={comment ? "inherit" : "inherit"}
+                    fontSize="large"
+                  />
+                  <div
+                    onClick={() => {
+                      setComment(!comment);
+                    }}
+                  >
+                    <AddCommentSharpIcon
+                      color={comment ? "primary" : "inherit"}
+                      fontSize="large"
+                    ></AddCommentSharpIcon>
+                  </div>
+                </Box>
+                {answer?.comments?.map((comments: any) => {
+                  return (
+                    <Box
+                      sx={{
+                        mr: 6,
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      {comment && (
+                        <Avatar
+                          alt="Mary Vaughn"
+                          src={comments.author.profilePhoto}
+                          sx={{ width: 34, height: 34, marginRight: 2.75 }}
+                        />
+                      )}
+                      <Typography variant="body2">
+                        {comment && <div>{comments?.body}</div>}
+                        {comment && <Divider />}
+                      </Typography>
+                    </Box>
+                  );
+                })}
+
+                <div>
+                  <Comment
+                    answerId={answer?.id}
+                    questionId={question?.id}
+                    comment={answer?.comments}
+                    showCommnetArea={comment}
+                  />
+                </div>
               </Container>
             );
           })}
