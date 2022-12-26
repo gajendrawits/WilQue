@@ -4,7 +4,7 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Button, CircularProgress, styled } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import Comment from "src/component/Comment";
+import Comment from "src/component/comment";
 import Box from "@mui/material/Box";
 import QuillEdit from "../editor";
 import router from "next/router";
@@ -202,8 +202,6 @@ const answers = () => {
                       setComment(!comment);
                     }}
                   >
-                    {/* Add a comment... */}
-
                     <AddCommentSharpIcon
                       color={comment ? "primary" : "inherit"}
                       fontSize="large"

@@ -2,8 +2,6 @@ import { Button, TextareaAutosize } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
-import router from "next/router";
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { Avatar } from "@material-ui/core";
 

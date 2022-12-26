@@ -35,15 +35,18 @@ const TagContainer = (props: any) => {
               variant="outlined"
               sx={{
                 display: "flex",
-                flexDirection: "column",
                 gap: 2,
                 p: 1,
-                boxShadow: "px 2px grey",
+                justifyContent: "center",
+                ":hover": {
+                  backgroundColor: "#dfd5f2",
+                  scale: "0.98",
+                  border: "1px solid lightgrey",
+                },
               }}
               onClick={() => handleClicked(tag._id)}
             >
-              <Typography sx={{ width: "100px" }}>#{tag._id}</Typography>
-              <Typography sx={{ width: "100px" }}>{tag.description}</Typography>
+              <Typography>#{tag?._id}</Typography>
             </Card>
           );
         })}
