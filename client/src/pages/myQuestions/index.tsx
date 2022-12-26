@@ -6,21 +6,23 @@ import moment from "moment";
 import { Avatar, Button, Card } from "@mui/material";
 import router from "next/router";
 import Link from "@mui/material/Link";
-
 import CircularProgress from "@mui/material/CircularProgress";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import { Space, Pagination } from "antd";
+import answers from "src/pages/answers";
 
 const postsPerPage = 4;
 
 const Container = () => {
   const [profileDetails, setProfileDetails] = useState<any>();
+  const user = profileDetails?.username;
+  const [number, setNumber] = useState(1);
+  const { setQuestionValue } = useContext(QuestionContext);
+
   useEffect(() => {
     const userData: any = localStorage.getItem("user");
     setProfileDetails(JSON.parse(userData));
   }, []);
-
-  const user = profileDetails?.username;
 
   const {
     refetch: fetchQuestions,
@@ -32,13 +34,9 @@ const Container = () => {
     return value.author.username === user;
   });
 
-  const { setQuestionValue } = useContext(QuestionContext);
-
   useEffect(() => {
     fetchQuestions();
   }, []);
-
-  const [number, setNumber] = useState(1);
 
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
@@ -57,7 +55,6 @@ const Container = () => {
     });
   };
 
-  
   return (
     <Grid
       sx={{
@@ -251,7 +248,7 @@ const Container = () => {
                             alt="Remy Sharp"
                             src={question.author.profilePhoto}
                           />
-                          {name} asked at:
+                          {name} asked :
                           {myDate === 0
                             ? "today"
                             : myDate === 1
