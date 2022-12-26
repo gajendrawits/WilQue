@@ -18,8 +18,6 @@ const index = (props: any) => {
   const { question } = getQuestionValue;
   const [getCommentValue, setCommentValue] = useState("");
 
-  // const [comment, setComment] = useState(false);
-
   const { mutateAsync, isLoading, isSuccess, data } = usePost();
 
   const postComment = async () => {

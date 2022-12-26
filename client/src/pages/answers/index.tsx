@@ -17,7 +17,6 @@ import moment from "moment";
 import AddCommentSharpIcon from "@mui/icons-material/AddCommentSharp";
 import ThumbUpSharpIcon from "@mui/icons-material/ThumbUpSharp";
 import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
-import { Directions } from "@material-ui/icons";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -211,14 +210,12 @@ const answers = () => {
                     ></AddCommentSharpIcon>
                   </div>
                 </Box>
-                {/* <AddCommentSharpIcon color="primary" fontSize="large" /> */}
                 {answer?.comments?.map((comments: any) => {
                   return (
                     <Box
                       sx={{
                         mr: 6,
                         display: "flex",
-                        // alignItems: "center",
                         flexDirection: "column",
                       }}
                     >
