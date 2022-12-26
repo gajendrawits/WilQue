@@ -1,6 +1,6 @@
 // ** Next Imports
 import Head from "next/head";
-import router, { Router } from "next/router";
+import router, { Router, useRouter } from "next/router";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -35,9 +35,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import "../../styles/globals.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useEffect, useState } from "react";
-
 import { QuestionContext } from "src/@core/context/QuestionContext";
-import { AnsContext } from "src/@core/context/AnswerContext";
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -69,21 +67,18 @@ const App = (props: ExtendedAppProps) => {
     "603187839996-vvgv5f0i7pcm5hbtkfhkov64i5unf80f.apps.googleusercontent.com";
 
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-
   // Variables
   const getLayout =
     Component.getLayout ?? ((page) => <UserLayout>{page}</UserLayout>);
 
-  const { authenticated, redirect, secure } = useAuthentication();
+  const { authenticated, redirect } = useAuthentication();
 
   useEffect(() => {
-    const a = localStorage.getItem("token");
-    if (redirect && authenticated && !a) {
+    const token = localStorage.getItem("token");
+    if (token && authenticated && !redirect) {
       router.push("/");
-    } else if (redirect && !a) {
+    } else if (!token && redirect) {
       router.push("/pages/landingpage/");
-    } else if (a !== null) {
-      router.push("/");
     }
   }, [redirect]);
 

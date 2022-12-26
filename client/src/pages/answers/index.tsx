@@ -3,14 +3,20 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Button, CircularProgress, styled } from "@mui/material";
-import Comment from "src/component/Comment";
+import Avatar from "@mui/material/Avatar";
+import Comment from "src/component/comment";
+import Box from "@mui/material/Box";
 import QuillEdit from "../editor";
 import router from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useDelete from "src/hooks/useDelete";
+import { Divider } from "@mui/material";
 import moment from "moment";
+import AddCommentSharpIcon from "@mui/icons-material/AddCommentSharp";
+import ThumbUpSharpIcon from "@mui/icons-material/ThumbUpSharp";
+import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -176,16 +182,63 @@ const answers = () => {
                     </p>
                   </div>
                 </Typography>
-                <strong> Comments :</strong>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 5,
+                  }}
+                >
+                  <ThumbUpSharpIcon
+                    color={comment ? "inherit" : "inherit"}
+                    fontSize="large"
+                  />
+                  <ThumbDownAltSharpIcon
+                    color={comment ? "inherit" : "inherit"}
+                    fontSize="large"
+                  />
+                  <div
+                    onClick={() => {
+                      setComment(!comment);
+                    }}
+                  >
+                    <AddCommentSharpIcon
+                      color={comment ? "primary" : "inherit"}
+                      fontSize="large"
+                    ></AddCommentSharpIcon>
+                  </div>
+                </Box>
                 {answer?.comments?.map((comments: any) => {
                   return (
-                    <div>
-                      <div>{comments?.body}</div>
-                    </div>
+                    <Box
+                      sx={{
+                        mr: 6,
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      {comment && (
+                        <Avatar
+                          alt="Mary Vaughn"
+                          src={comments.author.profilePhoto}
+                          sx={{ width: 34, height: 34, marginRight: 2.75 }}
+                        />
+                      )}
+                      <Typography variant="body2">
+                        {comment && <div>{comments?.body}</div>}
+                        {comment && <Divider />}
+                      </Typography>
+                    </Box>
                   );
                 })}
+
                 <div>
-                  <Comment answerId={answer?.id} questionId={question?.id} />
+                  <Comment
+                    answerId={answer?.id}
+                    questionId={question?.id}
+                    comment={answer?.comments}
+                    showCommnetArea={comment}
+                  />
                 </div>
               </Container>
             );

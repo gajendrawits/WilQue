@@ -1,5 +1,5 @@
 import React from "react";
-import "react-multi-carousel/lib/styles.css";
+
 import { Card, Grid, Typography } from "@mui/material";
 
 const DetailSection = () => {
@@ -133,105 +133,6 @@ const DetailSection = () => {
               </Card>
             );
           })}
-
-          {/* <Typography
-            sx={{
-              fontSize: "47px",
-              paddingBottom: "20px",
-              color: "rgba(220, 218, 228, 0.87)",
-              width: "32%",
-              height: "272px",
-              backgroundColor: "#28243D",
-              textAlign: "center",
-              paddingTop: "90px",
-              borderRadius: "24px",
-              cursor: "pointer",
-              boxShadow: "0 8px 15px #72a1ee96",
-              "&:hover": {
-                backgroundColor: "rgb(77, 102, 248)",
-              },
-            }}
-          >
-            Senior Developer Group.
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "47px",
-              paddingBottom: "20px",
-              color: "rgba(220, 218, 228, 0.87)",
-              width: "32%",
-              height: "272px",
-              backgroundColor: "#28243D",
-              textAlign: "center",
-              paddingTop: "90px",
-              borderRadius: "24px",
-              cursor: "pointer",
-              boxShadow: "0 8px 15px #72a1ee96",
-              "&:hover": {
-                backgroundColor: "rgb(77, 102, 248)",
-              },
-            }}
-          >
-            Star Points.
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "47px",
-              paddingBottom: "20px",
-              color: "rgba(220, 218, 228, 0.87)",
-              width: "32%",
-              height: "272px",
-              backgroundColor: "#28243D",
-              textAlign: "center",
-              paddingTop: "90px",
-              borderRadius: "24px",
-              cursor: "pointer",
-              boxShadow: "0 8px 15px #72a1ee96",
-              "&:hover": {
-                backgroundColor: "rgb(77, 102, 248)",
-              },
-            }}
-          >
-            Integration with Google Chat.
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "47px",
-              paddingBottom: "20px",
-              color: "rgba(220, 218, 228, 0.87)",
-              width: "32%",
-              height: "272px",
-              backgroundColor: "#28243D",
-              textAlign: "center",
-              paddingTop: "90px",
-              borderRadius: "24px",
-              cursor: "pointer",
-              "&:hover": {
-                backgroundColor: "rgb(77, 102, 248)",
-              },
-            }}
-          >
-            Team Group's.
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "47px",
-              paddingBottom: "20px",
-              color: "rgba(220, 218, 228, 0.87)",
-              width: "32%",
-              height: "272px",
-              backgroundColor: "#28243D",
-              textAlign: "center",
-              paddingTop: "90px",
-              borderRadius: "24px",
-              cursor: "pointer",
-              "&:hover": {
-                backgroundColor: "rgb(77, 102, 248)",
-              },
-            }}
-          >
-            Tag Feature.
-          </Typography> */}
         </Grid>
       </Grid>
     </Grid>
