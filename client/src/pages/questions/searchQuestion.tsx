@@ -20,7 +20,7 @@ const SearchQuestions = ({ searchQuery, handleSearch }: SearchProps) => {
   }, [searchQuery]);
 
   handleSearch(data);
-  return <div></div>;
+  return <></>;
 };
 
 export default SearchQuestions;
