@@ -57,7 +57,6 @@ const Container = () => {
     });
   };
 
-  
   return (
     <Grid
       sx={{
@@ -132,6 +131,11 @@ const Container = () => {
                         cursor: "pointer",
                         border: "1px solid lightgrey",
                         display: "flex",
+                        ":hover": {
+                          backgroundColor: "#dfd5f2",
+                          scale: "0.98",
+                          border: "1px solid lightgrey",
+                        },
                       }}
                       key={index}
                     >

@@ -1,31 +1,45 @@
-import { Button, TextareaAutosize } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import { QuestionContext } from "src/@core/context/QuestionContext";
+import React, { useState } from "react";
+import {
+  Button,
+  CircularProgress,
+  TextareaAutosize,
+  Typography,
+} from "@mui/material";
 import usePost from "src/hooks/usePost";
-import router from "next/router";
 
 const index = (props: any) => {
-  const { getQuestionValue } = useContext(QuestionContext);
-
-  const { question } = getQuestionValue;
+  const { questionId, answerId, answer } = props;
   const [getCommentValue, setCommentValue] = useState("");
-
   const [comment, setComment] = useState(false);
-
-  const { mutateAsync, isLoading, isSuccess, data } = usePost();
+  const { mutateAsync, data, isLoading, isSuccess } = usePost();
 
   const postComment = async () => {
     const data = {
       comment: getCommentValue,
     };
     mutateAsync({
-      url: `/comment/${props.questionId}/${props.answerId}`,
+      url: `/comment/${questionId}/${answerId}`,
       payload: data,
       token: true,
     });
   };
   return (
     <>
+      <strong>Comments :</strong>
+      {answer &&
+        answer?.comments?.map((comments: any) => {
+          return (
+            <>
+              <Typography
+                sx={{
+                  borderBottom: "1px solid lightgrey",
+                }}
+              >
+                {comments?.body} - {comments?.author?.username}
+              </Typography>
+            </>
+          );
+        })}
       <p
         onClick={() => setComment(!comment)}
         style={{
@@ -59,7 +73,7 @@ const index = (props: any) => {
             }}
             sx={{ width: "fit-content" }}
           >
-            Post Comment
+            {isLoading ? <CircularProgress color="inherit" /> : "Post Comment"}
           </Button>
         </>
       ) : null}

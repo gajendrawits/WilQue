@@ -83,9 +83,23 @@ const CardUser = () => {
         {data?.map((user: any) => {
           return (
             <Card
+              className="card"
               sx={{
                 boxShadow: 10,
                 color: "common.white",
+                ":hover": {
+                  backgroundColor: "#dfd5f2",
+                  scale: "0.98",
+                  border: "1px solid lightgrey",
+                  // transitions: {
+                  //   easing: {
+                  //     easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+                  //     // easeOut: "cubic-bezier(0.0, 0, 0.2, 1)",
+                  //     // easeIn: "cubic-bezier(0.4, 0, 1, 1)",
+                  //     // sharp: "cubic-bezier(0.4, 0, 0.6, 1)",
+                  //   },
+                  // },
+                },
               }}
               onClick={() => handleClick(user.username, 5)}
             >
