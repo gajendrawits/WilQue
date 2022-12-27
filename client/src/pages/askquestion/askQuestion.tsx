@@ -8,7 +8,7 @@ import TagInput from "src/pages/askquestion/tagInput";
 import TextAskQuestionInput from "src/pages/askquestion/textAskQuestionInput";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
-import BasicModal from "src/component/Modal";
+import BasicModal from "src/component/modal";
 import router from "next/router";
 
 const index = () => {

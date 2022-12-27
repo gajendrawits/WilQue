@@ -60,8 +60,8 @@ const ROUTER = [
     SECURE: true,
   },
   {
-    LINK: "/askQuestion",
-    TITLE: "Questions",
+    LINK: "/askquestion",
+    TITLE: "Ask Questions",
     SECURE: true,
   },
   {

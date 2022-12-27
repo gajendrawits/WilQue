@@ -7,17 +7,14 @@ import { Avatar, Button, Card } from "@mui/material";
 import router from "next/router";
 import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
-import { QuestionContext } from "src/@core/context/QuestionContext";
 import { Space, Pagination } from "antd";
-import answers from "src/pages/answers";
 
 const postsPerPage = 4;
 
 const Container = () => {
   const [profileDetails, setProfileDetails] = useState<any>();
-  const user = profileDetails?.username;
   const [number, setNumber] = useState(1);
-  const { setQuestionValue } = useContext(QuestionContext);
+  const user = profileDetails?.username;
 
   useEffect(() => {
     const userData: any = localStorage.getItem("user");
@@ -46,12 +43,11 @@ const Container = () => {
     (number - 1) * postsPerPage,
     postsPerPage * number
   );
-  const handleClick = (question: any, index: number) => {
-    const QuestionObj = { question };
-    setQuestionValue(QuestionObj);
+
+  const handleClick = (questionId: any) => {
     router.push({
       pathname: "/answers",
-      query: { question: index + 1 },
+      query: { myquestion: "userquestion", questionId: questionId },
     });
   };
 
@@ -74,7 +70,7 @@ const Container = () => {
           <Link>My Questions</Link>
           <Button
             variant="contained"
-            onClick={() => router.push("/askQuestion")}
+            onClick={() => router.push("/askquestion")}
           >
             Ask Question
           </Button>
@@ -122,7 +118,7 @@ const Container = () => {
                 return (
                   <Grid sx={{ mb: 2 }}>
                     <Typography
-                      onClick={() => handleClick(question, index)}
+                      onClick={() => handleClick(question.id)}
                       sx={{
                         mt: 2,
                         p: 2,

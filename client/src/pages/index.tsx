@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 import Questions from "./questions";
 import { useRouter } from "next/router";
-import CustomizedSnackbars from "src/component/Message";
+import CustomizedSnackbars from "src/component/message";
 
 const Dashboard = (props: any) => {
   const router = useRouter();
