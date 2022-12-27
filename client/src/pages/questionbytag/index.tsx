@@ -6,35 +6,36 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import { Space, Pagination, Empty } from "antd";
 import { Avatar, Button, Card } from "@mui/material";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import Link from "@mui/material/Link";
 import useGet from "src/hooks/useGet";
 
 const SearchByTag = () => {
-  const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
-  const { tagvalue } = getQuestionValue;
-
+  //const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
+  const [number, setNumber] = useState(1);
+  const router = useRouter();
+  const { searchTag } = router.query;
   const {
     refetch: fetchQuestions,
     data,
     isLoading,
-  } = useGet("searchQuestion", `/questions/${tagvalue}`);
+  } = useGet("searchQuestion", `/questions/${searchTag}`);
 
-  const [number, setNumber] = useState(1);
   const postsPerPage = 4;
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
-  const handleClick = (question: any, index: number) => {
-    const QuestionObj = { question };
-    setQuestionValue(QuestionObj);
+
+  const handleClick = (questionId: any) => {
     router.push({
       pathname: "/answers",
-      query: { question: index + 1 },
+      query: { questionId: questionId },
     });
   };
 
   useEffect(() => {
-    fetchQuestions();
+    setTimeout(() => {
+      fetchQuestions();
+    }, 250);
   }, []);
 
   return (
@@ -58,7 +59,7 @@ const SearchByTag = () => {
               textTransform: "capitalize",
             }}
           >
-            {tagvalue} questions
+            {searchTag} questions
           </Link>
           <Button
             variant="contained"
@@ -106,7 +107,7 @@ const SearchByTag = () => {
             return (
               <Grid sx={{ mb: 2 }}>
                 <Typography
-                  onClick={() => handleClick(question, index)}
+                  onClick={() => handleClick(question.id)}
                   sx={{
                     mt: 2,
                     p: 2,

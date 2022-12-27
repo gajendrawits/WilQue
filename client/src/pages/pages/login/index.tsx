@@ -26,7 +26,7 @@ import MuiFormControlLabel, {
 
 import EyeOutline from "mdi-material-ui/EyeOutline";
 import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
-import CustomizedSnackbars from "src/component/Message";
+import CustomizedSnackbars from "src/component/message";
 
 // ** Configs
 import themeConfig from "src/configs/themeConfig";

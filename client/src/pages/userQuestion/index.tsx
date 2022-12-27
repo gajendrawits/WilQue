@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import moment from "moment";
 import { Avatar, Button, Card } from "@mui/material";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import Link from "@mui/material/Link";
 import { Empty } from "antd";
 
@@ -16,44 +16,41 @@ const postsPerPage = 4;
 
 const Container = () => {
   const [profileDetails, setProfileDetails] = useState<any>();
-  useEffect(() => {
-    const userData: any = localStorage.getItem("user");
-    setProfileDetails(JSON.parse(userData));
-  }, []);
+  const [number, setNumber] = useState(1);
+  const router = useRouter();
 
   const user = profileDetails?.username;
-
+  const { userName } = router.query;
   const {
     refetch: fetchQuestions,
     data,
     isLoading,
-  } = useGet("question", `/question/user/${router?.router?.query?.userName}`);
+  } = useGet("question", `/question/user/${userName}`);
 
   const filteredQues = data?.filter((value: any) => {
     return value.author.username === user;
   });
-
-  const { setQuestionValue } = useContext(QuestionContext);
-
-  useEffect(() => {
-    fetchQuestions();
-  }, []);
-
-  const [number, setNumber] = useState(1);
 
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
   const reversedData = filteredQues?.reverse();
 
   let newData = data?.slice((number - 1) * postsPerPage, postsPerPage * number);
-  const handleClick = (question: any, index: number) => {
-    const QuestionObj = { question };
-    setQuestionValue(QuestionObj);
+
+  const handleClick = (questionId: string) => {
     router.push({
       pathname: "/answers",
-      query: { question: index + 1 },
+      query: { questionId: questionId },
     });
   };
+
+  useEffect(() => {
+    const userData: any = localStorage.getItem("user");
+    setProfileDetails(JSON.parse(userData));
+    setTimeout(() => {
+      fetchQuestions();
+    }, 250);
+  }, []);
 
   return (
     <Grid
@@ -71,7 +68,7 @@ const Container = () => {
             pb: 6,
           }}
         >
-          <Link>{router?.router?.query?.userName}</Link>
+          <Link>{userName}</Link>
         </Typography>
         {newData?.length !== 0 ? (
           <Typography
@@ -114,7 +111,7 @@ const Container = () => {
             return (
               <Grid sx={{ mb: 2 }}>
                 <Typography
-                  onClick={() => handleClick(question, index)}
+                  onClick={() => handleClick(question.id)}
                   sx={{
                     mt: 2,
                     p: 2,

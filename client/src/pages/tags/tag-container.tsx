@@ -6,14 +6,10 @@ import { QuestionContext } from "src/@core/context/QuestionContext";
 import router from "next/router";
 
 const TagContainer = (props: any) => {
-  const { setQuestionValue } = useContext(QuestionContext);
-
   const handleClicked = (tag: any) => {
-    const tagvalue = { tagvalue: tag };
-    setQuestionValue(tagvalue);
     router.push({
       pathname: "/questionbytag",
-      query: tag,
+      query: { searchTag: tag },
     });
   };
 

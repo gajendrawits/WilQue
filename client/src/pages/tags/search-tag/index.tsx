@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import useGet from "src/hooks/useGet";
 import CircularProgress from "@mui/material/CircularProgress";
+import { QuestionContext } from "src/@core/context/QuestionContext";
+import router from "next/router";
 
 interface SearchProps {
   searchTag: string | undefined;
@@ -13,13 +15,19 @@ const SearchTag = ({ searchTag }: SearchProps) => {
   const {
     refetch: FetchSearchTag,
     data,
-    error,
     isFetching,
-  } = useGet("searchtag", `/tags/${searchTag}`);
+  } = useGet("searchingtag", `/tags/${searchTag}`);
 
   useEffect(() => {
     FetchSearchTag();
   }, [searchTag]);
+
+  const handleClicked = (tag: any) => {
+    router.push({
+      pathname: "/questionbytag",
+      query: { searchTag: tag },
+    });
+  };
 
   return (
     <>
@@ -55,7 +63,9 @@ const SearchTag = ({ searchTag }: SearchProps) => {
                     gap: 2,
                     p: 1,
                     border: "1px solid #9155FD",
+                    cursor: "pointer",
                   }}
+                  onClick={() => handleClicked(searchTag?._id)}
                 >
                   <Typography sx={{ widh: "100px" }}>
                     #{searchTag?._id}
