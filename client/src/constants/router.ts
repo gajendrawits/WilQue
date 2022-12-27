@@ -26,7 +26,7 @@ const ROUTER = [
   },
   {
     LINK: "/lorem-ipsum-generator",
-    TITLE: "Lorem ipsum generator",
+    TITLE: "Lorem-ipsum generator",
     SECURE: true,
   },
   {
