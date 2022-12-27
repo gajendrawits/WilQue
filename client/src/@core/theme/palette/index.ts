@@ -5,7 +5,7 @@ import { ThemeColor } from 'src/@core/layouts/types'
 const DefaultPalette = (mode: PaletteMode, themeColor: ThemeColor) => {
   // ** Vars
   const lightColor = '58, 53, 65'
-  const darkColor = '231, 227, 252'
+  const darkColor = '211, 211, 211'
   const mainColor = mode === 'light' ? lightColor : darkColor
 
   const primaryGradient = () => {
@@ -38,7 +38,7 @@ const DefaultPalette = (mode: PaletteMode, themeColor: ThemeColor) => {
     primary: {
       light: '#9E69FD',
       main: '#9155FD',
-      dark: '#804BDF',
+      dark: '#BDC3C7',
       contrastText: '#FFF'
     },
     secondary: {

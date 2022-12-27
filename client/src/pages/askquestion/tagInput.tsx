@@ -11,7 +11,8 @@ const tagInput = (props: tagInputProps) => {
   const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
 
   const handleInput = (value: string) => {
-    const arr = value.split(",");
+    const arr = value.toLowerCase().split(",");
+    console.log("arr", arr);
     const obj = { tags: arr };
     const newobj = { ...getQuestionValue, ...obj };
     setQuestionValue(newobj);
@@ -31,7 +32,6 @@ const tagInput = (props: tagInputProps) => {
       {props.heading}
       <input
         style={{
-          padding: 2,
           height: "2rem",
           borderRadius: "8px",
           border: "none",

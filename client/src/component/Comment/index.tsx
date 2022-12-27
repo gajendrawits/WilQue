@@ -4,6 +4,7 @@ import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
 import Stack from "@mui/material/Stack";
 import { Avatar } from "@material-ui/core";
+import router from "next/router";
 
 const index = (props: any) => {
   const [profileDetails, setProfileDetails] = useState<any>();
@@ -50,9 +51,7 @@ const index = (props: any) => {
             <Button
               type="submit"
               variant="contained"
-              onClick={() => {
-                postComment();
-              }}
+              onClick={() => postComment()}
               sx={{ width: "fit-content" }}
             >
               Comment

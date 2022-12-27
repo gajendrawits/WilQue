@@ -39,7 +39,6 @@ const TagContainer = (props: any) => {
                 p: 1,
                 justifyContent: "center",
                 ":hover": {
-                  backgroundColor: "#dfd5f2",
                   scale: "0.98",
                   border: "1px solid lightgrey",
                 },

@@ -56,6 +56,11 @@ const Tags = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  const filterTags = data?.map((element: any) => {
+    return element._id;
+  });
+
+  console.log(filterTags?.sort(), "filter----");
 
   return (
     <Grid

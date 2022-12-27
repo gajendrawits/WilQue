@@ -113,7 +113,7 @@ const Container = () => {
             <Button
               sx={{ width: "10%", minWidth: "fit-content" }}
               variant="contained"
-              onClick={() => router.push("/askQuestion")}
+              onClick={() => router.push("/askquestion")}
             >
               Ask Question
             </Button>
@@ -164,7 +164,6 @@ const Container = () => {
                         display: "flex",
                         cursor: "pointer",
                         ":hover": {
-                          backgroundColor: "#dfd5f2",
                           scale: "0.98",
                           border: "1px solid lightgrey",
                         },

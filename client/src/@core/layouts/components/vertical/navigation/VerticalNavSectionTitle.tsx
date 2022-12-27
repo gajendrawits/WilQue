@@ -40,10 +40,8 @@ const TypographyHeaderText = styled(Typography)<TypographyProps>(
 const VerticalNavSectionTitle = (props: Props) => {
   // ** Props
   const { item } = props;
-
   // ** Hook
   const theme = useTheme();
-
   return (
     <ListSubheader
       className="nav-section-title"
@@ -72,7 +70,7 @@ const VerticalNavSectionTitle = (props: Props) => {
         }}
       >
         <TypographyHeaderText
-          sx={{ fontSize: "1rem", color: "black", fontWeight: "500" }}
+          sx={{ fontSize: "1.2rem", color: "grey", fontWeight: "700" }}
           noWrap
         >
           {item.sectionTitle}

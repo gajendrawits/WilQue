@@ -14,7 +14,7 @@ export default function Home({ handleAnswerValue }: any) {
 
   const handleValue = (data: any) => {
     const value = data.slice(3, data.length - 4);
-    const obj = { text: { value } };
+    const obj = { text: value };
     handleAnswerValue(obj);
     const newobj = { ...getQuestionValue, ...obj };
     setQuestionValue(newobj);

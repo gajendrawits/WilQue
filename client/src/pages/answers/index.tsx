@@ -17,6 +17,7 @@ import moment from "moment";
 import AddCommentSharpIcon from "@mui/icons-material/AddCommentSharp";
 import ThumbUpSharpIcon from "@mui/icons-material/ThumbUpSharp";
 import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
+import { withStyles } from "@material-ui/core/styles";
 
 const answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -33,6 +34,13 @@ const answers = () => {
     mutateAsync({
       url: `/answer/${question?.id}`,
       payload: getAnswerValue,
+      token: true,
+    });
+  };
+  const upVote = (answerId: any) => {
+    console.log(question?.id, answerId);
+    mutateAsync({
+      url: `votes/upvote/${question?.id}/${answerId}`,
       token: true,
     });
   };
@@ -101,9 +109,8 @@ const answers = () => {
           sx={{
             pt: 3,
           }}
-        >
-          {question && question?.text}
-        </Typography>
+          dangerouslySetInnerHTML={{ __html: question && question?.text }}
+        ></Typography>
         <Typography
           sx={{
             pt: 3,
@@ -128,14 +135,12 @@ const answers = () => {
               0,
               question?.author?.username?.indexOf("@")
             );
-
             const [comment, setComment] = useState(false);
             const date: number = answer.created;
             const currentDate: any = new Date();
             const myDate =
               parseInt(moment(currentDate).format("DD")) -
               parseInt(moment(date).format("DD"));
-
             return (
               <Container>
                 <Typography
@@ -189,10 +194,16 @@ const answers = () => {
                     gap: 5,
                   }}
                 >
-                  <ThumbUpSharpIcon
-                    color={comment ? "inherit" : "inherit"}
-                    fontSize="large"
-                  />
+                  <div
+                    onClick={() => {
+                      upVote(answer?.id);
+                    }}
+                  >
+                    <ThumbUpSharpIcon
+                      color={comment ? "inherit" : "inherit"}
+                      fontSize="large"
+                    />
+                  </div>
                   <ThumbDownAltSharpIcon
                     color={comment ? "inherit" : "inherit"}
                     fontSize="large"
