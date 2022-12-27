@@ -25,6 +25,7 @@ interface ModalProps {
 }
 
 const BasicModal = ({ open, handleClose, title, subtitle }: ModalProps) => {
+  console.log("hello");
   return (
     <div>
       <Modal

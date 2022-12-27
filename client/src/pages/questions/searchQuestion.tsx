@@ -13,10 +13,14 @@ const SearchQuestions = ({ searchQuery, handleSearch }: SearchProps) => {
   );
 
   useEffect(() => {
-    const fetchQuestionsData = setTimeout(() => {
-      fetchQuestions();
-    }, 2000);
-    return () => clearTimeout(fetchQuestionsData);
+    if (searchQuery === undefined) {
+      return;
+    } else {
+      const fetchQuestionsData = setTimeout(() => {
+        fetchQuestions();
+      }, 2000);
+      return () => clearTimeout(fetchQuestionsData);
+    }
   }, [searchQuery]);
 
   handleSearch(data);
