@@ -1,6 +1,6 @@
 const ROUTER = [
   {
-    LINK: "/",
+    LINK: "/dashboard",
     TITLE: "Dashboard",
     SECURE: true,
   },
@@ -26,7 +26,7 @@ const ROUTER = [
   },
   {
     LINK: "/lorem-ipsum-generator",
-    TITLE: "Lorem ipsum generator",
+    TITLE: "Lorem-ipsum generator",
     SECURE: true,
   },
   {
@@ -35,12 +35,12 @@ const ROUTER = [
     SECURE: true,
   },
   {
-    LINK: "/pages/login",
+    LINK: "/login",
     TITLE: "Login",
     SECURE: false,
   },
   {
-    LINK: "/pages/register",
+    LINK: "/register",
     TITLE: "Register",
     SECURE: false,
   },
@@ -65,7 +65,7 @@ const ROUTER = [
     SECURE: true,
   },
   {
-    LINK: "/pages/landingpage",
+    LINK: "/",
     TITLE: "Landing-page",
     SECURE: false,
   },

@@ -76,9 +76,9 @@ const App = (props: ExtendedAppProps) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token && authenticated && !redirect) {
-      router.push("/");
+      router.push("/dashboard");
     } else if (!token && redirect) {
-      router.push("/pages/landingpage/");
+      router.push("/");
     }
   }, [redirect]);
 
