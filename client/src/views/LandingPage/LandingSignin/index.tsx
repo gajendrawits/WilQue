@@ -85,7 +85,7 @@ const SignupLanding = () => (
             <Button
               onClick={() => {
                 router.push({
-                  pathname: "/pages/login",
+                  pathname: "/login",
                 });
               }}
               type="primary"
