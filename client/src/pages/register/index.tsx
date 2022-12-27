@@ -104,7 +104,7 @@ const RegisterPage = () => {
 
   if (isSuccess) {
     alert("Hey you are Sucessfully Sign in");
-    router.push("/pages/login");
+    router.push("/login");
   }
 
   return (
@@ -318,7 +318,7 @@ const RegisterPage = () => {
                 Already have an account?
               </Typography>
               <Typography variant="body2">
-                <Link passHref href="/pages/login">
+                <Link passHref href="/login">
                   <LinkStyled>Sign in instead</LinkStyled>
                 </Link>
               </Typography>
