@@ -107,10 +107,10 @@ const LoginPage = () => {
     localStorage.setItem("user", JSON.stringify(data.userInfo));
     router.push(
       {
-        pathname: "/",
+        pathname: "/dashboard",
         query: { name: "Someone" },
       },
-      "/"
+      "/dashboard"
     );
   }
   if (isError) {
