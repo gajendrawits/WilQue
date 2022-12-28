@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 import Questions from "./questions";

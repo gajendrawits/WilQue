@@ -1,15 +1,14 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import useGet from "src/hooks/useGet";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import moment from "moment";
-import { Avatar, Button, Card } from "@mui/material";
-import router, { useRouter } from "next/router";
+import { Avatar, Card } from "@mui/material";
+import { useRouter } from "next/router";
 import Link from "@mui/material/Link";
 import { Empty } from "antd";
 
 import CircularProgress from "@mui/material/CircularProgress";
-import { QuestionContext } from "src/@core/context/QuestionContext";
 import { Space, Pagination } from "antd";
 
 const postsPerPage = 4;

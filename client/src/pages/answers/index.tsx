@@ -6,7 +6,7 @@ import { Button, CircularProgress, styled } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import QuillEdit from "../editor";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
 import DeleteIcon from "@mui/icons-material/Delete";
