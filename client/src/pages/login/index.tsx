@@ -26,7 +26,6 @@ import MuiFormControlLabel, {
 
 import EyeOutline from "mdi-material-ui/EyeOutline";
 import EyeOffOutline from "mdi-material-ui/EyeOffOutline";
-import CustomizedSnackbars from "src/component/message";
 
 // ** Configs
 import themeConfig from "src/configs/themeConfig";
@@ -119,13 +118,6 @@ const LoginPage = () => {
 
   return (
     <>
-      {error ? (
-        <CustomizedSnackbars
-          resetData={"123"}
-          severity={"Error"}
-          message={"Invalid username or password"}
-        />
-      ) : null}
       <Box className="content-center">
         <Card sx={{ zIndex: 1 }}>
           <CardContent
