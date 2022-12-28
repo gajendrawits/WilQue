@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import useGet from "src/hooks/useGet";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -8,7 +8,6 @@ import router from "next/router";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
-import { QuestionContext } from "src/@core/context/QuestionContext";
 import { Space, Pagination } from "antd";
 import InputAdornment from "@mui/material/InputAdornment";
 import Magnify from "mdi-material-ui/Magnify";
@@ -23,14 +22,12 @@ const Container = () => {
     isLoading,
   } = useGet("ques", "/question");
 
-  const { setQuestionValue } = useContext(QuestionContext);
+  const handleClick = (questionId: any) => {
+    console.log("question.id", questionId);
 
-  const handleClick = (question: any, index: number) => {
-    const QuestionObj = { question };
-    setQuestionValue(QuestionObj);
     router.push({
       pathname: "/answers",
-      query: { question: index + 1 },
+      query: { questionId: questionId },
     });
   };
 
@@ -44,7 +41,8 @@ const Container = () => {
   const handleSearch = (searchData: any) => {
     setSearchData(searchData);
     if (getsearchData && getsearchData.length > 0) {
-      data.splice(0, data.length);
+      console.log("getsearchData.length", getsearchData.length);
+      data?.splice(0, data.length);
       return setQuestion(getsearchData);
     } else {
       setQuestion(data);
@@ -54,7 +52,7 @@ const Container = () => {
   const handleSearchQuery = (val: any) => {
     const searchValue = val.toLowerCase();
     setSearchQuery(searchValue);
-    if (getsearchData && getsearchData.length == 0) {
+    if (getsearchData && getsearchData.length === 0) {
       setQuestion(data);
     }
   };
@@ -139,166 +137,173 @@ const Container = () => {
             >
               <CircularProgress color="inherit" />
             </Typography>
-          ) : null}
-          {newData?.length
-            ? newData?.map((question: any, index: number) => {
-                const date: number = question.created;
-                const name = question?.author?.username?.substring(
-                  0,
-                  question?.author?.username?.indexOf("@")
-                );
-                const currentDate: any = new Date();
-                const myDate =
-                  parseInt(moment(currentDate).format("DD")) -
-                  parseInt(moment(date).format("DD"));
-                return (
-                  <Grid sx={{ mb: 2 }}>
-                    <Typography
-                      onClick={() => {
-                        handleClick(question, index);
-                      }}
-                      sx={{
-                        mt: 2,
-                        p: 2,
-                        border: "1px solid lightgrey",
-                        display: "flex",
-                        cursor: "pointer",
-                        ":hover": {
-                          // scale: "0.98",
-                          border: "3px solid lightgrey",
-                        },
-                      }}
-                      key={index}
-                    >
-                      <Typography
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: "15px",
-                          p: 2,
-                        }}
-                      >
-                        <Typography> Question: </Typography>
-                        <Typography sx={{ borderRadius: "50%" }}>
-                          <img
-                            style={{ borderRadius: "50%" }}
-                            src={question.author.profilePhoto}
-                          />
-                        </Typography>
-                      </Typography>
-                      <Typography
-                        sx={{
-                          minWidth: "400px",
-                          width: "90%",
-                          p: 2,
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: 3,
-                        }}
-                      >
-                        <div>
+          ) : (
+            <div>
+              {newData?.length
+                ? newData?.map((question: any, index: number) => {
+                    const date: number = question.created;
+                    const name = question?.author?.username?.substring(
+                      0,
+                      question?.author?.username?.indexOf("@")
+                    );
+                    const currentDate: any = new Date();
+                    const myDate =
+                      parseInt(moment(currentDate).format("DD")) -
+                      parseInt(moment(date).format("DD"));
+                    return (
+                      <Grid sx={{ mb: 2 }}>
+                        <Typography
+                          onClick={() => {
+                            handleClick(question.id);
+                          }}
+                          sx={{
+                            mt: 2,
+                            p: 2,
+                            border: "1px solid lightgrey",
+                            display: "flex",
+                            cursor: "pointer",
+                            ":hover": {
+                              backgroundColor: "#dfd5f2",
+                              scale: "0.98",
+                              border: "1px solid lightgrey",
+                            },
+                          }}
+                          key={index}
+                        >
                           <Typography
                             sx={{
-                              fontWeight: "700",
-                              cursor: "pointer",
-                              whiteSpace: "nowrap",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "15px",
+                              p: 2,
                             }}
                           >
-                            {question.title}
+                            <Typography> Question: </Typography>
+                            <Typography sx={{ borderRadius: "50%" }}>
+                              <img
+                                style={{ borderRadius: "50%" }}
+                                src={question.author.profilePhoto}
+                              />
+                            </Typography>
                           </Typography>
-                        </div>
-                        <Typography
-                          sx={{
-                            width: "100%",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                          }}
-                        >
-                          Description :
-                          <span style={{ padding: 1 }}>{question.text}</span>
-                        </Typography>
-                        <Typography
-                          sx={{
-                            display: "flex",
-                            gap: 3,
-                            pt: 3,
-                            width: "100%",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                          }}
-                        >
                           <Typography
                             sx={{
+                              minWidth: "400px",
+                              width: "90%",
                               p: 2,
                               display: "flex",
+                              flexDirection: "column",
                               gap: 3,
                             }}
                           >
-                            {question.tags?.map((tag: any, index: number) => {
-                              return (
-                                <Card
-                                  variant="outlined"
-                                  sx={{
-                                    p: 1,
-                                    borderRadius: "8px",
-                                  }}
-                                  key={index}
-                                >
-                                  #{tag}
-                                </Card>
-                              );
-                            })}
+                            <div>
+                              <Typography
+                                sx={{
+                                  fontWeight: "700",
+                                  cursor: "pointer",
+                                  whiteSpace: "nowrap",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                }}
+                              >
+                                {question.title}
+                              </Typography>
+                            </div>
+                            <Typography
+                              sx={{
+                                width: "100%",
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              Description :
+                              <span style={{ padding: 1 }}>
+                                {question.text}
+                              </span>
+                            </Typography>
+                            <Typography
+                              sx={{
+                                display: "flex",
+                                gap: 3,
+                                pt: 3,
+                                width: "100%",
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              <Typography
+                                sx={{
+                                  p: 2,
+                                  display: "flex",
+                                  gap: 3,
+                                }}
+                              >
+                                {question.tags?.map(
+                                  (tag: any, index: number) => {
+                                    return (
+                                      <Card
+                                        variant="outlined"
+                                        sx={{
+                                          p: 1,
+                                          borderRadius: "8px",
+                                        }}
+                                        key={index}
+                                      >
+                                        #{tag}
+                                      </Card>
+                                    );
+                                  }
+                                )}
+                              </Typography>
+                            </Typography>
+                            <Typography>
+                              <Card
+                                variant="outlined"
+                                sx={{
+                                  m: 2,
+                                  p: 1,
+                                  width: "fit-content",
+                                  borderRadius: "8px",
+                                }}
+                              >
+                                Answers :{" " + question.answers?.length}
+                              </Card>
+                            </Typography>
+                            <Typography
+                              sx={{
+                                display: "flex",
+                                justifyContent: "right",
+                                alignItems: "center",
+                                gap: 1,
+                                textAlign: "right",
+                                pt: 2,
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              <Avatar
+                                sx={{ width: 24, height: 24 }}
+                                alt="Remy Sharp"
+                                src={question.author.profilePhoto}
+                              />
+                              {name} asked{" "}
+                              {myDate === 0
+                                ? "today"
+                                : myDate === 1
+                                ? "yesterday"
+                                : myDate + " days ago"}
+                            </Typography>
                           </Typography>
                         </Typography>
-                        <Typography>
-                          <Card
-                            variant="outlined"
-                            sx={{
-                              m: 2,
-
-                              p: 1,
-                              width: "fit-content",
-                              borderRadius: "8px",
-                            }}
-                          >
-                            Answers :{" " + question.answers?.length}
-                          </Card>
-                        </Typography>
-                        <Typography
-                          sx={{
-                            display: "flex",
-                            justifyContent: "right",
-                            alignItems: "center",
-                            gap: 1,
-                            textAlign: "right",
-                            pt: 2,
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                          }}
-                        >
-                          <Avatar
-                            sx={{ width: 24, height: 24 }}
-                            alt="Remy Sharp"
-                            src={question.author.profilePhoto}
-                          />
-                          {name} asked{" "}
-                          {myDate === 0
-                            ? "today"
-                            : myDate === 1
-                            ? "yesterday"
-                            : myDate + "days ago"}
-                        </Typography>
-                      </Typography>
-                    </Typography>
-                  </Grid>
-                );
-              })
-            : null}
+                      </Grid>
+                    );
+                  })
+                : null}
+            </div>
+          )}
           <div className="pagination">
             {!!reversedData?.length && (
               <Space>

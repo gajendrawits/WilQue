@@ -90,6 +90,7 @@ const CardUser = () => {
                 ":hover": {
                   scale: "0.98",
                   border: "1px solid lightgrey",
+                  cursor: "pointer",
                 },
               }}
               onClick={() => handleClick(user.username, 5)}

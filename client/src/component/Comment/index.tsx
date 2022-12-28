@@ -5,6 +5,7 @@ import usePost from "src/hooks/usePost";
 import Stack from "@mui/material/Stack";
 import { Avatar } from "@material-ui/core";
 import router from "next/router";
+import useGet from "src/hooks/useGet";
 
 const index = (props: any) => {
   const [profileDetails, setProfileDetails] = useState<any>();
@@ -12,12 +13,15 @@ const index = (props: any) => {
     const a: any = localStorage.getItem("user");
     setProfileDetails(JSON.parse(a));
   }, []);
-  const { getQuestionValue } = useContext(QuestionContext);
 
-  const { question } = getQuestionValue;
   const [getCommentValue, setCommentValue] = useState("");
 
   const { mutateAsync, isLoading, isSuccess, data } = usePost();
+  // const {
+  //   refetch: fetchSingleQuestions,
+  //   data,
+  //   isLoading: questionLoading,
+  // } = useGet("singleQuestion", `/question/${props.questionId}`);
 
   const postComment = async () => {
     const data = {
@@ -28,6 +32,11 @@ const index = (props: any) => {
       payload: data,
       token: true,
     });
+    window.location.reload();
+    // props.fetchSingleQuestions();
+    // const path = router.asPath;
+    // router.push(path);
+    // props.;
   };
 
   return (
