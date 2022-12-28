@@ -40,6 +40,7 @@ import { useForm } from "react-hook-form";
 import CircularProgress from "@mui/material/CircularProgress";
 import { VALIDATION_SCHEMA } from "src/utils/login";
 import { yupResolver } from "@hookform/resolvers/yup";
+import CustomizedSnackbars from "src/component/message";
 // import { registerLocale } from "react-datepicker";
 
 interface State {
@@ -118,6 +119,13 @@ const LoginPage = () => {
 
   return (
     <>
+      {error ? (
+        <CustomizedSnackbars
+          resetData={"123"}
+          severity={"Error"}
+          message={"Invalid username or password"}
+        />
+      ) : null}
       <Box className="content-center">
         <Card sx={{ zIndex: 1 }}>
           <CardContent
