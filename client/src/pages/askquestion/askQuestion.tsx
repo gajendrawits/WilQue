@@ -8,7 +8,7 @@ import TagInput from "src/pages/askquestion/tagInput";
 import TextAskQuestionInput from "src/pages/askquestion/textAskQuestionInput";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
-import BasicModal from "src/component/modal";
+// import BasicModal from "src/component/modal";
 import router from "next/router";
 
 const index = () => {
@@ -94,27 +94,6 @@ const index = () => {
           {isLoading ? <CircularProgress color="inherit" /> : "Post"}
         </Button>
       </Grid>
-      {open && (
-        <BasicModal
-          handleClose={handleClose}
-          open={open}
-          title={"Empty Fileds"}
-          subtitle={"Kindly fill all the fields.."}
-        />
-      )}
-      {isSuccess ? (
-        <BasicModal
-          handleClose={handleClose}
-          open={open}
-          title={"Question Add Sucessfully"}
-        />
-      ) : isError ? (
-        <BasicModal
-          handleClose={handleClose}
-          open={open}
-          title={"Question Not Added"}
-        />
-      ) : null}
     </>
   );
 };
