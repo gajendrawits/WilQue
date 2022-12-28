@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import useGet from "src/hooks/useGet";
 import CircularProgress from "@mui/material/CircularProgress";
-import { QuestionContext } from "src/@core/context/QuestionContext";
 import router from "next/router";
 
 interface SearchProps {

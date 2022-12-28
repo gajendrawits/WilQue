@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import BlankLayout from "src/@core/layouts/BlankLayout";
 import LandingPage from "./landingpage";
 

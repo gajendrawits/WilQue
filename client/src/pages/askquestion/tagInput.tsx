@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Typography from "@mui/material/Typography";
 import { QuestionContext } from "src/@core/context/QuestionContext";
 

@@ -1,17 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import moment from "moment";
 import CircularProgress from "@mui/material/CircularProgress";
-import { QuestionContext } from "src/@core/context/QuestionContext";
 import { Space, Pagination, Empty } from "antd";
 import { Avatar, Button, Card } from "@mui/material";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "@mui/material/Link";
 import useGet from "src/hooks/useGet";
 
 const SearchByTag = () => {
-  //const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
   const [number, setNumber] = useState(1);
   const router = useRouter();
   const { searchTag } = router.query;
