@@ -8,11 +8,9 @@ import router from "next/router";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
-import { QuestionContext } from "src/@core/context/QuestionContext";
 import { Space, Pagination } from "antd";
 import InputAdornment from "@mui/material/InputAdornment";
 import Magnify from "mdi-material-ui/Magnify";
-import SearchQuestion from "src/pages/questions/searchQuestion";
 
 const postsPerPage = 6;
 
@@ -316,7 +314,6 @@ const Container = () => {
           </div>
         </Grid>
       </Grid>
-      <SearchQuestion searchQuery={searchQuery} handleSearch={handleSearch} />
     </>
   );
 };

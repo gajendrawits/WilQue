@@ -12,7 +12,6 @@ const tagInput = (props: tagInputProps) => {
 
   const handleInput = (value: string) => {
     const arr = value.toLowerCase().split(",");
-    console.log(arr);
     const obj = { tags: arr };
     const newobj = { ...getQuestionValue, ...obj };
     setQuestionValue(newobj);
