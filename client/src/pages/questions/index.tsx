@@ -164,8 +164,8 @@ const Container = () => {
                         display: "flex",
                         cursor: "pointer",
                         ":hover": {
-                          scale: "0.98",
-                          border: "1px solid lightgrey",
+                          // scale: "0.98",
+                          border: "3px solid lightgrey",
                         },
                       }}
                       key={index}

@@ -38,7 +38,6 @@ const answers = () => {
     });
   };
   const upVote = (answerId: any) => {
-    console.log(question?.id, answerId);
     mutateAsync({
       url: `votes/upvote/${question?.id}/${answerId}`,
       token: true,

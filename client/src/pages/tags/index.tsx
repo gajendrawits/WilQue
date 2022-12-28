@@ -60,8 +60,6 @@ const Tags = () => {
     return element._id;
   });
 
-  console.log(filterTags?.sort(), "filter----");
-
   return (
     <Grid
       sx={{
