@@ -4,7 +4,6 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Button, CircularProgress, styled } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import Comment from "src/component/comment";
 import Box from "@mui/material/Box";
 import QuillEdit from "../editor";
 import router, { useRouter } from "next/router";
@@ -19,7 +18,7 @@ import ThumbUpSharpIcon from "@mui/icons-material/ThumbUpSharp";
 import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
 import useGet from "src/hooks/useGet";
 
-const answers = () => {
+const Answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
   const [getAnswerValue, setAnswerValue] = useState("");
   const [getUserDetail, setUserDetail] = useState<any>();
@@ -259,14 +258,6 @@ const answers = () => {
                       </Box>
                     );
                   })}
-                  <div>
-                    <Comment
-                      answerId={answer?.id}
-                      questionId={questionId}
-                      comment={answer?.comments}
-                      showCommnetArea={comment}
-                    />
-                  </div>
                 </Container>
               );
             })}
@@ -296,4 +287,4 @@ const answers = () => {
     </Grid>
   );
 };
-export default answers;
+export default Answers;
