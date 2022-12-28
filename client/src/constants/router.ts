@@ -69,6 +69,11 @@ const ROUTER = [
     TITLE: "Landing-page",
     SECURE: false,
   },
+  {
+    LINK: "/accountsettings",
+    TITLE: "Landing-page",
+    SECURE: false,
+  },
 ];
 
 export default ROUTER;

@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "antd";
-import Image from "next/image";
 import { Grid, Typography } from "@mui/material";
 import Signin from "src/assets/svg/signin-landing";
 import router from "next/router";
