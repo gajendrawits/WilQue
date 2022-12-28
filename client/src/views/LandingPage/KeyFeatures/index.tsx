@@ -1,17 +1,7 @@
 import React from "react";
-import Image from "next/image";
-import {
-  KeyFeatContainer,
-  ImgWrapper,
-  SubHeadingText,
-} from "src/Styles/views/Landing/KeyFeature";
-
-import Myfeat from "src/assets/images/working-laptop.jpg";
 import Left from "src/assets/svg/first-left";
-
 import Grid from "@mui/material/Grid";
 import { Container, Typography } from "@mui/material";
-import Secnd from "src/assets/svg/secnd-right";
 
 const KeyFeat = () => (
   <Grid

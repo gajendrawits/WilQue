@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import { QuestionContext } from "src/@core/context/QuestionContext";
 import router from "next/router";
 
 const TagContainer = (props: any) => {
