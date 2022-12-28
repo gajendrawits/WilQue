@@ -17,6 +17,7 @@ import AddCommentSharpIcon from "@mui/icons-material/AddCommentSharp";
 import ThumbUpSharpIcon from "@mui/icons-material/ThumbUpSharp";
 import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
 import useGet from "src/hooks/useGet";
+import Comment from "src/component/comment";
 
 const Answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -258,6 +259,14 @@ const Answers = () => {
                       </Box>
                     );
                   })}
+                  <div>
+                    <Comment
+                      answerId={answer?.id}
+                      questionId={questionId}
+                      comment={answer?.comments}
+                      showCommnetArea={comment}
+                    />
+                  </div>
                 </Container>
               );
             })}
