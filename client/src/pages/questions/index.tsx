@@ -15,11 +15,6 @@ import Magnify from "mdi-material-ui/Magnify";
 const postsPerPage = 6;
 
 const Container = () => {
-  const [number, setNumber] = useState(1);
-  const [searchQuery, setSearchQuery] = useState<string | undefined>();
-  const [getsearchData, setSearchData] = useState<any>();
-  const [getQuestion, setQuestion] = useState<any>();
-
   const {
     refetch: fetchQuestions,
     data,
@@ -27,18 +22,25 @@ const Container = () => {
   } = useGet("ques", "/question");
 
   const handleClick = (questionId: any) => {
+    console.log("question.id", questionId);
+
     router.push({
       pathname: "/answers",
       query: { questionId: questionId },
     });
   };
 
+  const [number, setNumber] = useState(1);
+  const [searchQuery, setSearchQuery] = useState<string | undefined>();
+  const [getsearchData, setSearchData] = useState<any>();
+  const [getQuestion, setQuestion] = useState<any>();
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
 
   const handleSearch = (searchData: any) => {
     setSearchData(searchData);
     if (getsearchData && getsearchData.length > 0) {
+      console.log("getsearchData.length", getsearchData.length);
       data?.splice(0, data.length);
       return setQuestion(getsearchData);
     } else {
@@ -49,12 +51,12 @@ const Container = () => {
   const handleSearchQuery = (val: any) => {
     const searchValue = val.toLowerCase();
     setSearchQuery(searchValue);
-    if (getsearchData && getsearchData.length == 0) {
+    if (getsearchData && getsearchData.length === 0) {
       setQuestion(data);
     }
   };
 
-  const reversedData = getQuestion?.reverse();
+  const reversedData = data?.reverse();
 
   let newData = reversedData?.slice(
     (number - 1) * postsPerPage,
@@ -121,7 +123,7 @@ const Container = () => {
               fontWeight: "900",
             }}
           >
-            Total questions : {getQuestion && getQuestion.length}
+            Total questions : {data && data.length}
           </Typography>
           {isLoading ? (
             <Typography
@@ -291,7 +293,7 @@ const Container = () => {
                                 ? "today"
                                 : myDate === 1
                                 ? "yesterday"
-                                : myDate + "days ago"}
+                                : myDate + " days ago"}
                             </Typography>
                           </Typography>
                         </Typography>
