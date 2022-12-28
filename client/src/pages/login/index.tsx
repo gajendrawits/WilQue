@@ -113,19 +113,9 @@ const LoginPage = () => {
       "/dashboard"
     );
   }
-  if (isError) {
-    setModal(true);
-  }
 
   return (
     <>
-      {error ? (
-        <CustomizedSnackbars
-          resetData={"123"}
-          severity={"Error"}
-          message={"Invalid username or password"}
-        />
-      ) : null}
       <Box className="content-center">
         <Card sx={{ zIndex: 1 }}>
           <CardContent
@@ -274,7 +264,7 @@ const LoginPage = () => {
                 {isLoading ? <CircularProgress color="inherit" /> : "Login"}
               </Button>
 
-              {error ? (
+              {isError ? (
                 <Box
                   sx={{
                     display: "flex",
