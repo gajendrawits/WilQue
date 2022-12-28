@@ -15,6 +15,11 @@ import Magnify from "mdi-material-ui/Magnify";
 const postsPerPage = 6;
 
 const Container = () => {
+  const [number, setNumber] = useState(1);
+  const [searchQuery, setSearchQuery] = useState<string | undefined>();
+  const [getsearchData, setSearchData] = useState<any>();
+  const [getQuestion, setQuestion] = useState<any>();
+
   const {
     refetch: fetchQuestions,
     data,
@@ -28,10 +33,6 @@ const Container = () => {
     });
   };
 
-  const [number, setNumber] = useState(1);
-  const [searchQuery, setSearchQuery] = useState<string | undefined>();
-  const [getsearchData, setSearchData] = useState<any>();
-  const [getQuestion, setQuestion] = useState<any>();
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
 

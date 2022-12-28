@@ -1,6 +1,6 @@
 // ** Next Imports
 import Head from "next/head";
-import router, { Router, useRouter } from "next/router";
+import router, { Router } from "next/router";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
