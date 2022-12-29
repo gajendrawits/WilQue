@@ -17,6 +17,7 @@ import AddCommentSharpIcon from "@mui/icons-material/AddCommentSharp";
 import ThumbUpSharpIcon from "@mui/icons-material/ThumbUpSharp";
 import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
 import useGet from "src/hooks/useGet";
+import { number } from "yup/lib/locale";
 import Comment from "src/component/comment";
 
 const Answers = () => {
@@ -24,6 +25,8 @@ const Answers = () => {
   const [getAnswerValue, setAnswerValue] = useState("");
   const [getUserDetail, setUserDetail] = useState<any>();
   const [comment, setComment] = useState(true);
+  const [open, setOpen] = useState<any>({});
+  const [isSelected, setIsSelected] = useState<any>([]);
   const { question } = getQuestionValue;
   const router = useRouter();
   const { questionId, myquestion } = router.query;
@@ -84,6 +87,24 @@ const Answers = () => {
       fetchSingleQuestions();
     }, 150);
   }, []);
+
+  const handleClick = (id?: any) => () => {
+    setOpen((open?: any) => ({
+      ...open,
+      [id]: !open[id],
+    }));
+  };
+  const handleOnPress = (item: never) => {
+    let temp = [...isSelected];
+
+    if (isSelected.includes(item)) {
+      temp = temp.filter((i: number) => i !== item);
+    } else {
+      temp.push(item);
+    }
+
+    setIsSelected(temp);
+  };
 
   return (
     <Grid sx={{ pb: 6 }}>
@@ -218,22 +239,27 @@ const Answers = () => {
                     }}
                   >
                     <ThumbUpSharpIcon
-                      color={comment ? "inherit" : "inherit"}
+                      color={open ? "inherit" : "inherit"}
                       fontSize="large"
                     />
                     <ThumbDownAltSharpIcon
-                      color={comment ? "inherit" : "inherit"}
+                      color={open ? "inherit" : "inherit"}
                       fontSize="large"
                     />
                     <div
                       onClick={() => {
-                        setComment(!comment);
+                        handleClick(answer?.id);
+                        handleOnPress(answer?.id);
                       }}
                     >
                       <AddCommentSharpIcon
-                        color={comment ? "primary" : "inherit"}
+                        color={
+                          isSelected.includes(answer?.id)
+                            ? "primary"
+                            : "inherit"
+                        }
                         fontSize="large"
-                      ></AddCommentSharpIcon>
+                      />
                     </div>
                   </Box>
                   {answer?.comments?.map((comments: any) => {
@@ -245,7 +271,7 @@ const Answers = () => {
                           flexDirection: "column",
                         }}
                       >
-                        {comment && (
+                        {isSelected.includes(answer?.id) && (
                           <Avatar
                             alt="Mary Vaughn"
                             src={comments.author.profilePhoto}
@@ -253,8 +279,10 @@ const Answers = () => {
                           />
                         )}
                         <Typography variant="body2">
-                          {comment && <div>{comments?.body}</div>}
-                          {comment && <Divider />}
+                          {isSelected.includes(answer?.id) && (
+                            <div>{comments?.body}</div>
+                          )}
+                          {isSelected.includes(answer?.id) && <Divider />}
                         </Typography>
                       </Box>
                     );
@@ -264,7 +292,7 @@ const Answers = () => {
                       answerId={answer?.id}
                       questionId={questionId}
                       comment={answer?.comments}
-                      showCommnetArea={comment}
+                      showCommnetArea={open}
                     />
                   </div>
                 </Container>

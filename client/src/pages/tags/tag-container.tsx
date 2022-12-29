@@ -1,4 +1,5 @@
 import React from "react";
+
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
@@ -28,16 +29,12 @@ const TagContainer = (props: any) => {
           return (
             <Card
               variant="outlined"
+              className="effectHover"
               sx={{
                 display: "flex",
                 gap: 2,
                 p: 1,
                 justifyContent: "center",
-                ":hover": {
-                  backgroundColor: "#dfd5f2",
-                  scale: "0.98",
-                  border: "1px solid lightgrey",
-                },
               }}
               onClick={() => handleClicked(tag._id)}
             >

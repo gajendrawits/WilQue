@@ -5,17 +5,18 @@ import BlankLayout from "src/@core/layouts/BlankLayout";
 import DetailSection from "src/views/LandingPage/DetailsFeatures";
 import FooterSection from "src/views/LandingPage/Footer";
 import SignupLanding from "src/views/LandingPage/LandingSignin";
+import { Grid } from "@mui/material";
 
 const LandingPage = () => {
   return (
     <>
-      <div>
+      <Grid sx={{}}>
         <KeyFeature />
         <SecondFeat />
         <SignupLanding />
         <DetailSection />
         <FooterSection />
-      </div>
+      </Grid>
     </>
   );
 };

@@ -83,16 +83,10 @@ const CardUser = () => {
         {data?.map((user: any) => {
           return (
             <Card
-              className="card"
+              className="effectHover"
               sx={{
                 boxShadow: 10,
                 color: "common.white",
-                ":hover": {
-                  backgroundColor: "#dfd5f2",
-                  scale: "0.98",
-                  border: "1px solid lightgrey",
-                  cursor: "pointer",
-                },
               }}
               onClick={() => handleClick(user.username, 5)}
             >

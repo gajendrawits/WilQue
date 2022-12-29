@@ -27,11 +27,11 @@ const navigation = (): VerticalNavItemsType => {
       icon: LocalOfferIcon,
       path: "/tags",
     },
-    // {
-    //   title: "Landing ",
-    //   icon: LocalOfferIcon,
-    //   path: "/pages/landingpage",
-    // },
+    {
+      title: "Landing ",
+      icon: LocalOfferIcon,
+      path: "/landing",
+    },
     {
       title: "My Questions ",
       icon: HelpIcon,
