@@ -23,7 +23,7 @@ const Answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
   const [getAnswerValue, setAnswerValue] = useState("");
   const [getUserDetail, setUserDetail] = useState<any>();
-  const [comment, setComment] = useState(false);
+  const [comment, setComment] = useState(true);
   const { question } = getQuestionValue;
   const router = useRouter();
   const { questionId, myquestion } = router.query;
@@ -82,7 +82,7 @@ const Answers = () => {
   useEffect(() => {
     setTimeout(() => {
       fetchSingleQuestions();
-    }, 250);
+    }, 150);
   }, []);
 
   return (
