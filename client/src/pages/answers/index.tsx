@@ -46,7 +46,10 @@ const Answers = () => {
   };
 
   if (isSuccess) {
-    router.push("/questions");
+    router.push({
+      pathname: "/questions",
+      query: { Answer: "Successs" },
+    });
   }
 
   useEffect(() => {

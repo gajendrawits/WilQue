@@ -9,8 +9,7 @@ import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Space, Pagination } from "antd";
-import InputAdornment from "@mui/material/InputAdornment";
-import Magnify from "mdi-material-ui/Magnify";
+import CustomizedSnackbars from "src/component/message";
 
 const postsPerPage = 6;
 
@@ -31,30 +30,9 @@ const Container = () => {
   };
 
   const [number, setNumber] = useState(1);
-  const [searchQuery, setSearchQuery] = useState<string | undefined>();
-  const [getsearchData, setSearchData] = useState<any>();
-  const [getQuestion, setQuestion] = useState<any>();
+
   //   handle Pagination
   const handlePage = (pageNumber: any) => setNumber(pageNumber);
-
-  const handleSearch = (searchData: any) => {
-    setSearchData(searchData);
-    if (getsearchData && getsearchData.length > 0) {
-      console.log("getsearchData.length", getsearchData.length);
-      data?.splice(0, data.length);
-      return setQuestion(getsearchData);
-    } else {
-      setQuestion(data);
-    }
-  };
-
-  const handleSearchQuery = (val: any) => {
-    const searchValue = val.toLowerCase();
-    setSearchQuery(searchValue);
-    if (getsearchData && getsearchData.length === 0) {
-      setQuestion(data);
-    }
-  };
 
   const reversedData = data?.reverse();
 
@@ -65,7 +43,6 @@ const Container = () => {
 
   useEffect(() => {
     fetchQuestions();
-    setQuestion(data);
   }, []);
 
   return (
@@ -88,24 +65,6 @@ const Container = () => {
             <Link sx={{ width: "10%", minWidth: "fit-content" }}>
               Questions
             </Link>
-
-            <TextField
-              size="small"
-              sx={{
-                "& .MuiOutlinedInput-root": { borderRadius: 4 },
-                width: "50%",
-                margin: "0 10px",
-              }}
-              value={searchQuery}
-              onChange={(e) => handleSearchQuery(e.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Magnify fontSize="small" />
-                  </InputAdornment>
-                ),
-              }}
-            />
 
             <Button
               sx={{ width: "10%", minWidth: "fit-content" }}
@@ -161,11 +120,6 @@ const Container = () => {
                             border: "1px solid lightgrey",
                             display: "flex",
                             cursor: "pointer",
-                            ":hover": {
-                              backgroundColor: "#dfd5f2",
-                              scale: "0.98",
-                              border: "1px solid lightgrey",
-                            },
                           }}
                           key={index}
                         >
@@ -316,6 +270,13 @@ const Container = () => {
             )}
           </div>
         </Grid>
+        {router.query?.Answer && (
+          <CustomizedSnackbars
+            resetData={router?.query}
+            severity={"success"}
+            message={"Answer Added Successfully"}
+          />
+        )}
       </Grid>
     </>
   );

@@ -4,10 +4,11 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import moment from "moment";
 import { Avatar, Button, Card } from "@mui/material";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Space, Pagination } from "antd";
+import CustomizedSnackbars from "src/component/message";
 
 const postsPerPage = 4;
 
@@ -15,6 +16,7 @@ const MyQuestion = () => {
   const [profileDetails, setProfileDetails] = useState<any>();
   const [number, setNumber] = useState(1);
   const user = profileDetails?.username;
+  const router = useRouter();
 
   useEffect(() => {
     const userData: any = localStorage.getItem("user");
@@ -50,7 +52,7 @@ const MyQuestion = () => {
       query: { myquestion: "userquestion", questionId: questionId },
     });
   };
-
+  console.log(filteredQues);
   return (
     <Grid
       sx={{
@@ -125,11 +127,6 @@ const MyQuestion = () => {
                         cursor: "pointer",
                         border: "1px solid lightgrey",
                         display: "flex",
-                        ":hover": {
-                          backgroundColor: "#dfd5f2",
-                          scale: "0.98",
-                          border: "1px solid lightgrey",
-                        },
                       }}
                       key={index}
                     >
@@ -275,6 +272,13 @@ const MyQuestion = () => {
           )}
         </div>
       </Grid>
+      {router.query?.Question && (
+        <CustomizedSnackbars
+          resetData={router?.query}
+          severity={"success"}
+          message={"Sucessfully Queestion Add"}
+        />
+      )}
     </Grid>
   );
 };
