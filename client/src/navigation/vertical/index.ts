@@ -6,7 +6,7 @@ import HelpIcon from "@material-ui/icons/Help";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import FormatColorTextIcon from "@material-ui/icons/FormatColorText";
 import ScheduleIcon from "@material-ui/icons/Schedule";
-
+import DataObjectIcon from "@mui/icons-material/DataObject";
 // ** Type import
 import { VerticalNavItemsType } from "src/@core/layouts/types";
 
@@ -56,6 +56,11 @@ const navigation = (): VerticalNavItemsType => {
       icon: FormatColorTextIcon,
       title: "Color-Picker",
       path: "/colorpicker",
+    },
+    {
+      icon: DataObjectIcon,
+      title: "JSON Format",
+      path: "/jsonformat",
     },
   ];
 };
