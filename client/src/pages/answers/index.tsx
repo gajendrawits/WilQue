@@ -49,7 +49,10 @@ const Answers = () => {
   };
 
   if (isSuccess) {
-    router.push("/questions");
+    router.push({
+      pathname: "/questions",
+      query: { Answer: "Successs" },
+    });
   }
 
   useEffect(() => {
@@ -68,6 +71,8 @@ const Answers = () => {
     router.push("/");
   }
 
+  // styled component
+
   const Container = styled("div")(() => ({
     "& .MuiTypography-root": {
       img: {
@@ -75,6 +80,27 @@ const Answers = () => {
       },
     },
   }));
+  const HeadingWrapper = styled(Typography)(() => ({
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    paddingBottom: 6,
+  }));
+  const QuestionTitleWrapper = styled(Typography)(() => ({
+    pb: 3,
+    fontSize: "1.5rem",
+    fontWeight: 600,
+    borderBottom: "1px solid lightgrey",
+  }));
+
+  const LoaderWrapper = styled("div")(() => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "20vh",
+  }));
+
+  // const HeadingWrapper = styled("div")(() => ({}));
 
   const {
     refetch: fetchSingleQuestions,
@@ -94,7 +120,7 @@ const Answers = () => {
       [id]: !open[id],
     }));
   };
-  const handleOnPress = (item: never) => {
+  const handleOnPress = (item: never | any) => {
     let temp = [...isSelected];
 
     if (isSelected.includes(item)) {
@@ -107,39 +133,24 @@ const Answers = () => {
   };
 
   return (
-    <Grid sx={{ pb: 6 }}>
-      <Typography
-        variant="h4"
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          pb: 6,
-        }}
-      >
+    <Grid>
+      <HeadingWrapper variant="h4">
         <Link>Answers</Link>
         <Button variant="contained" onClick={handleRoute}>
           Ask Questions
         </Button>
-      </Typography>
-
+      </HeadingWrapper>
       <Typography>
-        <Typography
-          sx={{
-            pb: 3,
-            fontSize: "1.5rem",
-            fontWeight: 600,
-            borderBottom: "1px solid lightgrey",
-          }}
-        >
+        <QuestionTitleWrapper sx={{}}>
           {data && data?.title}
-        </Typography>
+        </QuestionTitleWrapper>
         <Typography
           sx={{
+            maxWidth: "100%",
             pt: 3,
           }}
         >
-          {data && data?.text}
+          <div dangerouslySetInnerHTML={{ __html: data?.text }}></div>
         </Typography>
         <Typography
           sx={{
@@ -157,16 +168,9 @@ const Answers = () => {
           }}
         >
           {questionLoading ? (
-            <Typography
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                minHeight: "20vh",
-              }}
-            >
+            <LoaderWrapper sx={{}}>
               <CircularProgress color="inherit" />
-            </Typography>
+            </LoaderWrapper>
           ) : null}
           {data &&
             data?.answers?.map((answer: any, index: number) => {
