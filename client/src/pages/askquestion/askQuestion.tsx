@@ -17,6 +17,8 @@ const index = () => {
 
   const handleClose = () => setOpen(false);
 
+  const handleOpen = () => setOpen(true);
+
   const { mutateAsync, isLoading, isSuccess, isError } = usePost();
 
   const submitQuestion = () => {
@@ -30,7 +32,10 @@ const index = () => {
   };
 
   if (isSuccess) {
-    router.push("/myquestions");
+    router.push({
+      pathname: "/myquestions",
+      query: { Question: "Successs" },
+    });
   }
 
   useEffect(() => {
@@ -102,13 +107,7 @@ const index = () => {
             subtitle={"Kindly fill all the fields.."}
           />
         )}
-        {isSuccess ? (
-          <BasicModal
-            handleClose={handleClose}
-            open={open}
-            title={"Question Add Sucessfully"}
-          />
-        ) : isError ? (
+        {isError ? (
           <BasicModal
             handleClose={handleClose}
             open={open}

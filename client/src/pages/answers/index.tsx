@@ -48,7 +48,10 @@ const Answers = () => {
   };
 
   if (isSuccess) {
-    router.push("/questions");
+    router.push({
+      pathname: "/questions",
+      query: { Answer: "Successs" },
+    });
   }
 
   useEffect(() => {
@@ -93,7 +96,7 @@ const Answers = () => {
       [id]: !open[id],
     }));
   };
-  const handleOnPress = (item: never) => {
+  const handleOnPress = (item: never | any) => {
     let temp = [...isSelected];
 
     if (isSelected.includes(item)) {
