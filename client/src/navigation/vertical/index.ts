@@ -6,7 +6,7 @@ import HelpIcon from "@material-ui/icons/Help";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import FormatColorTextIcon from "@material-ui/icons/FormatColorText";
 import ScheduleIcon from "@material-ui/icons/Schedule";
-
+import DataObjectIcon from "@mui/icons-material/DataObject";
 // ** Type import
 import { VerticalNavItemsType } from "src/@core/layouts/types";
 
@@ -27,11 +27,7 @@ const navigation = (): VerticalNavItemsType => {
       icon: LocalOfferIcon,
       path: "/tags",
     },
-    // {
-    //   title: "Landing ",
-    //   icon: LocalOfferIcon,
-    //   path: "/pages/landingpage",
-    // },
+
     {
       title: "My Questions ",
       icon: HelpIcon,
@@ -61,6 +57,11 @@ const navigation = (): VerticalNavItemsType => {
       icon: FormatColorTextIcon,
       title: "Device-Information",
       path: "/deviceinformation",
+    },
+    {
+      icon: DataObjectIcon,
+      title: "JSON Format",
+      path: "/jsonformat",
     },
   ];
 };

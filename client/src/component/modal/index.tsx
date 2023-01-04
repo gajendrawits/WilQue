@@ -25,6 +25,8 @@ interface ModalProps {
 }
 
 const BasicModal = ({ open, handleClose, title, subtitle }: ModalProps) => {
+  console.log("modal call====");
+  console.log(open, "open--");
   return (
     <div>
       <Modal

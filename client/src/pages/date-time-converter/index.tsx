@@ -1,87 +1,71 @@
 // ** MUI Imports
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
-import Switch, { SwitchProps } from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import { IOSSwitch } from "src/component/iosswitch";
+import moment from "moment";
 
 import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
 // ** Demo Components Imports
 
 const MUITable = () => {
-  const IOSSwitch = styled((props: SwitchProps) => (
-    <Switch
-      focusVisibleClassName=".Mui-focusVisible"
-      disableRipple
-      {...props}
-    />
-  ))(({ theme }) => ({
-    width: 42,
-    height: 26,
-    padding: 0,
-    "& .MuiSwitch-switchBase": {
-      padding: 0,
-      margin: 2,
-      transitionDuration: "300ms",
-      "&.Mui-checked": {
-        transform: "translateX(16px)",
-        color: "#fff",
-        "& + .MuiSwitch-track": {
-          backgroundColor:
-            theme.palette.mode === "dark" ? "#9155FD" : "#9155FD",
-          opacity: 1,
-          border: 0,
-        },
-        "&.Mui-disabled + .MuiSwitch-track": {
-          opacity: 0.5,
-        },
-      },
-      "&.Mui-focusVisible .MuiSwitch-thumb": {
-        color: "#9155FD",
-        border: "6px solid #fff",
-      },
-      "&.Mui-disabled .MuiSwitch-thumb": {
-        color:
-          theme.palette.mode === "light"
-            ? theme.palette.grey[100]
-            : theme.palette.grey[600],
-      },
-      "&.Mui-disabled + .MuiSwitch-track": {
-        opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
-      },
-    },
-    "& .MuiSwitch-thumb": {
-      boxSizing: "border-box",
-      width: 22,
-      height: 22,
-    },
-    "& .MuiSwitch-track": {
-      borderRadius: 26 / 2,
-      backgroundColor: theme.palette.mode === "light" ? "#E9E9EA" : "#39393D",
-      opacity: 1,
-      transition: theme.transitions.create(["background-color"], {
-        duration: 500,
-      }),
-    },
-  }));
+  const [time, setTime] = useState(new Date());
+  const [localDate, setLocaldate] = useState({});
+  const [isoESZO, setIsoESZO] = useState("");
+  const [isoDatabase, setIsoDatabase] = useState("");
+  const [isoTextual, setIsoTextual] = useState("");
+  const [httpTime, setHttpTime] = useState("");
+  const [timeStamp, setTimeStamp] = useState("");
+  const [switchChecked, setSwitchChecked] = useState(false);
   const top100Films = [
-    { label: "JS locate Date string", year: 1994 },
-    { label: "ISO 8601", year: 1972 },
-    { label: "ISO 9075", year: 1974 },
-    { label: "RFC 3339", year: 2008 },
-    { label: "RFC 7231", year: 1957 },
-    { label: "Timestamp", year: 1993 },
-    { label: "unix timestamp", year: 1994 },
-    { label: "UTC format", year: 1994 },
-    { label: "Mongo ObjectID", year: 1994 },
+    { label: "JS locate Date string", value: localDate },
+    { label: "ISO 8601", value: isoESZO },
+    { label: "ISO 9075", value: isoDatabase },
+    { label: "RFC 3339", value: isoTextual },
+    { label: "RFC 7231", value: httpTime },
+    { label: "Timestamp", value: timeStamp },
   ];
+  const dateHandler = (e: boolean, time: Date) => {
+    console.log("e,time", e, time);
+    // console.log("switchchecked", switchChecked);
+    // console.log('first', first)
+    if (e) {
+      // useEffect(() => {
+      // console.log("e,time", e, time);
+      setLocaldate(time);
+      setIsoESZO(moment(time).format("YYYY-MM-DDTHH:mm:ssZ"));
+      setIsoDatabase(moment(time).format("yyyy-MM-dd HH:mm:ss.SSS"));
+      setIsoTextual(moment(time).format("YYYY-MM-DDTHH:mm:ss"));
+      setHttpTime(moment(time).format("ddd, DD MM YYYY HH:mm:ss"));
+      setTimeStamp(moment(time).format("YYYYMMDDhhmmss"));
+      // }, [date]);
+
+      // console.log(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
+    } else {
+      setSwitchChecked(true);
+      setLocaldate("");
+      setIsoESZO("");
+      setIsoDatabase("");
+      setIsoTextual("");
+      setHttpTime("");
+      setTimeStamp("");
+    }
+  };
+  useEffect(() => {
+    setInterval(() => {
+      setTime(new Date());
+      // dateHandler(switchChecked, time);
+    }, 1000);
+  }, []);
+
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
@@ -109,9 +93,9 @@ const MUITable = () => {
             minWidth: 275,
             boxShadow: 5,
             color: "common.white",
-            mt: "100px",
-            height: "60vh",
+            mt: "82px",
             borderRadius: 1,
+            padding: 10,
           }}
         >
           <Box
@@ -126,8 +110,13 @@ const MUITable = () => {
               Use current date-time?
             </Typography>
             <FormControlLabel
-              control={<IOSSwitch sx={{ m: 0.9 }} />}
+              control={<IOSSwitch />}
               label=""
+              onChange={(e: any) => {
+                console.log("e.target.checked", e.target.checked);
+                dateHandler(e.target.checked, new Date());
+                setSwitchChecked(e.target.checked);
+              }}
             />
           </Box>
 
@@ -142,6 +131,7 @@ const MUITable = () => {
           >
             <Autocomplete
               disablePortal
+              disabled={switchChecked ? true : false}
               id="combo-box-demo"
               options={top100Films}
               sx={{
@@ -153,6 +143,7 @@ const MUITable = () => {
               )}
             />
             <TextField
+              disabled={switchChecked ? true : false}
               id="outlined-basic"
               label="Date String"
               variant="outlined"
@@ -170,114 +161,28 @@ const MUITable = () => {
               mt: "30px",
             }}
           >
-            <Box sx={{ mx: "4%", display: "flex", gap: 1 }}>
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="JS locate Date string"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "20%" }}
-              />
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="456"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "80%" }}
-              />
-            </Box>
-            <Box sx={{ mx: "4%", display: "flex", gap: 1 }}>
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="ISO 8601"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "20%" }}
-              />
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="456"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "80%" }}
-              />
-            </Box>
-            <Box sx={{ mx: "4%", display: "flex", gap: 1 }}>
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="ISO 9075"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "20%" }}
-              />
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="456"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "80%" }}
-              />
-            </Box>
-            <Box sx={{ mx: "4%", display: "flex", gap: 1 }}>
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="RFC 3339"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "20%" }}
-              />
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="456"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "80%" }}
-              />
-            </Box>
-            <Box sx={{ mx: "4%", display: "flex", gap: 1 }}>
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="Timestamp"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "20%" }}
-              />
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="456"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "80%" }}
-              />
-            </Box>
-            <Box sx={{ mx: "4%", display: "flex", gap: 1 }}>
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="unix timestamp"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "20%" }}
-              />
-              <TextField
-                id="outlined-read-only-input"
-                defaultValue="456"
-                InputProps={{
-                  readOnly: true,
-                }}
-                sx={{ width: "80%" }}
-              />
-            </Box>
+            {top100Films.map((item, index) => {
+              return (
+                <Box sx={{ mx: "4%", display: "flex", gap: 1 }} key={index}>
+                  <TextField
+                    id="outlined-read-only-input"
+                    defaultValue={item.label}
+                    InputProps={{
+                      readOnly: true,
+                    }}
+                    sx={{ width: "20%" }}
+                  />
+                  <TextField
+                    id="outlined-read-only-input"
+                    InputProps={{
+                      readOnly: true,
+                    }}
+                    sx={{ width: "80%" }}
+                    value={item.value}
+                  />
+                </Box>
+              );
+            })}
           </Box>
         </Box>
       </Grid>
