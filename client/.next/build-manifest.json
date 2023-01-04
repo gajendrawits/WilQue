@@ -30,10 +30,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/answers": [
+    "/dashboard": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/answers.js"
+      "static/chunks/pages/dashboard.js"
+    ],
+    "/date-time-converter": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/date-time-converter.js"
+    ],
+    "/jsonformat": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/jsonformat.js"
     ]
   },
   "ampFirstPages": []

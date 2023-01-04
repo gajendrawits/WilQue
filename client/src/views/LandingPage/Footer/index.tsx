@@ -7,33 +7,34 @@ const FooterSection = () => (
     sx={{
       width: "100%",
       display: "flex",
-      flexDirection: "column",
+      flexDirection: "row",
       alignItems: "center",
+      justifyContent: "space-around",
       marginBottom: "10px",
       backgroundColor: "#8080804d",
       borderRadius: "34px 34px 0 0",
       marginTop: "30px",
     }}
   >
-    <Typography
+    {/* <Typography
       sx={{
         display: "flex",
         flexDirection: "column",
-        fontSize: "80px",
-        padding: "20px 20px 0 20px",
+        fontSize: "30px",
+        padding: "20px 20px",
         fontWeight: "800",
         color: "rgb(0, 0, 0)",
       }}
     >
       Email Us
-    </Typography>
+    </Typography> */}
     <Typography
       sx={{
         display: "flex",
         flexDirection: "column",
         fontSize: "30px",
         fontWeight: "800",
-        color: " rgba(58, 53, 65, 0.87);",
+        color: "rgb(0, 0, 0)",
       }}
     >
       For any query plz email us.
@@ -42,13 +43,13 @@ const FooterSection = () => (
       sx={{
         display: "flex",
         flexDirection: "column",
-        fontSize: "40px",
+        fontSize: "30px",
         padding: "20px 20px",
         fontWeight: "800",
-        color: "rgb(0, 0, 0)",
+        color: " rgba(58, 53, 65, 0.87);",
       }}
     >
-      Thewitslab.help@gmail.com
+      wilque.help@gmail.com
     </Typography>
   </Grid>
 );
