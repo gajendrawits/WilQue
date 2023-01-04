@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import BlankLayout from "src/@core/layouts/BlankLayout";
-import LandingPage from "./landingpage";
+
+import LandingPage from "src/pages/landingpage";
 
 const Home = () => {
   return (

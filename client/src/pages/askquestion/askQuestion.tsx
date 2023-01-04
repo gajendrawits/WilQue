@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Button, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import TitleInput from "src/pages/askquestion/titleInput";
 import TagInput from "src/pages/askquestion/tagInput";
 import TextAskQuestionInput from "src/pages/askquestion/textAskQuestionInput";
@@ -21,8 +20,6 @@ const index = () => {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => setOpen(false);
-
-  const handleOpen = () => setOpen(true);
 
   const { mutateAsync, isLoading, isSuccess, isError } = usePost();
 

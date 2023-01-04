@@ -93,7 +93,7 @@ const RegisterPage = () => {
     event.preventDefault();
   };
 
-  const { mutateAsync, data, isSuccess, isLoading, isError, error } = usePost();
+  const { mutateAsync, isSuccess, isLoading, isError, error } = usePost();
 
   const formData = (userData: any) => {
     mutateAsync({
@@ -103,8 +103,10 @@ const RegisterPage = () => {
   };
 
   if (isSuccess) {
-    alert("Hey you are Sucessfully Sign in");
-    router.push("/login");
+    router.push({
+      pathname: "/login",
+      query: { Register: "Successs" },
+    });
   }
 
   return (

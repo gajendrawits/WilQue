@@ -1,17 +1,12 @@
 // ** MUI Imports
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
-import Stack from "@mui/material/Stack";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { IOSSwitch } from "src/component/iosswitch";
 import moment from "moment";
-
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 // ** Demo Components Imports
@@ -69,7 +64,7 @@ const MUITable = () => {
       dateString === "JS locate Date string"
     ) {
       setIsError(false);
-      setLocaldate(moment(time).format("YYYY-MM-DDTHH:mm:ssZ"));  
+      setLocaldate(moment(time).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoESZO(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(date).format("yyyy-MM-DD HH:mm:ss.SS"));
       setIsoTextual(moment(date).format("YYYY-MM-DDTHH:mm:ss"));
