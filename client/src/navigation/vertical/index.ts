@@ -57,6 +57,11 @@ const navigation = (): VerticalNavItemsType => {
       title: "Color-Picker",
       path: "/colorpicker",
     },
+    {
+      icon: FormatColorTextIcon,
+      title: "Device-Information",
+      path: "/deviceinformation",
+    },
   ];
 };
 
