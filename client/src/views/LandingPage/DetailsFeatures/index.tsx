@@ -35,15 +35,16 @@ const DetailSection = () => {
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        // alignItems: "center",
         marginBottom: "10px",
+        ml: "20px",
       }}
     >
       <Typography
         sx={{
           display: "flex",
           flexDirection: "column",
-          fontSize: "80px",
+          fontSize: "60px",
           padding: "20px 20px",
           fontWeight: "800",
           color: "rgb(0, 0, 0)",
@@ -83,7 +84,7 @@ const DetailSection = () => {
                 borderRadius: "24px",
               }}
             >
-              <Typography
+              {/* <Typography
                 sx={{
                   fontSize: "47px",
                   paddingBottom: "20px",
@@ -92,7 +93,7 @@ const DetailSection = () => {
                 }}
               >
                 These are the standard features in the free version of WilQue.
-              </Typography>
+              </Typography> */}
             </Typography>
           </Typography>
         </Grid>
@@ -100,7 +101,7 @@ const DetailSection = () => {
           sx={{
             width: "90%",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(30rem, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(16rem, 1fr))",
             alignItems: "center",
             gap: "30px",
             justifyContent: "center",
@@ -108,8 +109,25 @@ const DetailSection = () => {
         >
           {features.map((feature: any) => {
             return (
-              <Card
-                variant="outlined"
+              <Typography
+                variant="h2"
+                sx={{
+                  border: "2px solid lightgrey",
+                  p: "30px 0",
+                  display: "flex",
+                  justifyContent: "center",
+                  ":hover": {
+                    border: "3px solid gray",
+                  },
+                }}
+              >
+                <Typography>{feature.name}</Typography>
+              </Typography>
+            );
+          })}
+          {/* {features.map((feature: any) => {
+            return (
+              <Typography
                 sx={{
                   display: "flex",
                   justifyContent: "center",
@@ -130,9 +148,9 @@ const DetailSection = () => {
                 }}
               >
                 {feature.name}
-              </Card>
+              </Typography>
             );
-          })}
+          })} */}
         </Grid>
       </Grid>
     </Grid>

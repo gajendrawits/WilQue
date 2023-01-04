@@ -1,19 +1,17 @@
-import { Button, TextareaAutosize } from "@mui/material";
+import { Button, TextareaAutosize, CircularProgress } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
 import Stack from "@mui/material/Stack";
 import { Avatar } from "@material-ui/core";
 
 const Comment = (props: any) => {
   const [profileDetails, setProfileDetails] = useState<any>();
+
   useEffect(() => {
     const a: any = localStorage.getItem("user");
     setProfileDetails(JSON.parse(a));
   }, []);
-  const { getQuestionValue } = useContext(QuestionContext);
 
-  const { question } = getQuestionValue;
   const [getCommentValue, setCommentValue] = useState("");
 
   const { mutateAsync, isLoading, isSuccess, data } = usePost();
@@ -27,6 +25,9 @@ const Comment = (props: any) => {
       payload: data,
       token: true,
     });
+    setTimeout(() => {
+      window.location.reload();
+    }, 150);
   };
 
   return (
@@ -45,6 +46,7 @@ const Comment = (props: any) => {
                 marginLeft: "12px",
                 padding: "10px",
               }}
+              required
               onChange={(e: any) => setCommentValue(e.target.value)}
             />
             <Button
@@ -55,7 +57,7 @@ const Comment = (props: any) => {
               }}
               sx={{ width: "fit-content" }}
             >
-              Comment
+              {isLoading ? <CircularProgress color="inherit" /> : "Comment"}
             </Button>
           </>
         </Stack>

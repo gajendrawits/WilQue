@@ -120,6 +120,7 @@ const MyQuestion = () => {
                 return (
                   <Grid sx={{ mb: 2 }}>
                     <Typography
+                      className=""
                       onClick={() => handleClick(question.id)}
                       sx={{
                         mt: 2,

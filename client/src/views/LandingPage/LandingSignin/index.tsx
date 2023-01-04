@@ -84,21 +84,34 @@ const SignupLanding = () => (
             <Button
               onClick={() => {
                 router.push({
-                  pathname: "/login",
+                  pathname: "/register",
                 });
               }}
               type="primary"
               style={{
-                height: "90px",
-                width: "230px",
-                fontSize: "50px",
-                borderRadius: "24px",
-                backgroundColor: "#aaa5a561",
-                color: "rgba(0, 0, 0, 0.87)",
-                boxShadow: "0 8px 15px #171718ec",
+                // height: "90px",
+                // width: "230px",
+                // fontSize: "50px",
+                // borderRadius: "24px",
+                // backgroundColor: "#aaa5a561",
+                // color: "rgba(0, 0, 0, 0.87)",
+                // boxShadow: "0 8px 15px #171718ec",
+                fontSize: "13px",
+                letterSpacing: "0px",
+                fontWeight: "700",
+                lineHeight: "16px",
+                textTransform: "uppercase",
+                textDecoration: "none !important",
+                border: "none",
+                borderRadius: "2px",
+                cursor: "pointer",
+                justifyContent: "center",
+                padding: "16px 32px",
+                height: "48px",
+                textAlign: "center",
               }}
             >
-              Sign In
+              Sign Up
             </Button>
           </Typography>
         </Typography>
