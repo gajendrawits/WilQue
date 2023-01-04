@@ -25,7 +25,8 @@ const MUITable = () => {
   const [httpTime, setHttpTime] = useState("");
   const [timeStamp, setTimeStamp] = useState("");
   const [switchChecked, setSwitchChecked] = useState(false);
-  const top100Films = [
+  const [dateString, setDateString] = useState("");
+  const top100Films: any = [
     { label: "JS locate Date string", value: localDate },
     { label: "ISO 8601", value: isoESZO },
     { label: "ISO 9075", value: isoDatabase },
@@ -33,24 +34,15 @@ const MUITable = () => {
     { label: "RFC 7231", value: httpTime },
     { label: "Timestamp", value: timeStamp },
   ];
-  const dateHandler = (e: boolean, time: Date) => {
-    console.log("e,time", e, time);
-    // console.log("switchchecked", switchChecked);
-    // console.log('first', first)
-    if (e) {
-      // useEffect(() => {
-      // console.log("e,time", e, time);
+  const dateHandler = () => {
+    if (switchChecked) {
       setLocaldate(time);
       setIsoESZO(moment(time).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(time).format("yyyy-MM-dd HH:mm:ss.SSS"));
       setIsoTextual(moment(time).format("YYYY-MM-DDTHH:mm:ss"));
       setHttpTime(moment(time).format("ddd, DD MM YYYY HH:mm:ss"));
       setTimeStamp(moment(time).format("YYYYMMDDhhmmss"));
-      // }, [date]);
-
-      // console.log(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
     } else {
-      setSwitchChecked(true);
       setLocaldate("");
       setIsoESZO("");
       setIsoDatabase("");
@@ -60,12 +52,17 @@ const MUITable = () => {
     }
   };
   useEffect(() => {
-    setInterval(() => {
-      setTime(new Date());
-      // dateHandler(switchChecked, time);
-    }, 1000);
-  }, []);
-
+    if (switchChecked) {
+      const newtime = setInterval(() => {
+        setTime(new Date());
+        dateHandler();
+      }, 1000);
+      return () => {
+        clearInterval(newtime);
+      };
+    }
+  }, [time, switchChecked]);
+  console.log("dateString", dateString);
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
@@ -106,15 +103,12 @@ const MUITable = () => {
             }}
           >
             <Typography sx={{ marginTop: "3px" }}>
-              {" "}
               Use current date-time?
             </Typography>
             <FormControlLabel
               control={<IOSSwitch />}
               label=""
               onChange={(e: any) => {
-                console.log("e.target.checked", e.target.checked);
-                dateHandler(e.target.checked, new Date());
                 setSwitchChecked(e.target.checked);
               }}
             />
@@ -131,6 +125,12 @@ const MUITable = () => {
           >
             <Autocomplete
               disablePortal
+              isOptionEqualToValue={(option: any, value: any) =>
+                option.label === value.label
+              }
+              onChange={(e: any) => {
+                setDateString(e.target.outerText);
+              }}
               disabled={switchChecked ? true : false}
               id="combo-box-demo"
               options={top100Films}
@@ -138,6 +138,7 @@ const MUITable = () => {
                 width: "20%",
                 height: 50,
               }}
+              defaultValue={top100Films[0].label}
               renderInput={(params) => (
                 <TextField {...params} label="Date String" />
               )}
@@ -148,6 +149,9 @@ const MUITable = () => {
               label="Date String"
               variant="outlined"
               sx={{ width: "100%" }}
+              onChange={(e: any) =>
+                console.log("e.target.value", `"${e.target.value}"`)
+              }
             />
           </Box>
           <Box sx={{ mx: "5%", width: "90%", mt: "30px" }}>
@@ -161,7 +165,7 @@ const MUITable = () => {
               mt: "30px",
             }}
           >
-            {top100Films.map((item, index) => {
+            {top100Films.map((item: any, index: any) => {
               return (
                 <Box sx={{ mx: "4%", display: "flex", gap: 1 }} key={index}>
                   <TextField
