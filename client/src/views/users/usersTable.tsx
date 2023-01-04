@@ -83,7 +83,7 @@ const CardUser = () => {
         {data?.map((user: any) => {
           return (
             <Card
-              className="card"
+              className="effectHover"
               sx={{
                 boxShadow: 10,
                 color: "common.white",
