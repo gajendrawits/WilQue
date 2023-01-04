@@ -3,6 +3,7 @@ import { Button } from "antd";
 import Image from "next/image";
 import { Grid, Typography } from "@mui/material";
 import Work from "src/assets/svg/howwork";
+import router from "next/router";
 
 const SecondFeat = () => (
   <Grid
@@ -120,20 +121,49 @@ const SecondFeat = () => (
             >
               Email digest.
             </Typography>
-
-            {/* <Button
-              type="primary"
-              style={{
-                height: "90px",
-                width: "230px",
-                fontSize: "50px",
-                borderRadius: "24px",
-                backgroundColor: "#c6a0f7",
-                color: "rgba(231, 227, 252, 0.87)",
+            <Typography
+              sx={{
+                fontSize: "37px",
+                fontWeight: "500",
+                paddingBottom: "20px",
+                color: "rgb(0, 0, 0)",
               }}
             >
-              Sign In
-            </Button> */}
+              To know more...
+            </Typography>
+
+            <Button
+              onClick={() => {
+                router.push({
+                  pathname: "/login",
+                });
+              }}
+              type="primary"
+              style={{
+                // height: "90px",
+                // width: "230px",
+                // fontSize: "50px",
+                // borderRadius: "24px",
+                // backgroundColor: "#aaa5a561",
+                // color: "rgba(0, 0, 0, 0.87)",
+                // boxShadow: "0 8px 15px #171718ec",
+                fontSize: "13px",
+                letterSpacing: "0px",
+                fontWeight: "700",
+                lineHeight: "16px",
+                textTransform: "uppercase",
+                textDecoration: "none !important",
+                border: "none",
+                borderRadius: "2px",
+                cursor: "pointer",
+                justifyContent: "center",
+                padding: "16px 32px",
+                height: "48px",
+                textAlign: "center",
+              }}
+            >
+              Log In
+            </Button>
           </Typography>
         </Typography>
       </Grid>

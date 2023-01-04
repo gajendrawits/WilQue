@@ -10,6 +10,11 @@ import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
 import BasicModal from "src/component/modal";
 import router from "next/router";
+import {
+  Container,
+  AskQuestionHeading,
+  PostButton,
+} from "src/styles/askquestionstyle/askQuestionStyle";
 
 const index = () => {
   const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
@@ -44,27 +49,10 @@ const index = () => {
 
   return (
     <>
-      <Grid
-        sx={{
-          pb: 6,
-          width: "80%",
-          minWidth: "700px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 5,
-        }}
-      >
-        <Typography
-          variant="h4"
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            pb: 6,
-          }}
-        >
+      <Container>
+        <AskQuestionHeading variant="h4">
           <Link>Ask question</Link>
-        </Typography>
+        </AskQuestionHeading>
         <Typography>
           You’re ready to ask a programming-related question and this form will
           help guide you through the process. Looking to ask a non-programming
@@ -90,14 +78,9 @@ const index = () => {
           label="Tags"
           heading="Add some tags to describe what your question is about."
         />
-        <Button
-          sx={{ width: "90px" }}
-          type="submit"
-          variant="contained"
-          onClick={submitQuestion}
-        >
+        <PostButton type="submit" variant="contained" onClick={submitQuestion}>
           {isLoading ? <CircularProgress color="inherit" /> : "Post"}
-        </Button>
+        </PostButton>
 
         {open && (
           <BasicModal
@@ -114,7 +97,7 @@ const index = () => {
             title={"Question Not Added"}
           />
         ) : null}
-      </Grid>
+      </Container>
     </>
   );
 };

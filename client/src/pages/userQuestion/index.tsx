@@ -78,7 +78,7 @@ const Container = () => {
               fontWeight: "900",
             }}
           >
-            Total questions : {newData?.length}
+            Total questions : {data?.length}
           </Typography>
         ) : null}
         {isLoading ? (

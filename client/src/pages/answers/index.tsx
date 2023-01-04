@@ -19,11 +19,18 @@ import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
 import useGet from "src/hooks/useGet";
 import { number } from "yup/lib/locale";
 import Comment from "src/component/comment";
+import {
+  Container,
+  HeadingWrapper,
+  QuestionTitleWrapper,
+  LoaderWrapper,
+} from "src/styles/answerstyle.tsx";
 
 const Answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
   const [getAnswerValue, setAnswerValue] = useState("");
   const [getUserDetail, setUserDetail] = useState<any>();
+  const [comment, setComment] = useState(true);
   const [open, setOpen] = useState<any>({});
   const [isSelected, setIsSelected] = useState<any>([]);
   const { question } = getQuestionValue;
@@ -70,13 +77,7 @@ const Answers = () => {
     router.push("/");
   }
 
-  const Container = styled("div")(() => ({
-    "& .MuiTypography-root": {
-      img: {
-        maxWidth: "95%",
-      },
-    },
-  }));
+  // styled component
 
   const {
     refetch: fetchSingleQuestions,
@@ -87,7 +88,7 @@ const Answers = () => {
   useEffect(() => {
     setTimeout(() => {
       fetchSingleQuestions();
-    }, 250);
+    }, 150);
   }, []);
 
   const handleClick = (id?: any) => () => {
@@ -109,39 +110,22 @@ const Answers = () => {
   };
 
   return (
-    <Grid sx={{ pb: 6 }}>
-      <Typography
-        variant="h4"
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          pb: 6,
-        }}
-      >
+    <Grid>
+      <HeadingWrapper variant="h4">
         <Link>Answers</Link>
         <Button variant="contained" onClick={handleRoute}>
           Ask Questions
         </Button>
-      </Typography>
-
+      </HeadingWrapper>
       <Typography>
+        <QuestionTitleWrapper>{data && data?.title}</QuestionTitleWrapper>
         <Typography
           sx={{
-            pb: 3,
-            fontSize: "1.5rem",
-            fontWeight: 600,
-            borderBottom: "1px solid lightgrey",
-          }}
-        >
-          {data && data?.title}
-        </Typography>
-        <Typography
-          sx={{
+            maxWidth: "100%",
             pt: 3,
           }}
         >
-          {data && data?.text}
+          <div dangerouslySetInnerHTML={{ __html: data?.text }}></div>
         </Typography>
         <Typography
           sx={{
@@ -159,16 +143,9 @@ const Answers = () => {
           }}
         >
           {questionLoading ? (
-            <Typography
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                minHeight: "20vh",
-              }}
-            >
+            <LoaderWrapper>
               <CircularProgress color="inherit" />
-            </Typography>
+            </LoaderWrapper>
           ) : null}
           {data &&
             data?.answers?.map((answer: any, index: number) => {
