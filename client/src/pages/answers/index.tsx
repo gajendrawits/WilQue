@@ -19,6 +19,12 @@ import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
 import useGet from "src/hooks/useGet";
 import { number } from "yup/lib/locale";
 import Comment from "src/component/comment";
+import {
+  Container,
+  HeadingWrapper,
+  QuestionTitleWrapper,
+  LoaderWrapper,
+} from "src/styles/answerstyle.tsx";
 
 const Answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -73,35 +79,6 @@ const Answers = () => {
 
   // styled component
 
-  const Container = styled("div")(() => ({
-    "& .MuiTypography-root": {
-      img: {
-        maxWidth: "95%",
-      },
-    },
-  }));
-  const HeadingWrapper = styled(Typography)(() => ({
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-    paddingBottom: 6,
-  }));
-  const QuestionTitleWrapper = styled(Typography)(() => ({
-    pb: 3,
-    fontSize: "1.5rem",
-    fontWeight: 600,
-    borderBottom: "1px solid lightgrey",
-  }));
-
-  const LoaderWrapper = styled("div")(() => ({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "20vh",
-  }));
-
-  // const HeadingWrapper = styled("div")(() => ({}));
-
   const {
     refetch: fetchSingleQuestions,
     data,
@@ -141,9 +118,7 @@ const Answers = () => {
         </Button>
       </HeadingWrapper>
       <Typography>
-        <QuestionTitleWrapper sx={{}}>
-          {data && data?.title}
-        </QuestionTitleWrapper>
+        <QuestionTitleWrapper>{data && data?.title}</QuestionTitleWrapper>
         <Typography
           sx={{
             maxWidth: "100%",
@@ -168,7 +143,7 @@ const Answers = () => {
           }}
         >
           {questionLoading ? (
-            <LoaderWrapper sx={{}}>
+            <LoaderWrapper>
               <CircularProgress color="inherit" />
             </LoaderWrapper>
           ) : null}
