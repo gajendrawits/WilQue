@@ -1,17 +1,12 @@
 // ** MUI Imports
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
-import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
-import Stack from "@mui/material/Stack";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { IOSSwitch } from "src/component/iosswitch";
 import moment from "moment";
-
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 // ** Demo Components Imports
@@ -34,21 +29,13 @@ const MUITable = () => {
     { label: "Timestamp", value: timeStamp },
   ];
   const dateHandler = (e: boolean, time: Date) => {
-    console.log("e,time", e, time);
-    // console.log("switchchecked", switchChecked);
-    // console.log('first', first)
     if (e) {
-      // useEffect(() => {
-      // console.log("e,time", e, time);
       setLocaldate(time);
       setIsoESZO(moment(time).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(time).format("yyyy-MM-dd HH:mm:ss.SSS"));
       setIsoTextual(moment(time).format("YYYY-MM-DDTHH:mm:ss"));
       setHttpTime(moment(time).format("ddd, DD MM YYYY HH:mm:ss"));
       setTimeStamp(moment(time).format("YYYYMMDDhhmmss"));
-      // }, [date]);
-
-      // console.log(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
     } else {
       setSwitchChecked(true);
       setLocaldate("");
@@ -62,7 +49,6 @@ const MUITable = () => {
   useEffect(() => {
     setInterval(() => {
       setTime(new Date());
-      // dateHandler(switchChecked, time);
     }, 1000);
   }, []);
 
@@ -113,7 +99,6 @@ const MUITable = () => {
               control={<IOSSwitch />}
               label=""
               onChange={(e: any) => {
-                console.log("e.target.checked", e.target.checked);
                 dateHandler(e.target.checked, new Date());
                 setSwitchChecked(e.target.checked);
               }}

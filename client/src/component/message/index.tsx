@@ -31,10 +31,12 @@ const CustomizedSnackbars = ({ resetData, severity, message }: any) => {
   const vertical = "top";
   const horizontal = "right";
   return (
-    <Stack spacing={2} sx={{ width: "100%" }}>
-      {/* <Button variant="outlined" onClick={handleClick}>
-        Open success snackbar
-      </Button> */}
+    <Stack
+      spacing={2}
+      sx={{
+        width: "100%",
+      }}
+    >
       <Snackbar
         open={open}
         autoHideDuration={4000}
@@ -42,23 +44,8 @@ const CustomizedSnackbars = ({ resetData, severity, message }: any) => {
         anchorOrigin={{ vertical, horizontal }}
         key={vertical + horizontal}
       >
-        {/* <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          This is a success message!
-        </Alert> */}
         <Alert severity={severity}>{message}</Alert>
       </Snackbar>
-      {/* <Alert severity="error">This is an error message!</Alert>
-      <Alert severity="warning">This is a warning message!</Alert>
-      <Alert severity="info">This is an information message!</Alert> */}
-      {/* <Alert severity="success">This is a success message!2</Alert> */}
-      {/* <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        message="Note archived"
-        key={vertical + horizontal}
-      /> */}
     </Stack>
   );
 };

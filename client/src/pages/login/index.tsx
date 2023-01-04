@@ -59,19 +59,9 @@ const LinkStyled = styled("a")(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
 
-const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(
-  ({ theme }) => ({
-    "& .MuiFormControlLabel-label": {
-      fontSize: "0.875rem",
-      color: theme.palette.text.secondary,
-    },
-  })
-);
-
 const LoginPage = () => {
   const [password, setShowPassword] = useState(false);
-  const [modal, setModal] = useState(false);
-  // ** Hook
+
   const theme = useTheme();
   const router = useRouter();
   const {
@@ -116,6 +106,13 @@ const LoginPage = () => {
 
   return (
     <>
+      {router.query?.Register && (
+        <CustomizedSnackbars
+          resetData={router?.query}
+          severity={"success"}
+          message={"Registered Sucessfully"}
+        />
+      )}
       <Box className="content-center">
         <Card sx={{ zIndex: 1 }}>
           <CardContent
