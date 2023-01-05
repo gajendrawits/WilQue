@@ -48,6 +48,11 @@ interface State {
   showPassword: boolean;
 }
 
+interface loginData {
+  username: string;
+  password: string;
+}
+
 // ** Styled Components
 const Card = styled(MuiCard)<CardProps>(({ theme }) => ({
   [theme.breakpoints.up("sm")]: { width: "28rem" },

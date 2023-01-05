@@ -8,6 +8,7 @@ import router from "next/router";
 import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Space, Pagination } from "antd";
+import { dataProps } from "src/sharedtypes/myquestiontypes";
 
 const postsPerPage = 6;
 
@@ -18,7 +19,7 @@ const Container = () => {
     isLoading,
   } = useGet("ques", "/question");
 
-  const handleClick = (questionId: any) => {
+  const handleClick = (questionId: string) => {
     router.push({
       pathname: "/answers",
       query: { questionId: questionId },
@@ -28,7 +29,7 @@ const Container = () => {
   const [number, setNumber] = useState(1);
 
   //   handle Pagination
-  const handlePage = (pageNumber: any) => setNumber(pageNumber);
+  const handlePage = (pageNumber: number) => setNumber(pageNumber);
 
   const reversedData = data?.reverse();
 
@@ -94,8 +95,8 @@ const Container = () => {
           ) : (
             <div>
               {newData?.length
-                ? newData?.map((question: any, index: number) => {
-                    const date: number = question.created;
+                ? newData?.map((question: dataProps, index: number) => {
+                    const date: string = question.created;
                     const name = question?.author?.username?.substring(
                       0,
                       question?.author?.username?.indexOf("@")
@@ -194,7 +195,7 @@ const Container = () => {
                                 }}
                               >
                                 {question.tags?.map(
-                                  (tag: any, index: number) => {
+                                  (tag: string, index: number) => {
                                     return (
                                       <Card
                                         variant="outlined"

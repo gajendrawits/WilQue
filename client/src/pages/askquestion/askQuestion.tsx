@@ -15,7 +15,7 @@ import {
   PostButton,
 } from "src/styles/askquestionstyle/askQuestionStyle";
 
-const index = () => {
+const AskQuestion = () => {
   const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
   const [open, setOpen] = useState(false);
 
@@ -104,4 +104,4 @@ const index = () => {
     </>
   );
 };
-export default index;
+export default AskQuestion;
