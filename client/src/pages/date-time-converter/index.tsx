@@ -9,13 +9,6 @@ import { IOSSwitch } from "src/component/iosswitch";
 import moment from "moment";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
-// ** Demo Components Imports
-// console.log("moment.format()", moment.format("YYYY-MM-DDTHH:mm:ssZ"));
-// const a =
-//   moment("2023-01-04T12:49:33+05:30", "YYYY-MM-DDTHH:mm:ssZ").format(
-//     "YYYY-MM-DDTHH:mm:ssZ"
-//   ) === "2023-01-04T12:49:33+05:30";
-// console.log("a", a);
 
 const MUITable = () => {
   const [time, setTime] = useState(new Date());
@@ -41,7 +34,7 @@ const MUITable = () => {
   const dateHandler = () => {
     if (switchChecked) {
       setLocaldate(moment(time).format("YYYY-MM-DDTHH:mm:ssZ"));
-      setIsoESZO(moment(time).format("YYYY-MM-DDTHH:mm:ssZ"));
+      setIsoESZO(moment(time).format("YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]"));
       setIsoDatabase(moment(time).format("yyyy-MM-DD HH:mm:ss.SS"));
       setIsoTextual(moment(time).format("YYYY-MM-DDTHH:mm:ss"));
       setHttpTime(moment(time).format("ddd, DD MM YYYY HH:mm:ss"));
@@ -57,6 +50,12 @@ const MUITable = () => {
   };
   const FormatHandler = (date: any) => {
     console.log("date", date);
+    console.log(
+      "first",
+      moment(date, "YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]").format(
+        "YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]"
+      )
+    );
     setIsError(true);
     if (
       moment(date, "YYYY-MM-DDTHH:mm:ssZ").format("YYYY-MM-DDTHH:mm:ssZ") ===
@@ -64,18 +63,21 @@ const MUITable = () => {
       dateString === "JS locate Date string"
     ) {
       setIsError(false);
-      setLocaldate(moment(time).format("YYYY-MM-DDTHH:mm:ssZ"));
+      setLocaldate(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoESZO(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(date).format("yyyy-MM-DD HH:mm:ss.SS"));
       setIsoTextual(moment(date).format("YYYY-MM-DDTHH:mm:ss"));
       setHttpTime(moment(date).format("ddd, DD MM YYYY HH:mm:ss"));
       setTimeStamp(moment(date).format("YYYYMMDDhhmmss"));
     } else if (
-      moment(date, "YYYY-MM-DDTHH:mm:ssZ").format("YYYY-MM-DDTHH:mm:ssZ") ===
-        date &&
+      moment(date, "YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]").format(
+        "YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]"
+      ) === date &&
       dateString === "ISO 8601"
     ) {
+      console.log("90");
       setIsError(false);
+      setLocaldate(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoESZO(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(date).format("yyyy-MM-DD HH:mm:ss.SS"));
       setIsoTextual(moment(date).format("YYYY-MM-DDTHH:mm:ss"));
@@ -88,6 +90,7 @@ const MUITable = () => {
       dateString === "ISO 9075"
     ) {
       setIsError(false);
+      setLocaldate(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoESZO(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(date).format("yyyy-MM-DD HH:mm:ss.SS"));
       setIsoTextual(moment(date).format("YYYY-MM-DDTHH:mm:ss"));
@@ -98,6 +101,7 @@ const MUITable = () => {
       date
     ) {
       setIsError(false);
+      setLocaldate(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoESZO(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(date).format("yyyy-MM-DD HH:mm:ss.SS"));
       setIsoTextual(moment(date).format("YYYY-MM-DDTHH:mm:ss"));
@@ -109,6 +113,7 @@ const MUITable = () => {
       dateString === "RFC 3339"
     ) {
       setIsError(false);
+      setLocaldate(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoESZO(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(date).format("yyyy-MM-DD HH:mm:ss.SS"));
       setIsoTextual(moment(date).format("YYYY-MM-DDTHH:mm:ss"));
@@ -121,6 +126,7 @@ const MUITable = () => {
       dateString === "RFC 7231"
     ) {
       setIsError(false);
+      setLocaldate(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoESZO(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(date).format("yyyy-MM-DD HH:mm:ss.SS"));
       setIsoTextual(moment(date).format("YYYY-MM-DDTHH:mm:ss"));
@@ -131,14 +137,15 @@ const MUITable = () => {
       dateString === "Timestamp"
     ) {
       setIsError(false);
+      setLocaldate(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoESZO(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoDatabase(moment(date).format("yyyy-MM-DD HH:mm:ss.SS"));
       setIsoTextual(moment(date).format("YYYY-MM-DDTHH:mm:ss"));
       setHttpTime(moment(date).format("ddd, DD MM YYYY HH:mm:ss"));
       setTimeStamp(moment(date).format("YYYYMMDDhhmmss"));
     } else {
+      // I will use it later
       // setIsisError(true);
-      // console.log("please enter correct format");
     }
   };
   useEffect(() => {
@@ -152,7 +159,7 @@ const MUITable = () => {
       };
     }
   }, [time, switchChecked, isoESZO]);
-  // console.log("datetringssssss", dateString);
+
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>

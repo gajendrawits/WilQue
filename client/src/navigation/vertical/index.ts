@@ -27,7 +27,7 @@ const navigation = (): VerticalNavItemsType => {
       icon: LocalOfferIcon,
       path: "/tags",
     },
-    
+
     {
       title: "My Questions ",
       icon: HelpIcon,
@@ -52,6 +52,11 @@ const navigation = (): VerticalNavItemsType => {
       icon: FormatColorTextIcon,
       title: "Color-Picker",
       path: "/colorpicker",
+    },
+    {
+      icon: FormatColorTextIcon,
+      title: "Device-Information",
+      path: "/deviceinformation",
     },
     {
       icon: DataObjectIcon,
