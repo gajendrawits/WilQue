@@ -151,7 +151,7 @@ const UserDropdown = () => {
           sx={{ py: 2 }}
           onClick={() => {
             handelLogout();
-            handleDropdownClose("/pages/login");
+            handleDropdownClose("/");
           }}
         >
           <LogoutVariant
