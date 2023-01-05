@@ -87,6 +87,7 @@ const CardUser = () => {
               sx={{
                 boxShadow: 10,
                 color: "common.white",
+                cursor: "pointer",
               }}
               onClick={() => handleClick(user.username, 5)}
             >

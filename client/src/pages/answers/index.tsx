@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Button, CircularProgress, styled } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import QuillEdit from "../editor";
@@ -110,6 +110,7 @@ const Answers = () => {
     setIsSelected(temp);
   };
 
+  const reversedData = data?.answers?.reverse();
   return (
     <Grid>
       {getOpenAnswer && (
@@ -163,7 +164,7 @@ const Answers = () => {
             </LoaderWrapper>
           ) : null}
           {data &&
-            data?.answers?.reverse().map((answer: any, index: number) => {
+            data?.answers?.map((answer: any, index: number) => {
               let flag = false;
               if (answer?.author?.username == getUserDetail?.username) {
                 flag = true;
@@ -263,21 +264,28 @@ const Answers = () => {
                     return (
                       <Box
                         sx={{
-                          mr: 6,
+                          m: 2,
                           display: "flex",
-                          flexDirection: "column",
+                          flexDirection: "row",
+                          alignItems: "center",
                         }}
                       >
                         {isSelected.includes(answer?.id) && (
-                          <Avatar
-                            alt="Mary Vaughn"
-                            src={comments.author.profilePhoto}
-                            sx={{ width: 34, height: 34, marginRight: 2.75 }}
-                          />
+                          <>
+                            <Avatar
+                              alt="Mary Vaughn"
+                              src={comments.author.profilePhoto}
+                              sx={{
+                                width: 34,
+                                height: 34,
+                                marginRight: 2.75,
+                              }}
+                            />
+                            <Typography variant="body2">
+                              <div>{comments?.body}</div>
+                            </Typography>
+                          </>
                         )}
-                        <Typography variant="body2">
-                          <div>{comments?.body}</div>
-                        </Typography>
                       </Box>
                     );
                   })}
