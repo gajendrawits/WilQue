@@ -29,6 +29,8 @@ const Answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
   const [getAnswerValue, setAnswerValue] = useState("");
   const [getUserDetail, setUserDetail] = useState<any>();
+  const [comment, setComment] = useState(true);
+  const [answerError, setAnswerError] = useState<string>();
   const [getOpenAnswer, setOpenAnswer] = useState(false);
   const [getDeleteAnswer, setDeleteAnswer] = useState(false);
 
@@ -37,15 +39,19 @@ const Answers = () => {
   const { question } = getQuestionValue;
   const router = useRouter();
   const { questionId, myquestion } = router.query;
-  const { mutateAsync, isLoading, isSuccess } = usePost();
+  const { mutateAsync, isLoading, isSuccess, error } = usePost();
   const { mutateAsync: deleteAsync, isSuccess: delteIsSuccess } = useDelete();
 
-  const postAnswer = () => {
-    mutateAsync({
-      url: `/answer/${questionId}`,
-      payload: getAnswerValue,
-      token: true,
-    });
+  const postAnswer = async () => {
+    try {
+      const res = await mutateAsync({
+        url: `/answer/${questionId}`,
+        payload: getAnswerValue,
+        token: true,
+      });
+    } catch (error: any) {
+      setAnswerError(error.response.data.errors[0].msg);
+    }
   };
   const handleRoute = () => {
     router.push("/askquestion");
@@ -302,6 +308,13 @@ const Answers = () => {
                 <QuillEdit handleAnswerValue={handleAnswerValue} />
               </div>
             </Typography>
+            <div>
+              {answerError && (
+                <p style={{ color: "red", textTransform: "capitalize" }}>
+                  {answerError}
+                </p>
+              )}
+            </div>
             <Button
               variant="contained"
               type="submit"

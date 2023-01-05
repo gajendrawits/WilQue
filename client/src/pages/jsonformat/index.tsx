@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Tooltip, Typography } from "@mui/material";
 import React, { useState } from "react";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -6,6 +6,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 const JsonFormat = () => {
   const [rawData, setRawData] = useState<any>();
   const [isError, setIsError] = useState<boolean>(false);
+  const [toolTipOpen, setToolTipOpen] = useState<boolean>(false);
 
   const handleRawData = (e: any) => {
     try {
@@ -18,11 +19,16 @@ const JsonFormat = () => {
   };
 
   function updateClipboard(newClip: any) {
+    setToolTipOpen(true);
+    setTimeout(() => {
+      setToolTipOpen(false);
+    }, 1000);
     navigator.clipboard.writeText(newClip).then(
       () => {},
       () => {}
     );
   }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
@@ -37,6 +43,7 @@ const JsonFormat = () => {
               width: "35vw",
               backgroundColor: "white",
               borderRadius: "10px",
+              padding: "6px",
             }}
             onChange={handleRawData}
           />
@@ -59,17 +66,29 @@ const JsonFormat = () => {
             value={rawData}
             readOnly={true}
           />
-
-          <ContentCopyIcon
-            sx={{
-              position: "fixed",
-              cursor: "pointer",
-              right: "180px",
-              top: "120px",
-              color: "black",
+          <Tooltip
+            title="Copied !"
+            placement="top"
+            PopperProps={{
+              disablePortal: true,
             }}
-            onClick={() => updateClipboard(rawData)}
-          />
+            open={toolTipOpen}
+            disableFocusListener
+            disableHoverListener
+            disableTouchListener
+            onClose={updateClipboard}
+          >
+            <ContentCopyIcon
+              sx={{
+                position: "fixed",
+                cursor: "pointer",
+                right: "180px",
+                top: "120px",
+                color: "black",
+              }}
+              onClick={() => updateClipboard(rawData)}
+            />
+          </Tooltip>
         </Grid>
       </Grid>
     </Box>

@@ -24,13 +24,19 @@ const index = () => {
   const { mutateAsync, isLoading, isSuccess, isError } = usePost();
 
   const submitQuestion = () => {
-    Object.keys(getQuestionValue).length > 0
-      ? mutateAsync({
-          url: "/questions",
-          payload: getQuestionValue,
-          token: true,
-        })
-      : setOpen(true);
+    if (
+      getQuestionValue.hasOwnProperty("title") &&
+      getQuestionValue.hasOwnProperty("text") &&
+      getQuestionValue.hasOwnProperty("tags")
+    ) {
+      mutateAsync({
+        url: "/questions",
+        payload: getQuestionValue,
+        token: true,
+      });
+    } else {
+      setOpen(true);
+    }
   };
 
   if (isSuccess) {

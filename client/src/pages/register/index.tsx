@@ -68,6 +68,7 @@ const RegisterPage = () => {
 
   const [confirmValues, setConfirmValues] = useState(false);
 
+  const [registerError, setRegisterError] = useState<string>();
   // ** Hook
   const theme = useTheme();
 
@@ -95,11 +96,15 @@ const RegisterPage = () => {
 
   const { mutateAsync, isSuccess, isLoading, isError, error } = usePost();
 
-  const formData = (userData: any) => {
-    mutateAsync({
-      url: "/signup",
-      payload: userData,
-    });
+  const formData = async (userData: any) => {
+    try {
+      const res = await mutateAsync({
+        url: "/signup",
+        payload: userData,
+      });
+    } catch (error: any) {
+      setRegisterError(error.response.data.message);
+    }
   };
 
   if (isSuccess) {
@@ -304,7 +309,7 @@ const RegisterPage = () => {
                   padding: "5px 10px",
                 }}
               >
-                Sign up Failed
+                {registerError}
               </Box>
             ) : null}
 
