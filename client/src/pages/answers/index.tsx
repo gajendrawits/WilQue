@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Button, CircularProgress, styled } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import QuillEdit from "../editor";
@@ -117,6 +117,7 @@ const Answers = () => {
     setIsSelected(temp);
   };
 
+  const reversedData = data?.answers?.reverse();
   return (
     <Grid>
       {getOpenAnswer && (

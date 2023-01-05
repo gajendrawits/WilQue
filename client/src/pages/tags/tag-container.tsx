@@ -35,6 +35,7 @@ const TagContainer = (props: any) => {
                 gap: 2,
                 p: 1,
                 justifyContent: "center",
+                cursor: "pointer",
               }}
               onClick={() => handleClicked(tag._id)}
             >

@@ -178,12 +178,18 @@ const MyQuestion = () => {
                           sx={{
                             width: "100%",
                             whiteSpace: "nowrap",
+                            maxHeight: "45px",
                             overflow: "hidden",
                             textOverflow: "ellipsis",
                           }}
                         >
                           Description :
-                          <span style={{ padding: 1 }}>{question.text}</span>
+                          <span
+                            style={{ padding: 1 }}
+                            dangerouslySetInnerHTML={{
+                              __html: question.text,
+                            }}
+                          ></span>
                         </Typography>
                         <Typography
                           sx={{
