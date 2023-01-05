@@ -52,7 +52,7 @@ const MyQuestion = () => {
       query: { myquestion: "userquestion", questionId: questionId },
     });
   };
-  console.log(filteredQues);
+
   return (
     <Grid
       sx={{

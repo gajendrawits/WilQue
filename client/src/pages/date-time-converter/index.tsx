@@ -34,7 +34,6 @@ const MUITable = () => {
     { label: "Timestamp", value: timeStamp },
   ];
   const dateHandler = (e: boolean, time: Date) => {
-    console.log("e,time", e, time);
     // console.log("switchchecked", switchChecked);
     // console.log('first', first)
     if (e) {

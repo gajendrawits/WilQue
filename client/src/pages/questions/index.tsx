@@ -20,8 +20,6 @@ const Container = () => {
   } = useGet("ques", "/question");
 
   const handleClick = (questionId: any) => {
-    console.log("question.id", questionId);
-
     router.push({
       pathname: "/answers",
       query: { questionId: questionId },
