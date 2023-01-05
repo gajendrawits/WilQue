@@ -8,6 +8,7 @@ import { Avatar, Button, Card } from "@mui/material";
 import { useRouter } from "next/router";
 import Link from "@mui/material/Link";
 import useGet from "src/hooks/useGet";
+import { dataProps } from "src/sharedtypes/myquestiontypes";
 
 const SearchByTag = () => {
   const [number, setNumber] = useState(1);
@@ -21,9 +22,9 @@ const SearchByTag = () => {
 
   const postsPerPage = 4;
   //   handle Pagination
-  const handlePage = (pageNumber: any) => setNumber(pageNumber);
+  const handlePage = (pageNumber: number) => setNumber(pageNumber);
 
-  const handleClick = (questionId: any) => {
+  const handleClick = (questionId: string) => {
     router.push({
       pathname: "/answers",
       query: { questionId: questionId },
@@ -90,14 +91,14 @@ const SearchByTag = () => {
         ) : null}
 
         {data?.length ? (
-          data.map((question: any, index: number) => {
+          data.map((question: dataProps, index: number) => {
             const date = question.created;
 
             const name = question?.author?.username?.substring(
               0,
               question?.author?.username?.indexOf("@")
             );
-            const currentDate: any = new Date();
+            const currentDate = new Date();
 
             const myDate =
               parseInt(moment(currentDate).format("DD")) -
@@ -182,7 +183,7 @@ const SearchByTag = () => {
                           gap: 3,
                         }}
                       >
-                        {question.tags?.map((tag: any, index: number) => {
+                        {question.tags?.map((tag: string, index: number) => {
                           return (
                             <Card
                               variant="outlined"

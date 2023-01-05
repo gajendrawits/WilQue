@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import { QuestionContext } from "src/@core/context/QuestionContext";
-import { TextField } from "@mui/material";
 
 const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
   ssr: false,
@@ -15,7 +14,7 @@ export default function Home({ handleAnswerValue }: any) {
 
   const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
 
-  const handleValue = (data: any) => {
+  const handleValue = (data: string) => {
     const value = data.slice(3, data.length - 4);
 
     const atLeastOneLetterAndSpace = (str: string) => {
@@ -49,15 +48,4 @@ export default function Home({ handleAnswerValue }: any) {
       </div>
     </div>
   );
-}
-
-{
-  /* <TextField
-          fullWidth
-          value={answerText}
-          type="text"
-          sx={{
-            "& fieldset": { border: "none" },
-          }}
-        /> */
 }
