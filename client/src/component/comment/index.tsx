@@ -4,14 +4,15 @@ import usePost from "src/hooks/usePost";
 import Stack from "@mui/material/Stack";
 import { Avatar } from "@material-ui/core";
 import CustomizedSnackbars from "src/component/message";
+import { commentTypes, userData } from "src/sharedtypes/commenttypes";
 
-const Comment = (props: any) => {
-  const [profileDetails, setProfileDetails] = useState<any>();
+const Comment = (props: commentTypes) => {
+  const [profileDetails, setProfileDetails] = useState<userData | undefined>();
   const [getOpenComment, setOpenComment] = useState(false);
 
   useEffect(() => {
-    const a: any = localStorage.getItem("user");
-    setProfileDetails(JSON.parse(a));
+    const userData: any = localStorage.getItem("user");
+    setProfileDetails(JSON.parse(userData));
   }, []);
 
   const [getCommentValue, setCommentValue] = useState("");

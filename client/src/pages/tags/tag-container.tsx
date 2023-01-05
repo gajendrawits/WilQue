@@ -3,9 +3,10 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import router from "next/router";
+import { tagProps } from "src/sharedtypes/tagstypes";
 
 const TagContainer = (props: any) => {
-  const handleClicked = (tag: any) => {
+  const handleClicked = (tag: string) => {
     router.push({
       pathname: "/questionbytag",
       query: { searchTag: tag },
@@ -24,7 +25,7 @@ const TagContainer = (props: any) => {
           paddingTop: "25px",
         }}
       >
-        {props?.tags?.map((tag: any) => {
+        {props?.tags?.map((tag: tagProps) => {
           return (
             <Card
               variant="outlined"

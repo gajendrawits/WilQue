@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import useGet from "src/hooks/useGet";
 import CircularProgress from "@mui/material/CircularProgress";
 import router from "next/router";
+import { userTypes } from "src/sharedtypes/usertypes";
 
 const CardUser = () => {
   const {
@@ -25,7 +26,7 @@ const CardUser = () => {
     fetchDetails();
   }, []);
 
-  const handleClick = (userName: any, index: number) => {
+  const handleClick = (userName: string, index: number) => {
     router.push({
       pathname: "/userQuestion",
       query: { userName: userName },
@@ -80,7 +81,7 @@ const CardUser = () => {
           gridTemplateColumns: "repeat(auto-fill, minmax(25rem, 1fr))",
         }}
       >
-        {data?.map((user: any) => {
+        {data?.map((user: userTypes) => {
           return (
             <Card
               className="effectHover"
