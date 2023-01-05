@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
@@ -28,7 +28,7 @@ const TagContainer = (props: any) => {
           >
             <Typography sx={{ widh: "200px" }}>#{tag._id}</Typography>
             <Typography sx={{ widh: "200px" }}>{tag.description}</Typography>
-          </Card>   
+          </Card>
         );
       })}
     </Grid>

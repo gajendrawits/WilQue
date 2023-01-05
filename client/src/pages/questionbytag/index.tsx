@@ -187,7 +187,6 @@ const SearchByTag = () => {
                             <Card
                               variant="outlined"
                               sx={{
-                                background: "#d0b3f5",
                                 p: 2,
                                 borderRadius: "8px",
                               }}
@@ -204,7 +203,6 @@ const SearchByTag = () => {
                         variant="outlined"
                         sx={{
                           m: 2,
-
                           p: 1,
                           width: "fit-content",
                           borderRadius: "8px",

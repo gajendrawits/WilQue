@@ -33,7 +33,7 @@ const titleInput = (props: titleInputProps) => {
 
       <input
         style={{
-          padding: 2,
+          padding: 6,
           height: "2rem",
           borderRadius: "8px",
           border: "none",

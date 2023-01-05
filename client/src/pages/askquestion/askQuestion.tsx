@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Button, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import TitleInput from "src/pages/askquestion/titleInput";
 import TagInput from "src/pages/askquestion/tagInput";
 import TextAskQuestionInput from "src/pages/askquestion/textAskQuestionInput";
@@ -22,18 +21,22 @@ const index = () => {
 
   const handleClose = () => setOpen(false);
 
-  const handleOpen = () => setOpen(true);
-
   const { mutateAsync, isLoading, isSuccess, isError } = usePost();
 
   const submitQuestion = () => {
-    Object.keys(getQuestionValue).length > 0
-      ? mutateAsync({
-          url: "/questions",
-          payload: getQuestionValue,
-          token: true,
-        })
-      : setOpen(true);
+    if (
+      getQuestionValue.hasOwnProperty("title") &&
+      getQuestionValue.hasOwnProperty("text") &&
+      getQuestionValue.hasOwnProperty("tags")
+    ) {
+      mutateAsync({
+        url: "/questions",
+        payload: getQuestionValue,
+        token: true,
+      });
+    } else {
+      setOpen(true);
+    }
   };
 
   if (isSuccess) {

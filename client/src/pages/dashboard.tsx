@@ -17,6 +17,7 @@ const dashboard = () => {
           message={"Sucessfully Login"}
         />
       )}
+
       <ApexChartWrapper>
         <Grid container spacing={6} sx={{ pt: "1.5rem", pl: "1.5rem" }}>
           <Questions />
