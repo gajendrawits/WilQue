@@ -1,34 +1,24 @@
 import React, { ReactNode, useEffect } from "react";
+import router from "next/router";
+import Image from "next/image";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import KeyFeature from "src/views/LandingPage/KeyFeatures";
-import SecondFeat from "src/views/LandingPage/KeyFeatures/LoginSection";
 import BlankLayout from "src/@core/layouts/BlankLayout";
-import DetailSection from "src/views/LandingPage/DetailsFeatures";
-import FooterSection from "src/views/LandingPage/Footer";
-import SignupLanding from "src/views/LandingPage/LandingSignin";
 import { Button, Grid, styled, Typography } from "@mui/material";
-import LandingImage from "src/assets/svg/landingImage";
 import FeatureLogo1 from "src/assets/svg/featurelogo1";
 import FeatureLogo2 from "src/assets/svg/featurelogo2";
 import FeatureLogo3 from "src/assets/svg/featurelogo3";
 import FeatureLogo4 from "src/assets/svg/featurelogo4";
 import Logo from "src/assets/svg/logo";
-import RightBottomCorner from "src/assets/svg/landingPageRightCorner";
-import { url } from "inspector";
 import DashboardImage from "src/assets/images/dashboard.png";
-import router from "next/router";
-import Image from "next/image";
 
 const LandingPage = () => {
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
+
   const Container = styled(Typography)({
     backgroundColor: "white",
-    // backgroundImage:
-    //   "url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ4MCIgaGVpZ2h0PSI2NTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik03MzEuMjA3IDY0OS44MDJDOTM1LjQ4NCA2NDIuMTQgMTQ4MCAzMzcuMzI1IDE0ODAgMTgwLjg4OGMwLTE1Ni40MzgtMzA5Ljc0NC0zNi4wNTUtNzIwLTM2LjA1NVMwLTE3NC40ODMgMCAxMzUuMTQ0YzAgMzA5LjYyNyA1MjYuOTMgNTIyLjMyIDczMS4yMDcgNTE0LjY1OHoiIGZpbGw9IiNGNkY4RkEiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==)",
-    // backgroundRepeat: "no-repeat cover",
     border: 0,
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px #42383a4c",
@@ -68,6 +58,7 @@ const LandingPage = () => {
     color: "white",
     boxShadow: "0 8px 24px rgb(32 43 54 / 12%)",
   });
+
   const LogoWrapper = styled(Typography)({
     display: "flex",
     alignItems: "center",
@@ -79,6 +70,7 @@ const LandingPage = () => {
       fontWeight: "600",
     },
   });
+
   const Footer = styled(Typography)({
     display: "flex",
     justifyContent: "space-between",
@@ -99,7 +91,6 @@ const LandingPage = () => {
       <Grid>
         <LogoWrapper>
           <Logo />
-
           <span>WILQUE</span>
         </LogoWrapper>
         <Container>
@@ -188,18 +179,6 @@ const LandingPage = () => {
           <Logo />
           <span>wilque.help@gmail.com</span>
         </Footer>
-
-        {/* fontSize: '14px',
-    line-height: '20px',
-    letter-spacing: '0px',
-    color: '#92A2B1',
-    border-top: 1px solid '#E3E7EB', */}
-
-        {/* <KeyFeature />
-        <SecondFeat />
-        <SignupLanding />
-        <DetailSection />
-        <FooterSection /> */}
       </Grid>
     </>
   );

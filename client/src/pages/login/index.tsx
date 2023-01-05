@@ -59,18 +59,10 @@ const LinkStyled = styled("a")(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
 
-const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(
-  ({ theme }) => ({
-    "& .MuiFormControlLabel-label": {
-      fontSize: "0.875rem",
-      color: theme.palette.text.secondary,
-    },
-  })
-);
-
 const LoginPage = () => {
   const [password, setShowPassword] = useState(false);
   const [modal, setModal] = useState(false);
+  const [loginError, setLoginError] = useState<string>();
   // ** Hook
   const theme = useTheme();
   const router = useRouter();
@@ -87,11 +79,15 @@ const LoginPage = () => {
 
   const { mutateAsync, error, isLoading, isSuccess, data, isError } = usePost();
 
-  const formData = (data: any) => {
-    mutateAsync({
-      url: "/authenticate",
-      payload: data,
-    });
+  const formData = async (data: any) => {
+    try {
+      const res = await mutateAsync({
+        url: "/authenticate",
+        payload: data,
+      });
+    } catch (error: any) {
+      setLoginError(error.response.data.message);
+    }
   };
 
   const handleClickShowPassword = () => {
@@ -116,6 +112,13 @@ const LoginPage = () => {
 
   return (
     <>
+      {router.query?.Register && (
+        <CustomizedSnackbars
+          resetData={router?.query}
+          severity={"success"}
+          message={"Registered Sucessfully"}
+        />
+      )}
       <Box className="content-center">
         <Card sx={{ zIndex: 1 }}>
           <CardContent
@@ -275,7 +278,7 @@ const LoginPage = () => {
                     padding: "5px 10px",
                   }}
                 >
-                  Invalid Credentials ?
+                  {loginError}
                 </Box>
               ) : isSuccess ? (
                 <Box

@@ -8,7 +8,6 @@ import router from "next/router";
 import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Space, Pagination } from "antd";
-import CustomizedSnackbars from "src/component/message";
 
 const postsPerPage = 6;
 
@@ -20,8 +19,6 @@ const Container = () => {
   } = useGet("ques", "/question");
 
   const handleClick = (questionId: any) => {
-    console.log("question.id", questionId);
-
     router.push({
       pathname: "/answers",
       query: { questionId: questionId },
@@ -165,14 +162,18 @@ const Container = () => {
                               sx={{
                                 width: "100%",
                                 whiteSpace: "nowrap",
+                                maxHeight: "45px",
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
                               }}
                             >
                               Description :
-                              <span style={{ padding: 1 }}>
-                                {question.text}
-                              </span>
+                              <span
+                                style={{ padding: 1 }}
+                                dangerouslySetInnerHTML={{
+                                  __html: question.text,
+                                }}
+                              ></span>
                             </Typography>
                             <Typography
                               sx={{
@@ -269,13 +270,6 @@ const Container = () => {
             )}
           </div>
         </Grid>
-        {router.query?.Answer && (
-          <CustomizedSnackbars
-            resetData={router?.query}
-            severity={"success"}
-            message={"Answer Added Successfully"}
-          />
-        )}
       </Grid>
     </>
   );
