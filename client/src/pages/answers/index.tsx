@@ -11,13 +11,11 @@ import { QuestionContext } from "src/@core/context/QuestionContext";
 import usePost from "src/hooks/usePost";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useDelete from "src/hooks/useDelete";
-import { Divider } from "@mui/material";
 import moment from "moment";
 import AddCommentSharpIcon from "@mui/icons-material/AddCommentSharp";
 import ThumbUpSharpIcon from "@mui/icons-material/ThumbUpSharp";
 import ThumbDownAltSharpIcon from "@mui/icons-material/ThumbDownAltSharp";
 import useGet from "src/hooks/useGet";
-import { number } from "yup/lib/locale";
 import Comment from "src/component/comment";
 import {
   Container,
@@ -25,6 +23,7 @@ import {
   QuestionTitleWrapper,
   LoaderWrapper,
 } from "src/styles/answerstyle.tsx";
+import CustomizedSnackbars from "src/component/message";
 
 const Answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -32,6 +31,9 @@ const Answers = () => {
   const [getUserDetail, setUserDetail] = useState<any>();
   const [comment, setComment] = useState(true);
   const [answerError, setAnswerError] = useState<string>();
+  const [getOpenAnswer, setOpenAnswer] = useState(false);
+  const [getDeleteAnswer, setDeleteAnswer] = useState(false);
+
   const [open, setOpen] = useState<any>({});
   const [isSelected, setIsSelected] = useState<any>([]);
   const { question } = getQuestionValue;
@@ -60,10 +62,10 @@ const Answers = () => {
   };
 
   if (isSuccess) {
-    router.push({
-      pathname: "/questions",
-      query: { Answer: "Successs" },
-    });
+    setTimeout(() => {
+      window.location.reload();
+      setOpenAnswer(true);
+    }, 100);
   }
 
   useEffect(() => {
@@ -79,10 +81,11 @@ const Answers = () => {
   };
 
   if (delteIsSuccess) {
-    router.push("/");
+    setTimeout(() => {
+      window.location.reload();
+      setDeleteAnswer(true);
+    }, 100);
   }
-
-  // styled component
 
   const {
     refetch: fetchSingleQuestions,
@@ -110,12 +113,25 @@ const Answers = () => {
     } else {
       temp.push(item);
     }
-
     setIsSelected(temp);
   };
 
   return (
     <Grid>
+      {getOpenAnswer && (
+        <CustomizedSnackbars
+          resetData={getOpenAnswer}
+          severity={"success"}
+          message={"Answer Posted !"}
+        />
+      )}
+      {getDeleteAnswer && (
+        <CustomizedSnackbars
+          resetData={getOpenAnswer}
+          severity={"success"}
+          message={"Answer Deleted!"}
+        />
+      )}
       <HeadingWrapper variant="h4">
         <Link>Answers</Link>
         <Button variant="contained" onClick={handleRoute}>
@@ -153,7 +169,7 @@ const Answers = () => {
             </LoaderWrapper>
           ) : null}
           {data &&
-            data?.answers?.map((answer: any, index: number) => {
+            data?.answers?.reverse().map((answer: any, index: number) => {
               let flag = false;
               if (answer?.author?.username == getUserDetail?.username) {
                 flag = true;
@@ -182,9 +198,12 @@ const Answers = () => {
                       key={answer?.id}
                     >
                       Answer: {index + 1}
-                      <div
+                      <Typography
+                        sx={{
+                          overflowY: "auto",
+                        }}
                         dangerouslySetInnerHTML={{ __html: answer.text }}
-                      ></div>
+                      ></Typography>
                       {flag ? (
                         <DeleteIcon
                           sx={{
@@ -263,10 +282,7 @@ const Answers = () => {
                           />
                         )}
                         <Typography variant="body2">
-                          {isSelected.includes(answer?.id) && (
-                            <div>{comments?.body}</div>
-                          )}
-                          {isSelected.includes(answer?.id) && <Divider />}
+                          <div>{comments?.body}</div>
                         </Typography>
                       </Box>
                     );

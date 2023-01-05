@@ -1,10 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import useGet from "src/hooks/useGet";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import moment from "moment";
 import { Avatar, Button, Card } from "@mui/material";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Space, Pagination } from "antd";
@@ -277,7 +277,7 @@ const MyQuestion = () => {
         <CustomizedSnackbars
           resetData={router?.query}
           severity={"success"}
-          message={"Sucessfully Queestion Add"}
+          message={"Question Added!"}
         />
       )}
     </Grid>
