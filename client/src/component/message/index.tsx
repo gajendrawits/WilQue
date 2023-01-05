@@ -31,7 +31,12 @@ const CustomizedSnackbars = ({ resetData, severity, message }: any) => {
   const vertical = "top";
   const horizontal = "right";
   return (
-    <Stack spacing={2} sx={{ width: "100%" }}>
+    <Stack
+      spacing={2}
+      sx={{
+        width: "100%",
+      }}
+    >
       <Snackbar
         open={open}
         autoHideDuration={4000}

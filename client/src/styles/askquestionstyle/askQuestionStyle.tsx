@@ -16,6 +16,3 @@ export const AskQuestionHeading = styled(Typography)(() => ({
   paddingBottom: 6,
 }));
 export const PostButton = styled(Button)(() => ({ width: "90px" }));
-// export const HeadingWrapper = styled("div")(() => ({}));
-// export const HeadingWrapper = styled("div")(() => ({}));
-// export const HeadingWrapper = styled("div")(() => ({}));

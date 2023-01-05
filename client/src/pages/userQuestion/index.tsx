@@ -7,7 +7,6 @@ import { Avatar, Card } from "@mui/material";
 import { useRouter } from "next/router";
 import Link from "@mui/material/Link";
 import { Empty } from "antd";
-
 import CircularProgress from "@mui/material/CircularProgress";
 import { Space, Pagination } from "antd";
 

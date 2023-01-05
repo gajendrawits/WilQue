@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { LoremIpsum } from "lorem-ipsum";
-
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Card from "@mui/material/Card";
@@ -16,7 +15,7 @@ const MUITable = () => {
 
   const [sentences, setSentences] = useState<number[]>([1, 10]);
   const [words, setWords] = useState<number[]>([1, 10]);
-  const [senetenceLength, setSenetenceLength] = useState(1);
+  const [senetenceLength] = useState(1);
   const [text, setText] = useState("");
 
   const handleChangeSentences = (event: Event, newValue: number | number[]) => {

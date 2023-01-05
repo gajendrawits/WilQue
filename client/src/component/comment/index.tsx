@@ -1,5 +1,5 @@
 import { Button, TextareaAutosize, CircularProgress } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import usePost from "src/hooks/usePost";
 import Stack from "@mui/material/Stack";
 import { Avatar } from "@material-ui/core";
@@ -27,7 +27,7 @@ const Comment = (props: any) => {
     });
     setTimeout(() => {
       window.location.reload();
-    }, 150);
+    }, 100);
   };
 
   return (

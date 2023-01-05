@@ -26,5 +26,3 @@ export const LoaderWrapper = styled("div")(() => ({
   justifyContent: "center",
   minHeight: "20vh",
 }));
-
-// const HeadingWrapper = styled("div")(() => ({}));

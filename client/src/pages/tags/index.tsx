@@ -4,7 +4,6 @@ import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@mui/material/Typography";
 import TagConatiner from "src/pages/tags/tag-container";
 import useGet from "src/hooks/useGet";
