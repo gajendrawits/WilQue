@@ -3,8 +3,13 @@ import React from "react";
 import Editor from "src/pages/editor";
 import { InputWrapper } from "src/styles/askquestionstyle/textAskQuestionInputStyle";
 
+interface TextProps {
+  text: string;
+  value: string;
+}
+
 const TextAskQuestionInput = () => {
-  const handleAnswerValue = (val: any) => {
+  const handleAnswerValue = (val: TextProps) => {
     const obj = { val };
   };
 

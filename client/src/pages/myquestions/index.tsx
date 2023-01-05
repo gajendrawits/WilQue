@@ -9,11 +9,14 @@ import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Space, Pagination } from "antd";
 import CustomizedSnackbars from "src/component/message";
+import { dataProps, userProfile } from "src/sharedtypes/myquestiontypes";
 
 const postsPerPage = 4;
 
 const MyQuestion = () => {
-  const [profileDetails, setProfileDetails] = useState<any>();
+  const [profileDetails, setProfileDetails] = useState<
+    userProfile | undefined
+  >();
   const [number, setNumber] = useState(1);
   const user = profileDetails?.username;
   const router = useRouter();
@@ -29,7 +32,7 @@ const MyQuestion = () => {
     isLoading,
   } = useGet("ques", "/question");
 
-  const filteredQues = data?.filter((value: any) => {
+  const filteredQues = data?.filter((value: dataProps) => {
     return value.author.username === user;
   });
 
@@ -38,7 +41,7 @@ const MyQuestion = () => {
   }, []);
 
   //   handle Pagination
-  const handlePage = (pageNumber: any) => setNumber(pageNumber);
+  const handlePage = (pageNumber: number) => setNumber(pageNumber);
   const reversedData = filteredQues?.reverse();
 
   let newData = reversedData?.slice(
@@ -46,7 +49,7 @@ const MyQuestion = () => {
     postsPerPage * number
   );
 
-  const handleClick = (questionId: any) => {
+  const handleClick = (questionId: string) => {
     router.push({
       pathname: "/answers",
       query: { myquestion: "userquestion", questionId: questionId },
@@ -102,10 +105,11 @@ const MyQuestion = () => {
 
         {newData?.length
           ? newData
-              ?.filter((dt: any) => {
+              ?.filter((dt: dataProps) => {
                 return dt.author.username === user;
               })
-              .map((question: any, index: number) => {
+
+              .map((question: dataProps, index: number) => {
                 const date = question.created;
 
                 const name = question?.author?.username?.substring(
@@ -117,6 +121,7 @@ const MyQuestion = () => {
                 const myDate =
                   parseInt(moment(currentDate).format("DD")) -
                   parseInt(moment(date).format("DD"));
+
                 return (
                   <Grid sx={{ mb: 2 }}>
                     <Typography
@@ -198,20 +203,22 @@ const MyQuestion = () => {
                               gap: 3,
                             }}
                           >
-                            {question.tags?.map((tag: any, index: number) => {
-                              return (
-                                <Card
-                                  variant="outlined"
-                                  sx={{
-                                    p: 1,
-                                    borderRadius: "8px",
-                                  }}
-                                  key={index}
-                                >
-                                  #{tag}
-                                </Card>
-                              );
-                            })}
+                            {question.tags?.map(
+                              (tag: string, index: number) => {
+                                return (
+                                  <Card
+                                    variant="outlined"
+                                    sx={{
+                                      p: 1,
+                                      borderRadius: "8px",
+                                    }}
+                                    key={index}
+                                  >
+                                    #{tag}
+                                  </Card>
+                                );
+                              }
+                            )}
                           </Typography>
                         </Typography>
                         <Typography>
