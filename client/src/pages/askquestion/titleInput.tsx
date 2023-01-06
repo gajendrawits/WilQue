@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Typography from "@mui/material/Typography";
 
 import { QuestionContext } from "src/@core/context/QuestionContext";
@@ -11,13 +11,22 @@ interface titleInputProps {
 
 const titleInput = (props: titleInputProps) => {
   const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
+  const [inputError, setInputError] = useState(false);
 
-  const handleInput = (value: any) => {
+  const handleInput = (value: string) => {
     const obj = { title: value };
-    const newobj = { ...getQuestionValue, ...obj };
-    setQuestionValue(newobj);
+    const atLeastOneLetterAndSpace = (str: string) => {
+      return /^\S/.test(str);
+    };
+    const checkString = atLeastOneLetterAndSpace(value);
+    if (checkString) {
+      const newobj = { ...getQuestionValue, ...obj };
+      setQuestionValue(newobj);
+      setInputError(false);
+    } else {
+      setInputError(true);
+    }
   };
-
   return (
     <Typography
       sx={{
@@ -41,6 +50,9 @@ const titleInput = (props: titleInputProps) => {
         type={props.type}
         onChange={(e: any) => handleInput(e.target.value)}
       />
+      {inputError && (
+        <p style={{ color: "red" }}>First Character Space Not Allowed</p>
+      )}
     </Typography>
   );
 };

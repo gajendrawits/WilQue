@@ -9,6 +9,7 @@ import Link from "@mui/material/Link";
 import { Empty } from "antd";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Space, Pagination } from "antd";
+import { dataProps } from "src/sharedtypes/myquestiontypes";
 
 const postsPerPage = 4;
 
@@ -25,12 +26,12 @@ const Container = () => {
     isLoading,
   } = useGet("question", `/question/user/${userName}`);
 
-  const filteredQues = data?.filter((value: any) => {
+  const filteredQues = data?.filter((value: dataProps) => {
     return value.author.username === user;
   });
 
   //   handle Pagination
-  const handlePage = (pageNumber: any) => setNumber(pageNumber);
+  const handlePage = (pageNumber: number) => setNumber(pageNumber);
   const reversedData = filteredQues?.reverse();
 
   let newData = data?.slice((number - 1) * postsPerPage, postsPerPage * number);
@@ -94,7 +95,7 @@ const Container = () => {
         ) : null}
 
         {newData?.length ? (
-          newData.map((question: any, index: number) => {
+          newData.map((question: dataProps, index: number) => {
             const date = question.created;
 
             const name = question?.author?.username?.substring(
@@ -161,12 +162,18 @@ const Container = () => {
                       sx={{
                         width: "100%",
                         whiteSpace: "nowrap",
+                        maxHeight: "45px",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                       }}
                     >
                       Description :
-                      <span style={{ padding: 1 }}>{question.text}</span>
+                      <span
+                        style={{ padding: 1 }}
+                        dangerouslySetInnerHTML={{
+                          __html: question.text,
+                        }}
+                      ></span>
                     </Typography>
                     <Typography
                       sx={{
@@ -186,12 +193,11 @@ const Container = () => {
                           gap: 3,
                         }}
                       >
-                        {question.tags?.map((tag: any, index: number) => {
+                        {question.tags?.map((tag: string, index: number) => {
                           return (
                             <Card
                               variant="outlined"
                               sx={{
-                                background: "#d0b3f5",
                                 p: 2,
                                 borderRadius: "8px",
                               }}

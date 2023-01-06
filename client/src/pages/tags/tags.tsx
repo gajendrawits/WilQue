@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
+import { tagProps } from "src/sharedtypes/tagstypes";
 
 const TagContainer = (props: any) => {
   return (
@@ -15,7 +16,7 @@ const TagContainer = (props: any) => {
         paddingTop: "25px",
       }}
     >
-      {props?.tags?.map((tag: any) => {
+      {props?.tags?.map((tag: tagProps) => {
         return (
           <Card
             sx={{
@@ -27,7 +28,6 @@ const TagContainer = (props: any) => {
             }}
           >
             <Typography sx={{ widh: "200px" }}>#{tag._id}</Typography>
-            <Typography sx={{ widh: "200px" }}>{tag.description}</Typography>
           </Card>
         );
       })}

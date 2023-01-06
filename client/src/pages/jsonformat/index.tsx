@@ -4,7 +4,7 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const JsonFormat = () => {
-  const [rawData, setRawData] = useState<any>();
+  const [rawData, setRawData] = useState<string | undefined>();
   const [isError, setIsError] = useState<boolean>(false);
   const [toolTipOpen, setToolTipOpen] = useState<boolean>(false);
 

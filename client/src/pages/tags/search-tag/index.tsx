@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import useGet from "src/hooks/useGet";
 import CircularProgress from "@mui/material/CircularProgress";
 import router from "next/router";
+import { tagProps } from "src/sharedtypes/tagstypes";
 
 interface SearchProps {
   searchTag: string | undefined;
@@ -21,7 +22,7 @@ const SearchTag = ({ searchTag }: SearchProps) => {
     FetchSearchTag();
   }, [searchTag]);
 
-  const handleClicked = (tag: any) => {
+  const handleClicked = (tag: string) => {
     router.push({
       pathname: "/questionbytag",
       query: { searchTag: tag },
@@ -53,7 +54,7 @@ const SearchTag = ({ searchTag }: SearchProps) => {
           }}
         >
           {data &&
-            data?.map((searchTag: any) => {
+            data?.map((searchTag: tagProps) => {
               return (
                 <Card
                   sx={{

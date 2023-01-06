@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { Button, CircularProgress, styled } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import QuillEdit from "../editor";
@@ -24,6 +24,7 @@ import {
   LoaderWrapper,
 } from "src/styles/answerstyle.tsx";
 import CustomizedSnackbars from "src/component/message";
+import { answerTypes, commentTypes } from "src/sharedtypes/answertypes";
 
 const Answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
@@ -57,7 +58,7 @@ const Answers = () => {
     router.push("/askquestion");
   };
 
-  const handleAnswerValue = (value: any) => {
+  const handleAnswerValue = (value: string) => {
     setAnswerValue(value);
   };
 
@@ -116,6 +117,7 @@ const Answers = () => {
     setIsSelected(temp);
   };
 
+  const reversedData = data?.answers?.reverse();
   return (
     <Grid>
       {getOpenAnswer && (
@@ -169,135 +171,136 @@ const Answers = () => {
             </LoaderWrapper>
           ) : null}
           {data &&
-            data?.answers?.reverse().map((answer: any, index: number) => {
-              let flag = false;
-              if (answer?.author?.username == getUserDetail?.username) {
-                flag = true;
-              }
-              const authorName = answer?.author?.username?.substring(
-                0,
-                question?.author?.username?.indexOf("@")
-              );
+            data?.answers
+              ?.reverse()
+              .map((answer: answerTypes, index: number) => {
+                let flag = false;
+                if (answer?.author?.username == getUserDetail?.username) {
+                  flag = true;
+                }
+                const authorName = answer?.author?.username?.substring(
+                  0,
+                  question?.author?.username?.indexOf("@")
+                );
 
-              const date: number = answer.created;
-              const currentDate: any = new Date();
-              const myDate =
-                parseInt(moment(currentDate).format("DD")) -
-                parseInt(moment(date).format("DD"));
-
-              return (
-                <Container>
-                  <Typography
-                    sx={{
-                      p: 3,
-                      background: "lightgrey",
-                    }}
-                  >
+                const date: string = answer.created;
+                const currentDate: any = new Date();
+                const myDate =
+                  parseInt(moment(currentDate).format("DD")) -
+                  parseInt(moment(date).format("DD"));
+                return (
+                  <Container>
                     <Typography
-                      sx={{ p: 2, width: "100%", boxSizing: "content-box" }}
-                      key={answer?.id}
+                      sx={{
+                        p: 3,
+                        background: "lightgrey",
+                      }}
                     >
-                      Answer: {index + 1}
                       <Typography
-                        sx={{
-                          overflowY: "auto",
-                        }}
-                        dangerouslySetInnerHTML={{ __html: answer.text }}
-                      ></Typography>
-                      {flag ? (
-                        <DeleteIcon
+                        sx={{ p: 2, width: "100%", boxSizing: "content-box" }}
+                        key={answer?.id}
+                      >
+                        Answer: {index + 1}
+                        <Typography
                           sx={{
-                            fontSize: "28px",
-                            position: "relative",
-                            top: "5px",
-                            cursor: "pointer",
+                            overflowY: "auto",
                           }}
-                          onClick={() => handleDelete(answer?.id)}
-                        />
-                      ) : null}
-                    </Typography>
+                          dangerouslySetInnerHTML={{ __html: answer.text }}
+                        ></Typography>
+                        {flag ? (
+                          <DeleteIcon
+                            sx={{
+                              fontSize: "28px",
+                              position: "relative",
+                              top: "5px",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => handleDelete(answer?.id)}
+                          />
+                        ) : null}
+                      </Typography>
 
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "flex-end",
-                      }}
-                    >
-                      <p>
-                        {authorName} answered
-                        {myDate === 0
-                          ? " today"
-                          : myDate === 1
-                          ? " yesterday"
-                          : myDate + " days ago"}
-                      </p>
-                    </div>
-                  </Typography>
-
-                  <Box
-                    sx={{
-                      display: "flex",
-                      gap: 5,
-                    }}
-                  >
-                    <ThumbUpSharpIcon
-                      color={open ? "inherit" : "inherit"}
-                      fontSize="large"
-                    />
-                    <ThumbDownAltSharpIcon
-                      color={open ? "inherit" : "inherit"}
-                      fontSize="large"
-                    />
-                    <div
-                      onClick={() => {
-                        handleClick(answer?.id);
-                        handleOnPress(answer?.id);
-                      }}
-                    >
-                      <AddCommentSharpIcon
-                        color={
-                          isSelected.includes(answer?.id)
-                            ? "primary"
-                            : "inherit"
-                        }
-                        fontSize="large"
-                      />
-                    </div>
-                  </Box>
-                  {answer?.comments?.map((comments: any) => {
-                    return (
-                      <Box
-                        sx={{
-                          mr: 6,
+                      <div
+                        style={{
                           display: "flex",
-                          flexDirection: "column",
+                          flexDirection: "row",
+                          justifyContent: "flex-end",
                         }}
                       >
-                        {isSelected.includes(answer?.id) && (
-                          <Avatar
-                            alt="Mary Vaughn"
-                            src={comments.author.profilePhoto}
-                            sx={{ width: 34, height: 34, marginRight: 2.75 }}
-                          />
-                        )}
-                        <Typography variant="body2">
-                          <div>{comments?.body}</div>
-                        </Typography>
-                      </Box>
-                    );
-                  })}
-                  <div>
-                    <Comment
-                      answerId={answer?.id}
-                      questionId={questionId}
-                      comment={answer?.comments}
-                      showCommnetArea={open}
-                    />
-                  </div>
-                </Container>
-              );
-            })}
+                        <p>
+                          {authorName} answered
+                          {myDate === 0
+                            ? " today"
+                            : myDate === 1
+                            ? " yesterday"
+                            : myDate + " days ago"}
+                        </p>
+                      </div>
+                    </Typography>
+
+                    <Box
+                      sx={{
+                        display: "flex",
+                        gap: 5,
+                      }}
+                    >
+                      <ThumbUpSharpIcon
+                        color={open ? "inherit" : "inherit"}
+                        fontSize="large"
+                      />
+                      <ThumbDownAltSharpIcon
+                        color={open ? "inherit" : "inherit"}
+                        fontSize="large"
+                      />
+                      <div
+                        onClick={() => {
+                          handleClick(answer?.id);
+                          handleOnPress(answer?.id);
+                        }}
+                      >
+                        <AddCommentSharpIcon
+                          color={
+                            isSelected.includes(answer?.id)
+                              ? "primary"
+                              : "inherit"
+                          }
+                          fontSize="large"
+                        />
+                      </div>
+                    </Box>
+                    {answer?.comments?.map((comments: commentTypes) => {
+                      return (
+                        <Box
+                          sx={{
+                            mr: 6,
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          {isSelected.includes(answer?.id) && (
+                            <Avatar
+                              alt="Mary Vaughn"
+                              src={comments.author.profilePhoto}
+                              sx={{ width: 34, height: 34, marginRight: 2.75 }}
+                            />
+                          )}
+                          <Typography variant="body2">
+                            <div>{comments?.body}</div>
+                          </Typography>
+                        </Box>
+                      );
+                    })}
+                    <div>
+                      <Comment
+                        answerId={answer?.id}
+                        questionId={questionId}
+                        comment={answer?.comments}
+                        showCommnetArea={open}
+                      />
+                    </div>
+                  </Container>
+                );
+              })}
         </Typography>
 
         {myquestion ? null : (
