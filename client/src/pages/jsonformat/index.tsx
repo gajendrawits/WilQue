@@ -1,4 +1,4 @@
-import { Box, Grid, Tooltip, Typography } from "@mui/material";
+import { Box, Grid, Link, Tooltip, Typography } from "@mui/material";
 import React, { useState } from "react";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -31,7 +31,29 @@ const JsonFormat = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          mb: "22px",
+        }}
+      >
+        <Typography variant="h5">
+          <Link>JSON Fromatter</Link>
+        </Typography>
+        <Typography variant="body2">
+          Prettify your JSON string to a human friendly readable format.
+        </Typography>
+      </Grid>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          display: "grid",
+          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(30rem, 1fr))",
+        }}
+      >
         <Grid xs={6}>
           <Typography sx={{ textAlign: "center", fontWeight: "800" }}>
             Your raw json
@@ -40,7 +62,7 @@ const JsonFormat = () => {
             minRows={30}
             maxRows={50}
             style={{
-              width: "35vw",
+              width: "500px",
               backgroundColor: "white",
               borderRadius: "10px",
               padding: "6px",
@@ -57,11 +79,13 @@ const JsonFormat = () => {
           </Typography>
           <TextareaAutosize
             minRows={30}
+            maxRows={50}
             style={{
-              width: "35vw",
+              minWidth: "500px",
               backgroundColor: "white",
               color: "black",
               borderRadius: "10px",
+              position: "absolute",
             }}
             value={rawData}
             readOnly={true}
@@ -80,10 +104,10 @@ const JsonFormat = () => {
           >
             <ContentCopyIcon
               sx={{
-                position: "fixed",
+                position: "relative",
                 cursor: "pointer",
-                right: "180px",
-                top: "120px",
+                left: "455px",
+                top: "10px",
                 color: "black",
               }}
               onClick={() => updateClipboard(rawData)}

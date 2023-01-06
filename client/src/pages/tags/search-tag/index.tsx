@@ -62,8 +62,11 @@ const SearchTag = ({ searchTag }: SearchProps) => {
                     flexDirection: "column",
                     gap: 2,
                     p: 1,
-                    border: "1px solid #9155FD",
+                    border: "1px solid lightgrey",
                     cursor: "pointer",
+                    "&:hover": {
+                      border: "2px solid lightgrey",
+                    },
                   }}
                   onClick={() => handleClicked(searchTag?._id)}
                 >

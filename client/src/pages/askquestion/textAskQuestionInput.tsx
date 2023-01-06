@@ -1,7 +1,7 @@
-import { Typography } from "@mui/material";
 import React from "react";
-import Editor from "src/pages/editor";
 import { InputWrapper } from "src/styles/askquestionstyle/textAskQuestionInputStyle";
+import { Typography } from "@mui/material";
+import Editor from "src/pages/editor";
 
 interface TextProps {
   text: string;
