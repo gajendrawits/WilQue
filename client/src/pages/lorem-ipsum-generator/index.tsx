@@ -52,7 +52,7 @@ const MUITable = () => {
       }}
     >
       <Grid sx={{ pb: 6 }}>
-        <Typography variant="h5" sx={{ pb: 6 }}>
+        <Typography variant="h5">
           <Link>Lorem Ipsum Generator</Link>
         </Typography>
         <Typography variant="body2">
@@ -211,7 +211,7 @@ const MUITable = () => {
                 width: "100%",
                 height: "40vh",
                 maxHeight: "40vh",
-                overflowY: "scroll",
+                overflowY: "auto",
                 padding: "20px",
                 boxShadow: "none",
               }}
