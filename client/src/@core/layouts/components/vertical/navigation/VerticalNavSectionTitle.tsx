@@ -72,7 +72,7 @@ const VerticalNavSectionTitle = (props: Props) => {
         }}
       >
         <TypographyHeaderText
-          sx={{ fontSize: "1rem", color: "black", fontWeight: "500" }}
+          sx={{ fontSize: "1rem", color: "grey", fontWeight: "700" }}
           noWrap
         >
           {item.sectionTitle}

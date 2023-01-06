@@ -12,8 +12,6 @@ export const useAuthentication = () => {
 
   let token = global?.window?.localStorage.getItem("token");
   let current_route = ROUTES.find((route: any) => {
-    console.log("route?.LINK", route?.LINK);
-    console.log("router?.pathname", router?.pathname);
     return route?.LINK === router?.pathname;
   });
 
@@ -25,7 +23,6 @@ export const useAuthentication = () => {
   };
 
   if (current_route) {
-    console.log("current_route", current_route);
     if (!current_route?.SECURE) {
       if (!token) {
         access.authenticated = true;

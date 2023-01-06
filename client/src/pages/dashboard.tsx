@@ -1,9 +1,9 @@
 import React from "react";
+import { useRouter } from "next/router";
 import Grid from "@mui/material/Grid";
+import CustomizedSnackbars from "src/component/message";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 import Questions from "./questions";
-import { useRouter } from "next/router";
-import CustomizedSnackbars from "src/component/message";
 
 const dashboard = () => {
   const router = useRouter();

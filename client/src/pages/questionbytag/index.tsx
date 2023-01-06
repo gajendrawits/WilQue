@@ -113,6 +113,9 @@ const SearchByTag = () => {
                     cursor: "pointer",
                     border: "1px solid lightgrey",
                     display: "flex",
+                    "&:hover": {
+                      border: "2px solid lightgrey",
+                    },
                   }}
                   key={index}
                 >

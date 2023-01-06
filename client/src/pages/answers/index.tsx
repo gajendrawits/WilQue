@@ -30,7 +30,6 @@ const Answers = () => {
   const { getQuestionValue } = useContext(QuestionContext);
   const [getAnswerValue, setAnswerValue] = useState("");
   const [getUserDetail, setUserDetail] = useState<any>();
-  const [comment, setComment] = useState(true);
   const [answerError, setAnswerError] = useState<string>();
   const [getOpenAnswer, setOpenAnswer] = useState(false);
   const [getDeleteAnswer, setDeleteAnswer] = useState(false);
@@ -200,7 +199,7 @@ const Answers = () => {
                         sx={{ p: 2, width: "100%", boxSizing: "content-box" }}
                         key={answer?.id}
                       >
-                        Answer: {index + 1}
+                        Answer:
                         <Typography
                           sx={{
                             overflowY: "auto",
@@ -272,21 +271,30 @@ const Answers = () => {
                       return (
                         <Box
                           sx={{
-                            mr: 6,
+                            m: 2,
                             display: "flex",
-                            flexDirection: "column",
+                            flexDirection: "row",
+                            alignItems: "center",
                           }}
                         >
                           {isSelected.includes(answer?.id) && (
-                            <Avatar
-                              alt="Mary Vaughn"
-                              src={comments.author.profilePhoto}
-                              sx={{ width: 34, height: 34, marginRight: 2.75 }}
-                            />
+                            <>
+                              <>
+                                <Avatar
+                                  alt="Mary Vaughn"
+                                  src={comments.author.profilePhoto}
+                                  sx={{
+                                    width: 34,
+                                    height: 34,
+                                    marginRight: 2.75,
+                                  }}
+                                />
+                                <Typography variant="body2">
+                                  <div>{comments?.body}</div>
+                                </Typography>
+                              </>
+                            </>
                           )}
-                          <Typography variant="body2">
-                            <div>{comments?.body}</div>
-                          </Typography>
                         </Box>
                       );
                     })}

@@ -78,6 +78,7 @@ const CardUser = () => {
           padding: 5,
           display: "grid",
           gap: "20px",
+          border: "1px solid lightgrey",
           gridTemplateColumns: "repeat(auto-fill, minmax(25rem, 1fr))",
         }}
       >
@@ -87,8 +88,12 @@ const CardUser = () => {
               className="effectHover"
               sx={{
                 boxShadow: 10,
+                border: "1px solid lightgrey",
                 color: "common.white",
                 cursor: "pointer",
+                "&:hover": {
+                  border: "2px solid lightgrey",
+                },
               }}
               onClick={() => handleClick(user.username, 5)}
             >

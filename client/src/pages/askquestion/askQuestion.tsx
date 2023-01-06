@@ -34,6 +34,7 @@ const AskQuestion = () => {
         payload: getQuestionValue,
         token: true,
       });
+      setOpen(false);
     } else {
       setOpen(true);
     }
@@ -97,7 +98,7 @@ const AskQuestion = () => {
           <BasicModal
             handleClose={handleClose}
             open={open}
-            title={"Question Not Added"}
+            title={"Question Not Added or must be atmost 180 character "}
           />
         ) : null}
       </Container>
