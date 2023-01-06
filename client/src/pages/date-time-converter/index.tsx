@@ -9,6 +9,7 @@ import { IOSSwitch } from "src/component/iosswitch";
 import moment from "moment";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
+import { Link } from "@mui/material";
 
 const MUITable = () => {
   const [time, setTime] = useState(new Date());
@@ -49,13 +50,6 @@ const MUITable = () => {
     }
   };
   const FormatHandler = (date: any) => {
-    console.log("date", date);
-    console.log(
-      "first",
-      moment(date, "YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]").format(
-        "YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]"
-      )
-    );
     setIsError(true);
     if (
       moment(date, "YYYY-MM-DDTHH:mm:ssZ").format("YYYY-MM-DDTHH:mm:ssZ") ===
@@ -75,7 +69,6 @@ const MUITable = () => {
       ) === date &&
       dateString === "ISO 8601"
     ) {
-      console.log("90");
       setIsError(false);
       setLocaldate(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
       setIsoESZO(moment(date).format("YYYY-MM-DDTHH:mm:ssZ"));
@@ -163,33 +156,24 @@ const MUITable = () => {
   return (
     <Grid container spacing={6}>
       <Grid item xs={12}>
-        <Typography
-          sx={{
-            color: "#9155FD",
-            fontWeight: 800,
-            fontSize: "32px",
-            mt: "20px",
-          }}
-        >
-          Date-time converter
+        <Typography variant="h5">
+          <Link>Date-time converter</Link>
         </Typography>
-        <Typography
-          sx={{
-            fontWeight: 600,
-            fontSize: "15px",
-          }}
-        >
+        <Typography variant="body2">
           Convert date and time into the various different formats
         </Typography>
+      </Grid>
+      <Grid item xs={12}>
         <Divider variant="middle" />
         <Box
           sx={{
             minWidth: 275,
             boxShadow: 5,
             color: "common.white",
-            mt: "82px",
+            mt: "22px",
             borderRadius: 1,
             padding: 10,
+            border: "1px solid lightgrey",
           }}
         >
           <Box

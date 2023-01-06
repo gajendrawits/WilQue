@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Card from "@mui/material/Card";
+import { Tooltip } from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+
 const ColorPicker = () => {
+  const [toolTipOpen, setToolTipOpen] = useState<boolean>(false);
+
   const FeelingRed = [
     { id: 1, color: "#FF6263" },
     { id: 2, color: "#ad1a0c" },
@@ -47,6 +52,10 @@ const ColorPicker = () => {
     { id: 12, color: "#08672e" },
   ];
   function updateClipboard(newClip: any) {
+    setToolTipOpen(true);
+    setTimeout(() => {
+      setToolTipOpen(false);
+    }, 1000);
     navigator.clipboard.writeText(newClip).then(
       () => {},
       () => {}
@@ -74,6 +83,29 @@ const ColorPicker = () => {
           width: "100%",
         }}
       >
+        {toolTipOpen ? (
+          <Tooltip
+            title="Copied !"
+            placement="top"
+            PopperProps={{
+              disablePortal: true,
+            }}
+            open={toolTipOpen}
+            disableFocusListener
+            disableHoverListener
+            disableTouchListener
+          >
+            <ContentCopyIcon
+              sx={{
+                position: "relative",
+                cursor: "pointer",
+                left: "95%",
+                top: "10px",
+                color: "black",
+              }}
+            />
+          </Tooltip>
+        ) : null}
         <Typography sx={{ color: "red", fontSize: 32, padding: 4 }}>
           Feeling Red
         </Typography>
@@ -104,7 +136,10 @@ const ColorPicker = () => {
                     borderRadius: "8px",
                   }}
                 ></Typography>
-                <Typography onClick={() => updateClipboard(red.color)}>
+                <Typography
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => updateClipboard(red.color)}
+                >
                   {red.color}
                 </Typography>
               </Card>
@@ -146,7 +181,10 @@ const ColorPicker = () => {
                     borderRadius: "8px",
                   }}
                 ></Typography>
-                <Typography onClick={() => updateClipboard(red.color)}>
+                <Typography
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => updateClipboard(red.color)}
+                >
                   {red.color}
                 </Typography>
               </Card>
@@ -185,11 +223,13 @@ const ColorPicker = () => {
                     paddingBottom: "125px",
                     mb: "20px",
                     background: red.color,
-
                     borderRadius: "8px",
                   }}
                 ></Typography>
-                <Typography onClick={() => updateClipboard(red.color)}>
+                <Typography
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => updateClipboard(red.color)}
+                >
                   {red.color}
                 </Typography>
               </Card>

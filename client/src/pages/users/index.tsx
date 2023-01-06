@@ -1,10 +1,11 @@
 import React from "react";
 import UsersTables from "src/views/users/usersTable";
-const index = () => {
+
+const Users = () => {
   return (
     <>
       <UsersTables />
     </>
   );
 };
-export default index;
+export default Users;

@@ -1,8 +1,8 @@
 import React from "react";
+import router from "next/router";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import router from "next/router";
 import { tagProps } from "src/sharedtypes/tagstypes";
 
 const TagContainer = (props: any) => {
@@ -35,6 +35,10 @@ const TagContainer = (props: any) => {
                 gap: 2,
                 p: 1,
                 justifyContent: "center",
+                cursor: "pointer",
+                "&:hover": {
+                  border: "2px solid lightgrey",
+                },
               }}
               onClick={() => handleClicked(tag._id)}
             >

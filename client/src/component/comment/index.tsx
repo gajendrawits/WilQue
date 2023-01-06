@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import usePost from "src/hooks/usePost";
 import Stack from "@mui/material/Stack";
 import { Avatar } from "@material-ui/core";
+import CustomizedSnackbars from "src/component/message";
 import { commentTypes, userData } from "src/sharedtypes/commenttypes";
 
 const Comment = (props: commentTypes) => {
   const [profileDetails, setProfileDetails] = useState<userData | undefined>();
+  const [getOpenComment, setOpenComment] = useState(false);
 
   useEffect(() => {
     const userData: any = localStorage.getItem("user");
@@ -27,12 +29,20 @@ const Comment = (props: commentTypes) => {
       token: true,
     });
     setTimeout(() => {
+      setOpenComment(true);
       window.location.reload();
     }, 100);
   };
 
   return (
     <>
+      {getOpenComment && (
+        <CustomizedSnackbars
+          resetData={getOpenComment}
+          severity={"success"}
+          message={"Comment Posted !"}
+        />
+      )}
       {props.showCommnetArea && (
         <Stack direction="row" spacing={5}>
           <>

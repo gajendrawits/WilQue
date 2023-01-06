@@ -15,7 +15,7 @@ import {
   PostButton,
 } from "src/styles/askquestionstyle/askQuestionStyle";
 
-const index = () => {
+const AskQuestion = () => {
   const { getQuestionValue, setQuestionValue } = useContext(QuestionContext);
   const [open, setOpen] = useState(false);
 
@@ -34,6 +34,7 @@ const index = () => {
         payload: getQuestionValue,
         token: true,
       });
+      setOpen(false);
     } else {
       setOpen(true);
     }
@@ -97,11 +98,11 @@ const index = () => {
           <BasicModal
             handleClose={handleClose}
             open={open}
-            title={"Question Not Added"}
+            title={"Question Not Added or must be atmost 180 character "}
           />
         ) : null}
       </Container>
     </>
   );
 };
-export default index;
+export default AskQuestion;
