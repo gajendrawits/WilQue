@@ -1,12 +1,13 @@
-const { body, validationResult } = require('express-validator');
+const { body, validationResult } = require("express-validator");
 
 exports.loadAnswers = async (req, res, next, id) => {
   try {
     const answer = await req.question.answers.id(id);
-    if (!answer) return res.status(404).json({ message: 'Answer not found.' });
+    if (!answer) return res.status(404).json({ message: "Answer not found." });
     req.answer = answer;
   } catch (error) {
-    if (error.name === 'CastError') return res.status(400).json({ message: 'Invalid answer id.' });
+    if (error.name === "CastError")
+      return res.status(400).json({ message: "Invalid answer id." });
     return next(error);
   }
   next();
@@ -42,17 +43,17 @@ exports.removeAnswer = async (req, res, next) => {
 };
 
 exports.answerValidate = [
-  body('text')
+  body("text")
     .exists()
     .trim()
-    .withMessage('is required')
+    .withMessage("is required")
 
     .notEmpty()
-    .withMessage('cannot be blank')
+    .withMessage("cannot be blank")
 
     .isLength({ min: 30 })
-    .withMessage('must be at least 30 characters long')
+    .withMessage("must be at least 30 characters long")
 
     .isLength({ max: 30000 })
-    .withMessage('must be at most 30000 characters long')
+    .withMessage("must be at most 30000 characters long"),
 ];
