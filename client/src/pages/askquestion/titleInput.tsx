@@ -48,7 +48,7 @@ const titleInput = (props: titleInputProps) => {
           border: "none",
         }}
         type={props.type}
-        onChange={(e: any) => handleInput(e.target.value)}
+        onChange={(e) => handleInput(e.target.value)}
       />
       {inputError && (
         <p style={{ color: "red" }}>First Character Space Not Allowed</p>

@@ -242,7 +242,7 @@ const Container = () => {
                         ? "today"
                         : myDate === 1
                         ? "yesterday"
-                        : myDate + " days ago"}
+                        : Math.abs(myDate) + " days ago"}
                     </Typography>
                   </Typography>
                 </Typography>

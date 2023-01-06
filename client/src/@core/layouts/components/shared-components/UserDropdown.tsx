@@ -31,8 +31,8 @@ const BadgeContentSpan = styled("span")(({ theme }) => ({
 const UserDropdown = () => {
   const [profileDetails, setProfileDetails] = useState<any>();
   useEffect(() => {
-    const a: any = localStorage.getItem("user");
-    setProfileDetails(JSON.parse(a));
+    const userInfo: any = localStorage.getItem("user");
+    setProfileDetails(JSON.parse(userInfo));
   }, []);
 
   // ** States
