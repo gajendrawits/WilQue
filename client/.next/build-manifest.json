@@ -35,10 +35,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/dashboard.js"
     ],
-    "/myquestions": [
+    "/deviceinformation": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/myquestions.js"
+      "static/chunks/pages/deviceinformation.js"
     ]
   },
   "ampFirstPages": []
