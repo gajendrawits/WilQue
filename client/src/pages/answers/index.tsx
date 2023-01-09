@@ -322,7 +322,7 @@ const Answers = () => {
             <div>
               {answerError && (
                 <p style={{ color: "red", textTransform: "capitalize" }}>
-                  {answerError}
+                  Text {answerError}
                 </p>
               )}
             </div>
