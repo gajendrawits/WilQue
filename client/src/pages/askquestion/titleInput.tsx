@@ -19,14 +19,20 @@ const titleInput = (props: titleInputProps) => {
       return /^\S/.test(str);
     };
     const checkString = atLeastOneLetterAndSpace(value);
-    if (checkString) {
+
+    const noSpaceString = obj?.title?.replace(/  +/g, " ");
+    const checkTtile = noSpaceString?.length <= 179;
+
+    if (checkString && checkTtile) {
       const newobj = { ...getQuestionValue, ...obj };
       setQuestionValue(newobj);
       setInputError(false);
     } else {
+      setQuestionValue({});
       setInputError(true);
     }
   };
+
   return (
     <Typography
       sx={{
@@ -39,7 +45,6 @@ const titleInput = (props: titleInputProps) => {
     >
       <Typography variant="h6">{props.label}</Typography>
       {props.heading}
-
       <input
         style={{
           padding: 6,
@@ -48,10 +53,12 @@ const titleInput = (props: titleInputProps) => {
           border: "none",
         }}
         type={props.type}
-        onChange={(e: any) => handleInput(e.target.value)}
+        onChange={(e) => handleInput(e.target.value)}
       />
       {inputError && (
-        <p style={{ color: "red" }}>First Character Space Not Allowed</p>
+        <p style={{ color: "red" }}>
+          First Character Space Not Allowed & max 180 Character
+        </p>
       )}
     </Typography>
   );

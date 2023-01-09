@@ -32,7 +32,7 @@ const tagInput = (props: tagInputProps) => {
     <InputWrapper>
       <Typography variant="h6">{props.label}</Typography>
       {props.heading}
-      <Input type="text" onChange={(e: any) => handleInput(e.target.value)} />
+      <Input type="text" onChange={(e) => handleInput(e.target.value)} />
       {inputError && (
         <p style={{ color: "red" }}>
           Special Character's and Number are not Allowed.
