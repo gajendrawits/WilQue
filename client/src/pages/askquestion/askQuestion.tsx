@@ -90,7 +90,7 @@ const AskQuestion = () => {
           <BasicModal
             handleClose={handleClose}
             open={open}
-            title={"Empty Fileds"}
+            title={"Empty Fields"}
             subtitle={"Kindly fill all the fields.."}
           />
         )}

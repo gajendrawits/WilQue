@@ -33,6 +33,10 @@ const Answers = () => {
   const [answerError, setAnswerError] = useState<string>();
   const [getOpenAnswer, setOpenAnswer] = useState(false);
   const [getDeleteAnswer, setDeleteAnswer] = useState(false);
+  const [upvote, setUpVote] = useState<any>([]);
+  const [like, setlike] = useState(false);
+  const [unLike, setUnlike] = useState(false);
+  const [downVote, setDownVote] = useState<any>([]);
 
   const [open, setOpen] = useState<any>({});
   const [isSelected, setIsSelected] = useState<any>([]);
@@ -56,7 +60,28 @@ const Answers = () => {
   const handleRoute = () => {
     router.push("/askquestion");
   };
+  const handleUpVote = (id: any) => {
+    setlike(!like);
+    let temp = [...upvote];
 
+    if (upvote.includes(id)) {
+      temp = temp.filter((i: number) => i !== id);
+    } else {
+      temp.push(id);
+    }
+    setUpVote(temp);
+  };
+  const handleDownVote = (id: any) => {
+    setUnlike(!unLike);
+    let temp = [...downVote];
+
+    if (downVote.includes(id)) {
+      temp = temp.filter((i: number) => i !== id);
+    } else {
+      temp.push(id);
+    }
+    setDownVote(temp);
+  };
   const handleAnswerValue = (value: string) => {
     setAnswerValue(value);
   };
@@ -100,6 +125,7 @@ const Answers = () => {
   }, []);
 
   const handleClick = (id?: any) => () => {
+    console.log("id", id);
     setOpen((open?: any) => ({
       ...open,
       [id]: !open[id],
@@ -119,6 +145,20 @@ const Answers = () => {
   const reversedData = data?.answers?.reverse();
   return (
     <Grid>
+      {like && (
+        <CustomizedSnackbars
+          resetData={getOpenAnswer}
+          severity={"success"}
+          message={"Sucessfully Upvoted"}
+        />
+      )}
+      {unLike && (
+        <CustomizedSnackbars
+          resetData={getOpenAnswer}
+          severity={"success"}
+          message={"Sucessfully DownVoted"}
+        />
+      )}
       {getOpenAnswer && (
         <CustomizedSnackbars
           resetData={getOpenAnswer}
@@ -243,17 +283,32 @@ const Answers = () => {
                         gap: 5,
                       }}
                     >
-                      <ThumbUpSharpIcon
-                        color={open ? "inherit" : "inherit"}
-                        fontSize="large"
-                      />
-                      <ThumbDownAltSharpIcon
-                        color={open ? "inherit" : "inherit"}
-                        fontSize="large"
-                      />
+                      <div onClick={() => handleUpVote(answer?.id)}>
+                        <ThumbUpSharpIcon
+                          color={
+                            upvote.includes(answer?.id) ? "primary" : "inherit"
+                          }
+                          fontSize="large"
+                        />
+                      </div>
                       <div
                         onClick={() => {
-                          handleClick(answer?.id);
+                          handleDownVote(answer?.id);
+                        }}
+                      >
+                        <ThumbDownAltSharpIcon
+                          color={
+                            downVote.includes(answer?.id)
+                              ? "primary"
+                              : "inherit"
+                          }
+                          fontSize="large"
+                        />
+                      </div>
+
+                      <div
+                        onClick={() => {
+                          // handleClick(answer?.id);
                           handleOnPress(answer?.id);
                         }}
                       >
@@ -322,7 +377,7 @@ const Answers = () => {
             <div>
               {answerError && (
                 <p style={{ color: "red", textTransform: "capitalize" }}>
-                  {answerError}
+                  Text {answerError}
                 </p>
               )}
             </div>
